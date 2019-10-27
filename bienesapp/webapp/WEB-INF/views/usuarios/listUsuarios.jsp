@@ -23,7 +23,7 @@
 	
 	<div class="container theme-showcase" role="main">
 
-		<h3>Listado de Noticias</h3>
+		<h3>Listado de Usuarios</h3>
       
         <c:if test="${msg !=null }">        
         		<div class='alert alert-success' role='alert'>${msg}</div>
@@ -39,7 +39,10 @@
 	          <tr>
 	              <th>Id</th>
 	              <th>Cuenta</th>
-	              <th>Password</th>            
+	              <th>Password</th>  
+	              <th>Estatus</th>          
+	              <th>E-mail</th>
+	              <th>Telefono</th>
 	              <th>Opciones</th>
 	          </tr>
 	
@@ -48,7 +51,9 @@
 						<td>${usuario.id}</td>
 						<td>${usuario.cuenta}</td>
 						<td>${usuario.pwd}</td>
-													
+						<td>${usuario.activo}</td>	
+						<td>${usuario.email}</td>
+						<td>${usuario.telefono}</td>
 						<td>
 						   <a href="${urlEdit}/${usuario.id}" class="btn btn-success btn-sm" role="button" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a>
 							<a href="${urlDelete}/${usuario.id}" onclick='return confirm("¿Estas seguro?")' class="btn btn-danger btn-sm" role="button" title="Eliminar"><span class="glyphicon glyphicon-trash"></span></a>

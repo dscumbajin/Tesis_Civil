@@ -7,5 +7,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PerfilesRepository extends JpaRepository<Perfil, Integer> {
+	
+	public Perfil findByCuenta (String cuenta);
 
 }

@@ -19,6 +19,10 @@ public class Usuario {
 	private String email;
 	private String telefono;
 
+	public Usuario() {
+		this.activo = 1;
+	}
+
 	public int getId() {
 		return id;
 	}
