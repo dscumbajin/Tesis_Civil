@@ -27,9 +27,10 @@ public class BannersController {
 
 	@Autowired
 	private IBannersService serviceBanners;
-	
+
 	/**
 	 * Metodo para mostrar el listado de banners
+	 * 
 	 * @param model
 	 * @return
 	 */
@@ -39,18 +40,20 @@ public class BannersController {
 		model.addAttribute("banners", banners);
 		return "banners/listBanners";
 	}
-	
+
 	/**
 	 * Metodo para mostrar el formulario para crear un nuevo Banner
+	 * 
 	 * @return
 	 */
 	@GetMapping("/create")
 	public String crear(@ModelAttribute Banner banner, Model model) {
 		return "banners/formBanner";
 	}
-	
+
 	/**
 	 * Metodo para guardar el objeto de modelo de tipo Banner
+	 * 
 	 * @param banner
 	 * @param result
 	 * @param attributes
@@ -60,38 +63,49 @@ public class BannersController {
 	 */
 	@PostMapping("/save")
 	public String guardar(Banner banner, BindingResult result, RedirectAttributes attributes,
-			@RequestParam("archivoImagen") MultipartFile multiPart, HttpServletRequest request
-			) {
-		
+			@RequestParam("archivoImagen") MultipartFile multiPart, HttpServletRequest request,
+			@RequestParam("titulo") String titulo, Model model) {
+
 		if (result.hasErrors()) {
 			System.out.println("Existieron errores");
 			return "banners/formBanner";
 		}
-		
-		if (!multiPart.isEmpty()) {
-			String nombreImagen = Utileria.guardarImagen(multiPart,request);
-			banner.setArchivo(nombreImagen);
-		}
-		
-		serviceBanners.insertar(banner);
-    	attributes.addFlashAttribute("mensaje", "El registro fue guardado");		
-		return "redirect:/banners/index";
-	}	
-	
-	
-	// editar por ID
-		@GetMapping(value = "edit/{id}")
-		public String Editar(@PathVariable("id") int idBanner, Model model) {
-			Banner banner = serviceBanners.buscarPorId(idBanner);
-			model.addAttribute("banner", banner);
+
+		if (serviceBanners.existePorTitulo(titulo)) {
+			model.addAttribute("alerta", "Ya existe un registro con titulo: " + titulo);
 			return "banners/formBanner";
-		}
-		
-		//Eliminar por id
-		@GetMapping(value = "delete/{id}")
-		public String eliminar (@PathVariable("id") int idBanner, RedirectAttributes attributes) {
-			serviceBanners.eliminar(idBanner);
-			attributes.addFlashAttribute("mensaje", "Registro eliminado");
+		} else {
+			if (!multiPart.isEmpty()) {
+				String nombreImagen = Utileria.guardarImagen(multiPart, request);
+				banner.setArchivo(nombreImagen);
+			}
+
+			serviceBanners.insertar(banner);
+			attributes.addFlashAttribute("mensaje", "El registro fue guardado");
 			return "redirect:/banners/index";
 		}
+
+	}
+
+	// editar por ID
+	@GetMapping(value = "edit/{id}")
+	public String Editar(@PathVariable("id") int idBanner, Model model) {
+		Banner banner = serviceBanners.buscarPorId(idBanner);
+		model.addAttribute("banner", banner);
+		return "banners/formBanner";
+	}
+
+	// Eliminar por id
+	@GetMapping(value = "delete/{id}")
+	public String eliminar(@PathVariable("id") int idBanner, RedirectAttributes attributes) {
+		serviceBanners.eliminar(idBanner);
+		attributes.addFlashAttribute("mensaje", "Registro eliminado");
+		return "redirect:/banners/index";
+	}
+
+	@RequestMapping(value = "/cancel")
+	public String mostrarAcerca() {
+		return "redirect:/banners/index";
+	}
+
 }

@@ -39,4 +39,8 @@ public interface NoticiasRepository extends JpaRepository<Noticia, Integer> {
 
 	// select * from Noticias where estatus = ? order by id desc limit 3
 	public List<Noticia> findTop3ByEstatusOrderByIdDesc(String estatus);
+	
+	public boolean existsByTitulo(String titulo);
+
+
 }

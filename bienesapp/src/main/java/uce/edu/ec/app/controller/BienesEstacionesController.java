@@ -94,4 +94,9 @@ public class BienesEstacionesController {
 		return servicioEstaciones.busacarTodas();
 	}
 
+	@RequestMapping(value = "/cancel")
+	public String mostrarAcerca() {
+		return "redirect:/asignaciones/indexPaginate";
+	}
+
 }

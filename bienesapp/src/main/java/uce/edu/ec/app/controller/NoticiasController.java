@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import uce.edu.ec.app.model.Noticia;
 import uce.edu.ec.app.service.INoticiasService;
-
 
 @Controller
 @RequestMapping(value = "/noticias")
@@ -53,11 +53,17 @@ public class NoticiasController {
 	 */
 	@PostMapping(value = "/save")
 	public String guardar(@ModelAttribute Noticia noticia, BindingResult result, Model model,
-			RedirectAttributes attributes) {
+			RedirectAttributes attributes, @RequestParam("titulo") String titulo) {
 		// Insertamos la noticia
-		serviceNoticias.guardar(noticia);
-		attributes.addFlashAttribute("msg", "Los datos de la noticia fueron guardados!");
-		return "redirect:/noticias/index";
+
+		if (serviceNoticias.existePorTitulo(titulo)) {
+			model.addAttribute("alerta", "Ya existe un registro con titulo: " + titulo);
+			return "noticias/formNoticia";
+		} else {
+			serviceNoticias.guardar(noticia);
+			attributes.addFlashAttribute("msg", "Los datos de la noticia fueron guardados!");
+			return "redirect:/noticias/index";
+		}
 	}
 
 	/**
@@ -89,4 +95,8 @@ public class NoticiasController {
 		return "noticias/formNoticia";
 	}
 
+	@RequestMapping(value = "/cancel")
+	public String mostrarAcerca() {
+		return "redirect:/noticias/index";
+	}
 }

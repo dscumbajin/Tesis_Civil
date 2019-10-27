@@ -11,6 +11,7 @@
 <title>Creacion de Usuarios</title>
 <spring:url value="/resources" var="urlPublic" />
 <spring:url value="/usuarios/save" var="urlForm" />
+<spring:url value="/usuarios/cancel" var="urlCancel"></spring:url>
 <link href="${urlPublic}/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
 <link href="${urlPublic}/bootstrap/css/theme.css" rel="stylesheet">
@@ -76,7 +77,17 @@
 
 			</div>
 
-			<button type="submit" class="btn btn-danger">Guardar</button>
+			<div class="btn-toolbar" role="toolbar">
+				<div class="btn-group">
+					<button type="submit" class="btn btn-danger">Guardar</button>
+				</div>
+
+				<div class="btn-group">
+					<a href="${urlCancel} " class="btn btn-info" role="button"
+						title="Cancelar">Cancelar</a>
+				</div>
+
+			</div>
 		</form:form>
 
 		<hr class="featurette-divider">

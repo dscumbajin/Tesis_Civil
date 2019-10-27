@@ -12,4 +12,6 @@ public interface BannersRepository extends JpaRepository<Banner, Integer> {
 
 	public List<Banner> findByEstatus(String estatus);
 
+	public boolean existsByTitulo(String titulo);
+
 }

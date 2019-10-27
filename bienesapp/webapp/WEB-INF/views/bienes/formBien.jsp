@@ -232,15 +232,14 @@
 				</div>
 			</div>
 
-
-
 			<div class="btn-toolbar" role="toolbar">
 				<div class="btn-group">
 					<button type="submit" class="btn btn-danger">Guardar</button>
 				</div>
 
 				<div class="btn-group">
-					<a href="${urlCancel} " class="btn btn-info" role="button" title="Cancelar">Cancelar</a>
+					<a href="${urlCancel} " class="btn btn-info" role="button"
+						title="Cancelar">Cancelar</a>
 				</div>
 
 			</div>

@@ -10,25 +10,25 @@ import uce.edu.ec.app.repository.NoticiasRepository;
 
 // Registramos esta clase como un Bean en nuestro Root ApplicationContext.
 @Service
-public class NoticiasServiceJPA implements INoticiasService{
-	
+public class NoticiasServiceJPA implements INoticiasService {
+
 	// Inyectamos una instancia desde nuestro Root ApplicationContext.
-    @Autowired
+	@Autowired
 	private NoticiasRepository noticiasRepo;
-		
-    @Override
+
+	@Override
 	public List<Noticia> buscarUltimas() {
-		List<Noticia> noticias = noticiasRepo.findTop3ByEstatusOrderByIdDesc("Activa");		
+		List<Noticia> noticias = noticiasRepo.findTop3ByEstatusOrderByIdDesc("Activa");
 		return noticias;
 	}
 
 	@Override
 	public void guardar(Noticia noticia) {
-		noticiasRepo.save(noticia);		
+		noticiasRepo.save(noticia);
 	}
 
 	@Override
-	public List<Noticia> buscarTodas() {		
+	public List<Noticia> buscarTodas() {
 		return noticiasRepo.findAll();
 	}
 
@@ -43,7 +43,7 @@ public class NoticiasServiceJPA implements INoticiasService{
 //	public Noticia buscarPorId(int idNoticia) {
 //		return noticiasRepo.findOne(idNoticia); 
 //	}
-	
+
 	@Override
 	public Noticia buscarPorId(int idNoticia) {
 		Optional<Noticia> optional = noticiasRepo.findById(idNoticia);
@@ -51,6 +51,11 @@ public class NoticiasServiceJPA implements INoticiasService{
 			return optional.get();
 		}
 		return null;
+	}
+
+	@Override
+	public boolean existePorTitulo(String titulo) {
+		return noticiasRepo.existsByTitulo(titulo);
 	}
 
 }

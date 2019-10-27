@@ -47,4 +47,9 @@ public class BannersServiceJPA implements IBannersService {
 		return estatus;
 	}
 
+	@Override
+	public boolean existePorTitulo(String titulo) {
+		return bannersRepo.existsByTitulo(titulo);
+	}
+
 }

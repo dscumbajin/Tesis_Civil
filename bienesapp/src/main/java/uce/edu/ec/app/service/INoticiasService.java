@@ -15,4 +15,6 @@ public interface INoticiasService {
 	void eliminar(int idNoticia);
 
 	Noticia buscarPorId(int idNoticia);
+	
+	boolean existePorTitulo(String titulo);
 }

@@ -7,6 +7,7 @@
 
 <spring:url value="/resources" var="urlPublic"></spring:url>
 <spring:url value="/asignaciones/save" var="urlForm"></spring:url>
+<spring:url value="/asignaciones/cancel" var="urlCancel"></spring:url>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,12 +53,11 @@
 					<div class="form-group">
 						<label for="id_bien" class="control-label">Bien</label>
 						<form:hidden path="id" />
-						<form:select id="id_bien" path="bien.id"
-							class="form-control" items="${bienes}" itemLabel="alta"
-							itemValue="id" />
+						<form:select id="id_bien" path="bien.id" class="form-control"
+							items="${bienes}" itemLabel="alta" itemValue="id" />
 					</div>
 				</div>
-				
+
 				<div class="col-sm-3">
 					<div class="form-group">
 						<label for="id_estacion" class="control-label">Lugar</label>
@@ -67,9 +67,18 @@
 					</div>
 				</div>
 			</div>
-			
 
-			<button type="submit" class="btn btn-danger">Guardar</button>
+			<div class="btn-toolbar" role="toolbar">
+				<div class="btn-group">
+					<button type="submit" class="btn btn-danger">Guardar</button>
+				</div>
+
+				<div class="btn-group">
+					<a href="${urlCancel} " class="btn btn-info" role="button"
+						title="Cancelar">Cancelar</a>
+				</div>
+
+			</div>
 		</form:form>
 
 		<hr class="featurette-divider">

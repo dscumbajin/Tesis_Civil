@@ -15,6 +15,7 @@
 <title>Creacion de imagenes del Banner</title>
 <spring:url value="/resources" var="urlPublic" />
 <spring:url value="/banners/save" var="urlForm" />
+<spring:url value="/banners/cancel" var="urlCancel"></spring:url>
 <link href="${urlPublic}/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
 <link href="${urlPublic}/bootstrap/css/theme.css" rel="stylesheet">
@@ -26,7 +27,9 @@
 	<jsp:include page="../includes/menu.jsp" />
 
 	<div class="container theme-showcase" role="main">
-
+		<c:if test="${not empty alerta}">
+			<div class='alert alert-danger' role="alert">${alerta}</div>
+		</c:if>
 		<h3 class="blog-title">
 			<span class="label label-success">Datos de la imagen</span>
 		</h3>
@@ -63,8 +66,17 @@
 					</div>
 				</div>
 			</div>
+			<div class="btn-toolbar" role="toolbar">
+				<div class="btn-group">
+					<button type="submit" class="btn btn-danger">Guardar</button>
+				</div>
 
-			<button type="submit" class="btn btn-danger">Guardar</button>
+				<div class="btn-group">
+					<a href="${urlCancel} " class="btn btn-info" role="button"
+						title="Cancelar">Cancelar</a>
+				</div>
+
+			</div>
 		</form:form>
 
 		<hr class="featurette-divider">

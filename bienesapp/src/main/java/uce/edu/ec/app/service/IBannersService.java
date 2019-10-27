@@ -15,5 +15,7 @@ public interface IBannersService {
 	Banner buscarPorId(int idBanner);
 	
 	void eliminar (int idBannner);
+	
+	boolean existePorTitulo(String titulo);
 
 }

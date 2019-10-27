@@ -76,7 +76,6 @@ public class UsuariosController {
 
 	}
 
-
 	// editar por ID
 	@GetMapping(value = "edit/{id}")
 	public String Editar(@PathVariable("id") int idUsuario, Model model) {
@@ -107,6 +106,11 @@ public class UsuariosController {
 	@ModelAttribute("usuarios")
 	public List<Usuario> getBienes() {
 		return serviceUsuarios.buscarTodos();
+	}
+
+	@RequestMapping(value = "/cancel")
+	public String mostrarAcerca() {
+		return "redirect:/usuarios/index";
 	}
 
 }
