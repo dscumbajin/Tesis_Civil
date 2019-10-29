@@ -28,6 +28,8 @@ public class BannersController {
 	@Autowired
 	private IBannersService serviceBanners;
 
+	private String edicion = "";
+
 	/**
 	 * Metodo para mostrar el listado de banners
 	 * 
@@ -71,19 +73,27 @@ public class BannersController {
 			return "banners/formBanner";
 		}
 
-		if (serviceBanners.existePorTitulo(titulo)) {
-			model.addAttribute("alerta", "Ya existe un registro con titulo: " + titulo);
-			return "banners/formBanner";
-		} else {
-			if (!multiPart.isEmpty()) {
-				String nombreImagen = Utileria.guardarImagen(multiPart, request);
-				banner.setArchivo(nombreImagen);
-			}
+		if (edicion == "") {
+			if (serviceBanners.existePorTitulo(titulo)) {
+				model.addAttribute("alerta", "Ya existe un registro con titulo: " + titulo);
+				return "banners/formBanner";
+			} else {
+				if (!multiPart.isEmpty()) {
+					String nombreImagen = Utileria.guardarImagen(multiPart, request);
+					banner.setArchivo(nombreImagen);
+				}
 
+				serviceBanners.insertar(banner);
+				attributes.addFlashAttribute("mensaje", "El registro fue guardado");
+				return "redirect:/banners/index";
+			}
+		} else {
 			serviceBanners.insertar(banner);
-			attributes.addFlashAttribute("mensaje", "El registro fue guardado");
+			attributes.addFlashAttribute("mensaje", "El registro fue editado");
+			edicion ="";
 			return "redirect:/banners/index";
 		}
+		
 
 	}
 
@@ -92,6 +102,7 @@ public class BannersController {
 	public String Editar(@PathVariable("id") int idBanner, Model model) {
 		Banner banner = serviceBanners.buscarPorId(idBanner);
 		model.addAttribute("banner", banner);
+		edicion = "si";
 		return "banners/formBanner";
 	}
 

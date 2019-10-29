@@ -24,6 +24,8 @@ public class NoticiasController {
 	@Autowired
 	private INoticiasService serviceNoticias;
 
+	private String edicion = "";
+
 	// Metodo que muestra la lista de noticias
 	@GetMapping(value = "/index")
 	public String mostrarIndex(Model model) {
@@ -56,14 +58,22 @@ public class NoticiasController {
 			RedirectAttributes attributes, @RequestParam("titulo") String titulo) {
 		// Insertamos la noticia
 
-		if (serviceNoticias.existePorTitulo(titulo)) {
-			model.addAttribute("alerta", "Ya existe un registro con titulo: " + titulo);
-			return "noticias/formNoticia";
+		if (edicion == "") {
+			if (serviceNoticias.existePorTitulo(titulo)) {
+				model.addAttribute("alerta", "Ya existe un registro con titulo: " + titulo);
+				return "noticias/formNoticia";
+			} else {
+				serviceNoticias.guardar(noticia);
+				attributes.addFlashAttribute("msg", "Los datos de la noticia fueron guardados!");
+				return "redirect:/noticias/index";
+			}
 		} else {
 			serviceNoticias.guardar(noticia);
-			attributes.addFlashAttribute("msg", "Los datos de la noticia fueron guardados!");
+			attributes.addFlashAttribute("msg", "Los datos de la noticia fueron modificados!");
+			edicion="";
 			return "redirect:/noticias/index";
 		}
+
 	}
 
 	/**
@@ -78,6 +88,7 @@ public class NoticiasController {
 	public String eliminar(@PathVariable("id") int idNoticia, RedirectAttributes attributes) {
 		serviceNoticias.eliminar(idNoticia);
 		attributes.addFlashAttribute("msg", "La noticia fue eliminada!.");
+
 		return "redirect:/noticias/index";
 	}
 
@@ -92,6 +103,7 @@ public class NoticiasController {
 	public String editar(@PathVariable("id") int idNoticia, Model model) {
 		Noticia noticia = serviceNoticias.buscarPorId(idNoticia);
 		model.addAttribute("noticia", noticia);
+		edicion = "si";
 		return "noticias/formNoticia";
 	}
 
