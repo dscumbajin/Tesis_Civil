@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `bienes` (
   `alta` varchar(255) DEFAULT NULL,
   `color` varchar(255) DEFAULT NULL,
   `costo` double DEFAULT NULL,
-  `depresiacion` int(11) NOT NULL,
+  `depreciacion` int(11) NOT NULL,
   `descripcion` varchar(255) DEFAULT NULL,
   `fecha_ingreso` datetime DEFAULT NULL,
   `garantia` datetime DEFAULT NULL,
@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS `bienes` (
 
 -- Volcando datos para la tabla appbienes.bienes: ~9 rows (aproximadamente)
 /*!40000 ALTER TABLE `bienes` DISABLE KEYS */;
-INSERT INTO `bienes` (`id`, `alta_anterior`, `alta`, `color`, `costo`, `depresiacion`, `descripcion`, `fecha_ingreso`, `garantia`, `material`, `serial`, `vida_util`, `control`, `id_detalle`) VALUES
+INSERT INTO `bienes` (`id`, `alta_anterior`, `alta`, `color`, `costo`, `depreciacion`, `descripcion`, `fecha_ingreso`, `garantia`, `material`, `serial`, `vida_util`, `control`, `id_detalle`) VALUES
 	(38, '253555', '9173645', 'Negro', 400, 2, 'PROYECTOR  PARA IMAGEN INCLUYE CABLES CONTROL REMOTO ', '2019-10-25 12:12:42', '2020-08-22 00:00:00', 'Plástico', '5001777', 2, 'Activo', 39),
 	(39, '239785', '7112883', 'Negro', 450, 2, 'C.P.U.', '2019-10-25 12:14:42', '2020-03-31 00:00:00', 'Metal', 'S/S', 2, 'Activo', 40),
 	(40, '239837', '7112930', 'Negro', 150, 2, 'MONITOR, PLANO', '2019-10-25 12:29:42', '2020-08-22 00:00:00', 'LCD', '006TPTM28849', 2, 'Activo', 41),
@@ -137,7 +137,7 @@ CREATE TABLE IF NOT EXISTS `estaciones` (
 INSERT INTO `estaciones` (`id`, `imagen`, `lugar`, `ubicacion`) VALUES
 	(21, 'PYRW6SU5SalaA.jpg', 'Sala A', 'LAB . CÓMPUTO INGENIERÍA CIVIL N°2'),
 	(22, 'PBJF0CNASalaB.jpg', 'Sala B', 'LAB . CÓMPUTO INGENIERÍA CIVIL N°1'),
-	(30, '8EGAHVQ5SalaC.jpg', 'Sala C', 'Laboratorios Civil');
+	(30, '8EGAHVQ5SalaC.jpg', 'Sala C', 'LAB . CÓMPUTO INGENIERÍA CIVIL N°2');
 /*!40000 ALTER TABLE `estaciones` ENABLE KEYS */;
 
 -- Volcando estructura para tabla appbienes.noticias

@@ -111,8 +111,8 @@
 
 				<div class="col-sm-3">
 					<div class="form-group">
-						<label for="depresiacion" class="control-label">Depresiación</label>
-						<form:select id="depresiacion" path="depresiacion"
+						<label for="depresiacion" class="control-label">Depreciación</label>
+						<form:select id="depreciacion" path="depreciacion"
 							class="form-control">
 							<form:option value="2">2 Años</form:option>
 							<form:option value="5">5 Años</form:option>

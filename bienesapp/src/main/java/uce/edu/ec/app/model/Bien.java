@@ -27,7 +27,7 @@ public class Bien {
 	private Date fecha_ingreso;
 	private Double costo = 0.0;
 	private int vida_util;
-	private int depresiacion;
+	private int depreciacion;
 	private Date garantia;
 	private String color;
 	private String material;
@@ -42,7 +42,7 @@ public class Bien {
 
 	public Bien() {
 		this.fecha_ingreso = new Date();
-		this.control="Activo";
+		this.control = "Activo";
 	}
 
 	public Detalle getDetalle() {
@@ -117,14 +117,6 @@ public class Bien {
 		this.vida_util = vida_util;
 	}
 
-	public int getDepresiacion() {
-		return depresiacion;
-	}
-
-	public void setDepresiacion(int depresiacion) {
-		this.depresiacion = depresiacion;
-	}
-
 	public Date getGarantia() {
 		return garantia;
 	}
@@ -157,11 +149,19 @@ public class Bien {
 		this.control = control;
 	}
 
+	public int getDepreciacion() {
+		return depreciacion;
+	}
+
+	public void setDepreciacion(int depreciacion) {
+		this.depreciacion = depreciacion;
+	}
+
 	@Override
 	public String toString() {
 		return "Bien [id=" + id + ", alta=" + alta + ", alta_anterior=" + alta_anterior + ", descripcion=" + descripcion
 				+ ", serial=" + serial + ", fecha_ingreso=" + fecha_ingreso + ", costo=" + costo + ", vida_util="
-				+ vida_util + ", depresiacion=" + depresiacion + ", garantia=" + garantia + ", color=" + color
+				+ vida_util + ", depreciacion=" + depreciacion + ", garantia=" + garantia + ", color=" + color
 				+ ", material=" + material + ", control=" + control + ", detalle=" + detalle + "]";
 	}
 
