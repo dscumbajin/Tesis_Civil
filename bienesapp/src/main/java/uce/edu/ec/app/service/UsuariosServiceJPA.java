@@ -31,11 +31,6 @@ public class UsuariosServiceJPA implements IUsuariosService {
 	}
 
 	@Override
-	public boolean existePorCuneta(String cuenta) {
-		return usuariosRepo.existsByCuenta(cuenta);
-	}
-
-	@Override
 	public Usuario buscarPorId(int idUsuario) {
 		Optional<Usuario> optional = usuariosRepo.findById(idUsuario);
 		if (optional.isPresent()) {
@@ -48,6 +43,12 @@ public class UsuariosServiceJPA implements IUsuariosService {
 	public void eliminar(int idUsuario) {
 
 		usuariosRepo.deleteById(idUsuario);
+	}
+
+	@Override
+	public boolean existePorCunetaEmail(String cuenta, String email) {
+
+		return usuariosRepo.existsByCuentaAndEmail(cuenta, email);
 	}
 
 }

@@ -10,6 +10,6 @@ public interface UsuariosRepository extends JpaRepository<Usuario, Integer> {
 	
 	public Usuario findByCuenta (String cuenta);
 	
-	public boolean existsByCuenta (String cuenta);
+	public boolean existsByCuentaAndEmail (String cuenta, String email);
 
 }

@@ -45,15 +45,16 @@ public class UsuariosController {
 
 	@PostMapping("/save")
 	public String guardar(@ModelAttribute Usuario usuario, Model model, @RequestParam("perfil") String perfil,
-			BindingResult result, RedirectAttributes attributes, @RequestParam("cuenta") String cuenta) {
+			BindingResult result, RedirectAttributes attributes, @RequestParam("cuenta") String cuenta,
+			@RequestParam("email") String email) {
 
 		if (result.hasErrors()) {
 			System.out.println("Existen errores");
 			return "usuarios/formUsuario";
 		}
 
-		if (serviceUsuarios.existePorCuneta(cuenta)) {
-			model.addAttribute("alerta", "Ya existe un registro con cuneta: " + cuenta);
+		if (serviceUsuarios.existePorCunetaEmail(cuenta, email)) {
+			model.addAttribute("alerta", "Ya existe un registro con cuenta: " + cuenta + " y email: " + email);
 			return "usuarios/formUsuario";
 
 		} else {

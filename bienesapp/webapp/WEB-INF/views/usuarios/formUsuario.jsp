@@ -46,6 +46,20 @@
 			<div class="row">
 				<div class="col-sm-3">
 					<div class="form-group">
+						<label for="nombre">Nombres</label>
+						<form:input type="text" class="form-control" path="nombre"
+							id="nombre" required="required" />
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label for="apellido">Apellidos</label>
+						<form:input type="text" class="form-control" path="apellido"
+							id="apellido" required="required" />
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
 						<label for="cuenta">Cuenta</label>
 						<form:input type="text" class="form-control" path="cuenta"
 							id="cuenta" required="required" />
@@ -65,13 +79,6 @@
 						<label for="email">Email</label>
 						<form:input type="email" class="form-control" path="email"
 							id="email" placeholder="Correo electrónico" required="required" />
-					</div>
-				</div>
-				<div class="col-sm-3">
-					<div class="form-group">
-						<label for="telefono">Teléfono</label>
-						<form:input type="tel" class="form-control" path="telefono"
-							id="telefono" required="required" maxlength="10" />
 					</div>
 				</div>
 

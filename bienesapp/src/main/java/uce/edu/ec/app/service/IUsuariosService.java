@@ -14,7 +14,7 @@ public interface IUsuariosService {
 
 	Usuario buscarPorCuenta(String cuenta);
 
-	boolean existePorCuneta(String cuenta);
+	boolean existePorCunetaEmail(String cuenta, String email);
 
 	void eliminar(int idUsuario);
 }
