@@ -66,8 +66,8 @@
 						<tr>
 							<th>Alta Nueva</th>
 							<th>Alta Anterior</th>
-							<th>Descripción</th>
 							<th>Serie</th>
+							<th>Descripción</th>
 							<th>Fecha de Ingreso</th>
 							<th>Costo</th>
 							<th>Vida Util</th>
@@ -89,9 +89,9 @@
 						<c:forEach items="${bienes.content}" var="bien">
 							<tr>
 								<td>${bien.alta }</td>
-								<td>${bien.alta_anterior }</td>
+								<td>${bien.anterior }</td>
+								<td>${bien.serie}</td>
 								<td>${bien.descripcion}</td>
-								<td>${bien.serial}</td>
 								<td><fmt:formatDate value="${bien.fecha_ingreso}"
 										pattern="dd-MM-yyyy" /></td>
 								<td>${bien.costo }</td>

@@ -24,20 +24,21 @@ CREATE TABLE IF NOT EXISTS `banners` (
   `fecha` datetime DEFAULT NULL,
   `titulo` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla appbienes.banners: ~3 rows (aproximadamente)
+-- Volcando datos para la tabla appbienes.banners: ~4 rows (aproximadamente)
 /*!40000 ALTER TABLE `banners` DISABLE KEYS */;
 INSERT INTO `banners` (`id`, `archivo`, `estatus`, `fecha`, `titulo`) VALUES
-	(8, 'MEJ90XV8uce.jpg', 'Activo', '2019-10-24 00:26:40', 'uce'),
+	(8, 'MEJ90XV8uce.jpg', 'Activo', '2019-10-29 12:52:42', 'uce'),
 	(9, 'YTYUDTZ2titulo.jpg', 'Activo', '2019-10-23 10:40:21', 'titulo'),
-	(10, 'HF28XMZPcivil.jpg', 'Activo', '2019-10-23 20:47:25', 'civil');
+	(10, 'HF28XMZPcivil.jpg', 'Activo', '2019-10-23 20:47:25', 'civil'),
+	(11, 'S2J0PHD3uce.jpg', 'Activo', '2019-10-29 12:27:12', 'prueba');
 /*!40000 ALTER TABLE `banners` ENABLE KEYS */;
 
 -- Volcando estructura para tabla appbienes.bienes
 CREATE TABLE IF NOT EXISTS `bienes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `alta_anterior` varchar(255) DEFAULT NULL,
+  `anterior` varchar(255) DEFAULT NULL,
   `alta` varchar(255) DEFAULT NULL,
   `color` varchar(255) DEFAULT NULL,
   `costo` double DEFAULT NULL,
@@ -46,19 +47,19 @@ CREATE TABLE IF NOT EXISTS `bienes` (
   `fecha_ingreso` datetime DEFAULT NULL,
   `garantia` datetime DEFAULT NULL,
   `material` varchar(255) DEFAULT NULL,
-  `serial` varchar(255) DEFAULT NULL,
+  `serie` varchar(255) DEFAULT NULL,
   `vida_util` int(11) NOT NULL,
   `control` varchar(50) NOT NULL DEFAULT '',
   `id_detalle` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FKq137l3yi4oevo4q1upvtn9l6l` (`id_detalle`),
   CONSTRAINT `FKq137l3yi4oevo4q1upvtn9l6l` FOREIGN KEY (`id_detalle`) REFERENCES `detalles` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla appbienes.bienes: ~9 rows (aproximadamente)
 /*!40000 ALTER TABLE `bienes` DISABLE KEYS */;
-INSERT INTO `bienes` (`id`, `alta_anterior`, `alta`, `color`, `costo`, `depreciacion`, `descripcion`, `fecha_ingreso`, `garantia`, `material`, `serial`, `vida_util`, `control`, `id_detalle`) VALUES
-	(38, '253555', '9173645', 'Negro', 400, 2, 'PROYECTOR  PARA IMAGEN INCLUYE CABLES CONTROL REMOTO ', '2019-10-25 12:12:42', '2020-08-22 00:00:00', 'Plástico', '5001777', 2, 'Activo', 39),
+INSERT INTO `bienes` (`id`, `anterior`, `alta`, `color`, `costo`, `depreciacion`, `descripcion`, `fecha_ingreso`, `garantia`, `material`, `serie`, `vida_util`, `control`, `id_detalle`) VALUES
+	(38, '253555', '9173645', 'Negro', 400, 2, 'PROYECTOR  PARA IMAGEN INCLUYE CABLES CONTROL REMOTO ', '2019-10-29 21:05:00', '2020-08-22 00:00:00', 'Plástico', '5001777', 2, 'Activo', 39),
 	(39, '239785', '7112883', 'Negro', 450, 2, 'C.P.U.', '2019-10-25 12:14:42', '2020-03-31 00:00:00', 'Metal', 'S/S', 2, 'Activo', 40),
 	(40, '239837', '7112930', 'Negro', 150, 2, 'MONITOR, PLANO', '2019-10-25 12:29:42', '2020-08-22 00:00:00', 'LCD', '006TPTM28849', 2, 'Activo', 41),
 	(41, '253291', '7113054', 'Negro', 15, 2, 'MOUSE', '2019-10-25 12:20:01', '2020-08-22 00:00:00', 'Plástico', 'S/S', 2, 'Activo', 42),
@@ -86,7 +87,7 @@ CREATE TABLE IF NOT EXISTS `bienes_estaciones` (
 INSERT INTO `bienes_estaciones` (`id`, `id_bien`, `id_estacion`) VALUES
 	(70, 38, 21),
 	(71, 39, 21),
-	(72, 40, 21),
+	(72, 40, 22),
 	(73, 41, 21),
 	(75, 42, 21),
 	(76, 43, 21),
@@ -107,9 +108,9 @@ CREATE TABLE IF NOT EXISTS `detalles` (
   `modelo` varchar(255) DEFAULT NULL,
   `tipo` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla appbienes.detalles: ~9 rows (aproximadamente)
+-- Volcando datos para la tabla appbienes.detalles: ~10 rows (aproximadamente)
 /*!40000 ALTER TABLE `detalles` DISABLE KEYS */;
 INSERT INTO `detalles` (`id`, `asignado`, `causionado`, `estado`, `estatus`, `guarda_almacen`, `marca`, `modelo`, `tipo`) VALUES
 	(39, 'Profesor', 'RAMIRO PILALUISA', 'Bueno', 'Activo', 'UDAY ORTIZ BERTHA JIMENA', 'SONY', 'VPL-EX275', 'MAQUINARIA Y EQUIPO'),
@@ -120,7 +121,8 @@ INSERT INTO `detalles` (`id`, `asignado`, `causionado`, `estado`, `estatus`, `gu
 	(44, 'Profesor', 'RAMIRO PILALUISA', 'Bueno', 'Activo', 'UDAY ORTIZ BERTHA JIMENA', 'OMEGA', 'S/M', 'MAQUINARIA Y EQUIPO'),
 	(45, 'Profesor', 'RAMIRO PILALUISA', 'Bueno', 'Activo', 'UDAY ORTIZ BERTHA JIMENA', 'SONY', 'VPL-EX275', 'MAQUINARIA Y EQUIPO'),
 	(46, 'Profesor', 'RAMIRO PILALUISA', 'Bueno', 'Activo', 'UDAY ORTIZ BERTHA JIMENA', 'S/M', 'S/M', 'MAQUINARIA Y EQUIPO'),
-	(47, 'Profesor', 'RAMIRO PILALUISA', 'Bueno', 'Activo', 'UDAY ORTIZ BERTHA JIMENA', 'L.G.', 'E2242C', 'MAQUINARIA Y EQUIPO');
+	(47, 'Profesor', 'RAMIRO PILALUISA', 'Bueno', 'Activo', 'UDAY ORTIZ BERTHA JIMENA', 'L.G.', 'E2242C', 'MAQUINARIA Y EQUIPO'),
+	(48, 'Estudiante', 'RAMIRO PILALUISA', 'Bueno', 'Activo', 'UDAY ORTIZ BERTHA JIMENA', 'ADIKT@', 'E2242C', 'MOBILIARIO');
 /*!40000 ALTER TABLE `detalles` ENABLE KEYS */;
 
 -- Volcando estructura para tabla appbienes.estaciones
@@ -130,14 +132,15 @@ CREATE TABLE IF NOT EXISTS `estaciones` (
   `lugar` varchar(255) DEFAULT NULL,
   `ubicacion` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla appbienes.estaciones: ~3 rows (aproximadamente)
+-- Volcando datos para la tabla appbienes.estaciones: ~4 rows (aproximadamente)
 /*!40000 ALTER TABLE `estaciones` DISABLE KEYS */;
 INSERT INTO `estaciones` (`id`, `imagen`, `lugar`, `ubicacion`) VALUES
 	(21, 'PYRW6SU5SalaA.jpg', 'Sala A', 'LAB . CÓMPUTO INGENIERÍA CIVIL N°2'),
-	(22, 'PBJF0CNASalaB.jpg', 'Sala B', 'LAB . CÓMPUTO INGENIERÍA CIVIL N°1'),
-	(30, '8EGAHVQ5SalaC.jpg', 'Sala C', 'LAB . CÓMPUTO INGENIERÍA CIVIL N°2');
+	(22, 'H3NFOMB9SalaB.jpg', 'Sala B', 'LAB . CÓMPUTO INGENIERÍA CIVIL N°1'),
+	(30, '8EGAHVQ5SalaC.jpg', 'Sala C', 'LAB . CÓMPUTO INGENIERÍA CIVIL N°2'),
+	(33, 'acerca.png', 'Sala k', 'LAB . CÓMPUTO INGENIERÍA CIVIL N°2');
 /*!40000 ALTER TABLE `estaciones` ENABLE KEYS */;
 
 -- Volcando estructura para tabla appbienes.noticias
@@ -148,14 +151,15 @@ CREATE TABLE IF NOT EXISTS `noticias` (
   `fecha` datetime DEFAULT NULL,
   `titulo` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla appbienes.noticias: ~3 rows (aproximadamente)
+-- Volcando datos para la tabla appbienes.noticias: ~4 rows (aproximadamente)
 /*!40000 ALTER TABLE `noticias` DISABLE KEYS */;
 INSERT INTO `noticias` (`id`, `detalle`, `estatus`, `fecha`, `titulo`) VALUES
-	(3, '<p>Utilizar JS para el DOM</p>', 'Activa', '2019-10-23 20:47:45', 'Creando Búsquedas '),
+	(3, '<p>Utilizar JS para el DOM</p>\r\n<p>editado</p>', 'Activa', '2019-10-29 12:56:58', 'Creando BÃºsquedas '),
 	(4, '<p>Crear un atributo \'no se \'</p>\r\n<p>Contructor por defecto habil</p>\r\n<p>Buscar todos los bienes habiles</p>\r\n<p>Cuando se asigne modifocar el \'no se \' a inabil</p>', 'Activa', '2019-10-23 15:37:36', 'Solo mostrar los que aun no estan asignados '),
-	(5, '<p>Implemnetar los metodos editar y eliminar Para los Usuarios</p>\r\n<p>Tomar en cuenta que al eliminar se debe borrar tambien el rol al cual esta asignado</p>\r\n<p>y en editar se debe tambien poder cambiar de rol</p>', 'Activa', '2019-10-25 00:21:49', 'Para el vienes');
+	(5, '<p>Implemnetar los metodos editar y eliminar Para los Usuarios</p>\r\n<p>Tomar en cuenta que al eliminar se debe borrar tambien el rol al cual esta asignado</p>\r\n<p>y en editar se debe tambien poder cambiar de rol</p>', 'Activa', '2019-10-25 00:21:49', 'Para el vienes'),
+	(6, '<p>aun no hacemos los reportes</p>', 'Activa', '2019-10-29 12:57:25', '4');
 /*!40000 ALTER TABLE `noticias` ENABLE KEYS */;
 
 -- Volcando estructura para tabla appbienes.perfiles

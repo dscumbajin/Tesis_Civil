@@ -21,9 +21,9 @@ public class Bien {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String alta;
-	private String alta_anterior;
+	private String anterior;
 	private String descripcion;
-	private String serial;
+	private String serie;
 	private Date fecha_ingreso;
 	private Double costo = 0.0;
 	private int vida_util;
@@ -69,12 +69,12 @@ public class Bien {
 		this.descripcion = descripcion;
 	}
 
-	public String getSerial() {
-		return serial;
+	public String getSerie() {
+		return serie;
 	}
 
-	public void setSerial(String serial) {
-		this.serial = serial;
+	public void setSerie(String serie) {
+		this.serie = serie;
 	}
 
 	public Double getCosto() {
@@ -93,12 +93,12 @@ public class Bien {
 		this.alta = alta;
 	}
 
-	public String getAlta_anterior() {
-		return alta_anterior;
+	public String getAnterior() {
+		return anterior;
 	}
 
-	public void setAlta_anterior(String alta_anterior) {
-		this.alta_anterior = alta_anterior;
+	public void setAnterior(String anterior) {
+		this.anterior = anterior;
 	}
 
 	public Date getFecha_ingreso() {
@@ -159,8 +159,8 @@ public class Bien {
 
 	@Override
 	public String toString() {
-		return "Bien [id=" + id + ", alta=" + alta + ", alta_anterior=" + alta_anterior + ", descripcion=" + descripcion
-				+ ", serial=" + serial + ", fecha_ingreso=" + fecha_ingreso + ", costo=" + costo + ", vida_util="
+		return "Bien [id=" + id + ", alta=" + alta + ", anterior=" + anterior + ", descripcion=" + descripcion
+				+ ", serie=" + serie + ", fecha_ingreso=" + fecha_ingreso + ", costo=" + costo + ", vida_util="
 				+ vida_util + ", depreciacion=" + depreciacion + ", garantia=" + garantia + ", color=" + color
 				+ ", material=" + material + ", control=" + control + ", detalle=" + detalle + "]";
 	}

@@ -10,7 +10,8 @@ public interface BienesRepository extends JpaRepository<Bien, Integer> {
 	
 	public Bien findByAlta(String alta);
 	
-	public boolean existsByAlta(String alta);
+	//valor repetido por alta, anterior, serie
+	public boolean existsByAltaAndAnteriorAndSerie(String alta, String anterior, String serie);
 	
 	
 

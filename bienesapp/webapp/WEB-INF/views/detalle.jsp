@@ -73,8 +73,6 @@
 							<thead>
 								<tr>
 									<th>Persona Usa</th>
-									<th>Ubicacion</th>
-									<th>Lugar</th>
 									<th>Alta Nueva</th>
 									<th>Alta Anteriror</th>
 									<th>Descripcion</th>
@@ -93,14 +91,12 @@
 								<c:forEach items="${bienes_Estaciones}" var="bien_estacion">
 									<tr>
 										<td>${bien_estacion.bien.detalle.asignado}</td>
-										<td>${bien_estacion.estacion.ubicacion}</td>
-										<td>${bien_estacion.estacion.lugar}</td>
 										<td>${bien_estacion.bien.alta}</td>
-										<td>${bien_estacion.bien.alta_anterior}</td>
+										<td>${bien_estacion.bien.anterior}</td>
 										<td>${bien_estacion.bien.descripcion}</td>
 										<td>${bien_estacion.bien.detalle.marca}</td>
 										<td>${bien_estacion.bien.detalle.modelo}</td>
-										<td>${bien_estacion.bien.serial}</td>
+										<td>${bien_estacion.bien.serie}</td>
 										<td>${bien_estacion.bien.detalle.guarda_almacen}</td>
 										<td>${bien_estacion.bien.detalle.causionado}</td>
 										<td><fmt:formatDate

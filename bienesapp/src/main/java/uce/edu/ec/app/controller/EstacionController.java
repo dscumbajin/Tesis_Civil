@@ -69,6 +69,7 @@ public class EstacionController {
 		}
 
 		if (edicion == "") {
+			//Nuevo
 			if (servicioEstaciones.existeEstacion(ubicacion, lugar)) {
 				model.addAttribute("alerta", "Ya existe una: " + lugar + " en el: " + ubicacion);
 				return "estaciones/formEstaciones";
@@ -80,12 +81,13 @@ public class EstacionController {
 					}
 				}
 				servicioEstaciones.insertar(estacion);
-				attributes.addFlashAttribute("mensaje", "El registro fue editado");
+				attributes.addFlashAttribute("mensaje", "El registro fue guardado");
 				return "redirect:/estaciones/indexPaginate";// redireccionamos a un nuevo formmulario
 
 			}
 
 		} else {
+			//Edición
 			if (!multiPart.isEmpty()) {
 				String nombreImagen = Utileria.guardarImagen(multiPart, request);
 				if (nombreImagen != null) { // La imagen si se subio
@@ -93,7 +95,7 @@ public class EstacionController {
 				}
 			}
 			servicioEstaciones.insertar(estacion);
-			attributes.addFlashAttribute("mensaje", "El registro fue guardado");
+			attributes.addFlashAttribute("mensaje", "El registro fue editado");
 			edicion = "";
 			return "redirect:/estaciones/indexPaginate";// redireccionamos a un nuevo formmulario
 

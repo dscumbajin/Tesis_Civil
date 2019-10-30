@@ -17,10 +17,13 @@ public interface IBienService {
 
 	boolean existePorId(int id);
 
+	//Eliminar
 	void eliminar(int idBien);
 
+	//Para paginar
 	Page<Bien> buscarTodas(Pageable page);
 	
-	boolean exiteRegistro(String alta);
+	//Para controlar repetidos
+	boolean exiteRegistroPorAltaAnteriorSerie(String alta, String anterior, String serie );
 
 }

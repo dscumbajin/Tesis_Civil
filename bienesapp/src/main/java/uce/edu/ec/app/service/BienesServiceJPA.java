@@ -60,9 +60,8 @@ public class BienesServiceJPA implements IBienService {
 	}
 
 	@Override
-	public boolean exiteRegistro(String alta) {
-		
-		return bienesRepo.existsByAlta(alta);
+	public boolean exiteRegistroPorAltaAnteriorSerie(String alta, String anterior, String serie) {
+		return bienesRepo.existsByAltaAndAnteriorAndSerie(alta, anterior, serie);
 	}
 
 }

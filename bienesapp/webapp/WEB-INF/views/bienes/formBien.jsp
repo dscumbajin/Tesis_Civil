@@ -70,9 +70,16 @@
 				</div>
 				<div class="col-sm-3">
 					<div class="form-group">
-						<label for="alta_anterior">Alta Anterior</label>
-						<form:input type="text" class="form-control" path="alta_anterior"
-							id="alta_anterior" required="required" />
+						<label for="anterior">Alta Anterior</label>
+						<form:input type="text" class="form-control" path="anterior"
+							id="anterior" required="required" />
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label for="serie">Serie</label>
+						<form:input type="text" class="form-control" path="serie"
+							id="serie" required="required" />
 					</div>
 				</div>
 				<div class="col-sm-3">
@@ -80,13 +87,6 @@
 						<label for="descripcion">Descripción</label>
 						<form:input type="text" class="form-control" path="descripcion"
 							id="descripcion" required="required" />
-					</div>
-				</div>
-				<div class="col-sm-3">
-					<div class="form-group">
-						<label for="serial">Serie</label>
-						<form:input type="text" class="form-control" path="serial"
-							id="serial" required="required" />
 					</div>
 				</div>
 
@@ -102,7 +102,7 @@
 					<div class="form-group">
 						<label for="vida_util" class="control-label">Vida Útil</label>
 						<form:select id="vida_util" path="vida_util" class="form-control">
-							<form:option value="2">2 Años</form:option>
+							<form:option value="2">3 Años</form:option>
 							<form:option value="5">5 Años</form:option>
 							<form:option value="10">10 Años</form:option>
 						</form:select>
