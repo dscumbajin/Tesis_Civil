@@ -57,7 +57,7 @@ public class BienesEstacionesJPA implements IBienes_Estaciones {
 
 	@Override
 	public List<Bienes_Estaciones> buscarIdPorIdEstacion(int idEstacion) {
-		
+
 		return bienesEstacionesRepo.findByEstacion_Id(idEstacion);
 	}
 
@@ -66,6 +66,9 @@ public class BienesEstacionesJPA implements IBienes_Estaciones {
 		return bienesEstacionesRepo.findAll(page);
 	}
 
-	
+	@Override
+	public boolean existeRegistroPorIdBienIdEstacion(int idBien, int idEstacion) {
+		return bienesEstacionesRepo.existsByBien_IdAndEstacion_Id(idBien, idEstacion);
+	}
 
 }

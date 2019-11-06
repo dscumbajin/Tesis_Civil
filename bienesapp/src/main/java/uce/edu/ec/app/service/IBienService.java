@@ -7,23 +7,31 @@ import uce.edu.ec.app.model.Bien;
 
 public interface IBienService {
 
+	// Insertar
 	void insertar(Bien bien);
 
+	// Listar todos
 	List<Bien> buscarTodas();
 
+	// Buscar por id
 	Bien buscarPorId(int idBien);
 
+	// buecar por alta
 	Bien buscarPorAlta(String alta);
 
+	// existe por id
 	boolean existePorId(int id);
 
-	//Eliminar
+	// Eliminar
 	void eliminar(int idBien);
 
-	//Para paginar
+	// Para paginar
 	Page<Bien> buscarTodas(Pageable page);
-	
-	//Para controlar repetidos
-	boolean exiteRegistroPorAltaAnteriorSerie(String alta, String anterior, String serie );
+
+	// Para controlar repetidos
+	boolean exiteRegistroPorAltaAnteriorSerie(String alta, String anterior, String serie);
+
+	// Para buscar todos los bienes que no estan asignados
+	List<Bien> sinAsignacion();
 
 }

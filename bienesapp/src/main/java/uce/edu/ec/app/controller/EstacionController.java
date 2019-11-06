@@ -19,8 +19,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import uce.edu.ec.app.model.Bien;
 import uce.edu.ec.app.model.Bienes_Estaciones;
 import uce.edu.ec.app.model.Estacion;
+import uce.edu.ec.app.service.IBienService;
 import uce.edu.ec.app.service.IBienes_Estaciones;
 import uce.edu.ec.app.service.IEstacionService;
 import uce.edu.ec.app.util.Utileria;
@@ -34,6 +36,9 @@ public class EstacionController {
 
 	@Autowired
 	private IBienes_Estaciones serviceAsignacion;
+
+	@Autowired
+	private IBienService servicioBienes;
 
 	private String edicion = "";
 
@@ -69,7 +74,7 @@ public class EstacionController {
 		}
 
 		if (edicion == "") {
-			//Nuevo
+			// Nuevo
 			if (servicioEstaciones.existeEstacion(ubicacion, lugar)) {
 				model.addAttribute("alerta", "Ya existe una: " + lugar + " en el: " + ubicacion);
 				return "estaciones/formEstaciones";
@@ -87,7 +92,7 @@ public class EstacionController {
 			}
 
 		} else {
-			//Edición
+			// Edición
 			if (!multiPart.isEmpty()) {
 				String nombreImagen = Utileria.guardarImagen(multiPart, request);
 				if (nombreImagen != null) { // La imagen si se subio
@@ -117,16 +122,21 @@ public class EstacionController {
 	public String eliminar(@PathVariable("id") int idEstacion, RedirectAttributes attributes) {
 
 		int id = 0;
+		int idBien = 0;
 		List<Bienes_Estaciones> listaEstaciones = serviceAsignacion.buscarIdPorIdEstacion(idEstacion);
 
 		if (listaEstaciones.size() == 0) {
-			id = listaEstaciones.size();
 			servicioEstaciones.eliminar(idEstacion);
 			attributes.addFlashAttribute("mensaje", "Registro eliminado");
 		} else {
-
 			for (Bienes_Estaciones b : listaEstaciones) {
+				System.out.println(b.toString());
 				id = b.getId();
+				idBien = b.getBien().getId();
+				Bien bien = servicioBienes.buscarPorId(idBien);
+				System.out.println(bien);
+				bien.setControl("Activo");
+				servicioBienes.insertar(bien);
 				serviceAsignacion.eliminar(id);
 			}
 			servicioEstaciones.eliminar(idEstacion);

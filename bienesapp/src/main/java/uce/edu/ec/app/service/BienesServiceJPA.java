@@ -64,4 +64,9 @@ public class BienesServiceJPA implements IBienService {
 		return bienesRepo.existsByAltaAndAnteriorAndSerie(alta, anterior, serie);
 	}
 
+	@Override
+	public List<Bien> sinAsignacion() {
+		return bienesRepo.findByControl("Activo");
+	}
+
 }

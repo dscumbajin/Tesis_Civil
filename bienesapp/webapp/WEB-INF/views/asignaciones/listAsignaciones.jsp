@@ -35,6 +35,11 @@
 		<c:if test="${mensaje!=null}">
 			<div class='alert alert-success' role="alert">${mensaje}</div>
 		</c:if>
+
+		<c:if test="${alerta!=null}">
+			<div class='alert alert-danger' role="alert">${alerta}</div>
+		</c:if>
+
 		<a href="${urlAsignacion}" class="btn btn-success" role="button"
 			title="Nueva Asignacion">Asignaciones</a><br> <br>
 		<div class="panel panel-default">
@@ -51,6 +56,8 @@
 							<th>Bien</th>
 							<th>Ubicacion</th>
 							<th>Lugar</th>
+							<th>Registro</th>
+							<th>Cambio</th>
 							<th>Opciones</th>
 						</tr>
 
@@ -60,6 +67,10 @@
 								<td>${asignacion.bien.descripcion}</td>
 								<td>${asignacion.estacion.ubicacion}</td>
 								<td>${asignacion.estacion.lugar}</td>
+								<td><fmt:formatDate value="${asignacion.registro}"
+										pattern="dd-MM-yyyy" /></td>
+								<td><fmt:formatDate value="${asignacion.cambio}"
+										pattern="dd-MM-yyyy" /></td>
 
 								<td><a href="${urlEdit}/${asignacion.id}"
 									class="btn btn-success btn-sm" role="button" title="Edit"><span

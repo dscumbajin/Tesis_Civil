@@ -54,7 +54,7 @@
 						<label for="id_bien" class="control-label">Bien</label>
 						<form:hidden path="id" />
 						<form:select id="id_bien" path="bien.id" class="form-control"
-							items="${bienesControl}" itemLabel="alta" itemValue="id" />
+							items="${bienes}" itemLabel="alta" itemValue="id" />
 					</div>
 				</div>
 
@@ -66,6 +66,15 @@
 							itemValue="id" />
 					</div>
 				</div>
+
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label for="registro">Fecha registro</label>
+						<form:input type="text" class="form-control" path="registro"
+							id="registro" readonly="readonly" />
+					</div>
+				</div>
+
 			</div>
 
 			<div class="btn-toolbar" role="toolbar">

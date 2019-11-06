@@ -1,5 +1,7 @@
 package uce.edu.ec.app.model;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,6 +17,8 @@ public class Bienes_Estaciones {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	private Date registro;
+	private Date cambio;
 
 	@ManyToOne
 	@JoinColumn(name = "id_bien")
@@ -22,6 +26,11 @@ public class Bienes_Estaciones {
 	@ManyToOne
 	@JoinColumn(name = "id_estacion")
 	private Estacion estacion;
+
+	// Constructor valores por defecto al registrar un objeto de esta clase
+	public Bienes_Estaciones(){
+		this.registro = new Date();
+	}
 
 	public int getId() {
 		return id;
@@ -47,9 +56,26 @@ public class Bienes_Estaciones {
 		this.estacion = estacion;
 	}
 
+	public Date getRegistro() {
+		return registro;
+	}
+
+	public void setRegistro(Date registro) {
+		this.registro = registro;
+	}
+
+	public Date getCambio() {
+		return cambio;
+	}
+
+	public void setCambio(Date cambio) {
+		this.cambio = cambio;
+	}
+
 	@Override
 	public String toString() {
-		return "Bienes_Estaciones [id=" + id + ", bien=" + bien + ", estacion=" + estacion + "]";
+		return "Bienes_Estaciones [id=" + id + ", registro=" + registro + ", cambio=" + cambio + ", bien=" + bien
+				+ ", estacion=" + estacion + "]";
 	}
 
 }
