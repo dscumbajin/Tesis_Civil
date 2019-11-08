@@ -16,6 +16,7 @@
 <spring:url value="/bienes/delete" var="urlDelete" />
 <spring:url value="/bienes" var="urlBienes" />
 <spring:url value="/bienes/downloadExcel?type=excel" var="urlXLS" />
+<spring:url value="/bienes/downloadExcel?type=pdf" var="urlPDF" />
 
 <link href="${urlPublic}/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -49,7 +50,7 @@
 			</div>
 
 			<div class="btn-group">
-				<a href="${urlXLS} " class="btn btn-info" role="button" title="Reporte">Reportes Pdf</a>
+				<a href="${urlPDF} " class="btn btn-info" role="button" title="Reporte">Reportes Pdf</a>
 			</div>
 			<div class="btn-group">
 				<a href="${urlXLS} " class="btn btn-info" role="button" title="Reporte">Reportes Excel</a>

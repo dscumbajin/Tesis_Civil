@@ -13,7 +13,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import uce.edu.ec.app.model.Bien;
 import uce.edu.ec.app.service.IBienService;
-import uce.edu.ec.app.util.ExcelReportView;
+import uce.edu.ec.app.util.ExcelBuilder;
+import uce.edu.ec.app.util.PDFBuilder;
 
 @Controller
 @RequestMapping(value = "/bienes")
@@ -27,9 +28,11 @@ public class ExcelReportController {
 		String reportType = request.getParameter("type");
 		List<Bien> bienes = servicioBienes.buscarTodas();
 		if (reportType != null && reportType.equals("excel")) {
-			return new ModelAndView(new ExcelReportView(), "bienes", bienes);
+			return new ModelAndView(new ExcelBuilder(), "bienes", bienes);
 
-		} // else if "pdf" code for pdf
+		} else if(reportType != null && reportType.equals("pdf")) {
+			return new ModelAndView(new PDFBuilder() , "bienes", bienes);
+		}
 		return new ModelAndView("listBienes","bienes", bienes);
 	}
 
