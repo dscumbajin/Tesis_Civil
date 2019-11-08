@@ -12,6 +12,7 @@
 		http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
 
 	<!-- Le decimos a Spring MVC que detecte automaticamente todos los Beans de tipo @Controller-->
+	<context:component-scan base-package="uce.edu.ec.app" />
 	<context:component-scan base-package="uce.edu.ec.app.controller" />
 
 	<!-- Necesario para poder utilizar MVC con Anotaciones -->
