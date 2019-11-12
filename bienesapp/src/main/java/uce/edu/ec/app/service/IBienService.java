@@ -1,5 +1,6 @@
 package uce.edu.ec.app.service;
 
+import java.util.Date;
 import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -30,6 +31,8 @@ public interface IBienService {
 	
 	Page<Bien> search(String alta, Pageable page);
 
+	Page<Bien> buscarPeriodo(Date startDate, Date endDate, Pageable page);
+	
 	// Para controlar repetidos
 	boolean exiteRegistroPorAltaAnteriorSerie(String alta, String anterior, String serie);
 

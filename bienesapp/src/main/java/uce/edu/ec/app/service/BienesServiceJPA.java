@@ -1,5 +1,6 @@
 package uce.edu.ec.app.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -72,6 +73,11 @@ public class BienesServiceJPA implements IBienService {
 	@Override
 	public Page<Bien> search(String alta, Pageable page) {
 		return bienesRepo.findByAlta(alta, page);
+	}
+
+	@Override
+	public Page<Bien> buscarPeriodo(Date startDate, Date endDate, Pageable page) {
+		return bienesRepo.findByPeriodo(startDate, endDate, page);
 	}
 
 }

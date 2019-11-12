@@ -1,6 +1,7 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,13 +10,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>Listado de Bienes</title>
+<title>Reporte por Periodos</title>
+<spring:url value="/bienes/cancel" var="urlCancel"></spring:url>
 <spring:url value="/resources" var="urlPublic" />
-<spring:url value="/bienes/create" var="urlCreate" />
-<spring:url value="/bienes/edit" var="urlEdit" />
-<spring:url value="/bienes/delete" var="urlDelete" />
-<spring:url value="/bienes/search" var="urlSearch" />
-<spring:url value="/bienes/periodo" var="urlPeriodo" />
+<spring:url value="/bienes/buscar" var="urlBuscar" />
 <spring:url value="/bienes" var="urlBienes" />
 <spring:url value="/bienes/downloadExcel?type=excel" var="urlXLS" />
 <spring:url value="/bienes/downloadExcel?type=pdf" var="urlPDF" />
@@ -33,7 +31,7 @@
 
 	<div class="container theme-showcase" role="main">
 
-		<h3>Listado de Bienes</h3>
+		<h3>Reporte de Bienes por Periodo</h3>
 
 
 
@@ -46,10 +44,6 @@
 		</c:if>
 
 		<div class="btn-toolbar" role="toolbar">
-			<div class="btn-group">
-				<a href="${urlCreate}" class="btn btn-success" role="button"
-					title="Nueva Pelicula">Nueva</a>
-			</div>
 
 			<div class="btn-group">
 				<a href="${urlPDF} " class="btn btn-info" role="button"
@@ -61,27 +55,33 @@
 			</div>
 
 			<div class="btn-group">
-				<a href="${urlPeriodo}" class="btn btn-success" role="button"
-					title="Reporte por Periodo">Reporte por Periodo</a>
+				<a href="${urlCancel} " class="btn btn-danger" role="button"
+					title="Cancelar">Cancelar</a>
 			</div>
-
 
 		</div>
 		<br>
 
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<form class="form-inline" action="${urlSearch}" method="POST">
+
+				<form class="form-inline" action="${urlBuscar}" method="POST">
+
+
 					<div class="form-group">
-						<input type="text" id="myInput" name="campo"
-							placeholder="Search for alta nueva..">
+						<input type="text" class="form-control" id="startDate"
+							name="startDate" placeholder="Fecha Inicio" required="required">
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control" id="endDate" name="endDate"
+							placeholder="Fecha Fin" required="required">
 					</div>
 					<input type="hidden" name="${_csrf.parameterName}"
 						value="${_csrf.token}" />
 					<button type="submit" class="btn btn-primary">Buscar</button>
 				</form>
-
 			</div>
+
 			<div class="panel-body">
 
 				<div class="table-responsive">
@@ -107,7 +107,6 @@
 							<th>Marca</th>
 							<th>Modelo</th>
 							<th>Tipo</th>
-							<th>Opciones</th>
 						</tr>
 
 						<c:forEach items="${bienes.content}" var="bien">
@@ -150,13 +149,6 @@
 								<td>${bien.detalle.modelo}</td>
 								<td>${bien.detalle.tipo}</td>
 
-								<td><a href="${urlEdit}/${bien.id}"
-									class="btn btn-success btn-sm" role="button" title="Edit"><span
-										class="glyphicon glyphicon-pencil"></span></a> <a
-									href="${urlDelete}/${bien.id}"
-									onclick='return confirm("¿Estas seguro?")'
-									class="btn btn-danger btn-sm" role="button" title="Delete"><span
-										class="glyphicon glyphicon-trash"></span></a></td>
 							</tr>
 						</c:forEach>
 					</table>
@@ -166,9 +158,9 @@
 		<nav aria-label="">
 			<ul class="pager">
 				<li><a
-					href="${urlBienes}/indexPaginate?page=${bienes.number - 1 }">Anterior</a></li>
+					href="${urlBienes}/periodPaginate?page=${bienes.number - 1 }">Anterior</a></li>
 				<li><a
-					href="${urlBienes}/indexPaginate?page=${bienes.number + 1 }">Siguiente</a></li>
+					href="${urlBienes}/periodPaginate?page=${bienes.number + 1 }">Siguiente</a></li>
 			</ul>
 		</nav>
 
@@ -188,5 +180,21 @@
 	<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
 	<script src="${urlPublic}/bootstrap/js/bootstrap.min.js"></script>
 	<script src="${urlPublic}/js/bienes.js"></script>
+
+	<script>
+		$(function() {
+			$("#startDate").datepicker({
+				dateFormat : 'dd-mm-yy'
+			});
+		});
+	</script>
+
+	<script>
+		$(function() {
+			$("#endDate").datepicker({
+				dateFormat : 'dd-mm-yy'
+			});
+		});
+	</script>
 </body>
 </html>

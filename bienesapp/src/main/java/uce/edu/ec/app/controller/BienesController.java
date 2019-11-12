@@ -1,5 +1,6 @@
 package uce.edu.ec.app.controller;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -45,7 +46,14 @@ public class BienesController {
 
 	private String busqueda = "";
 
-	private String token="";
+	private String token = "";
+
+	private Date inicio = null;
+
+	private Date fin = null;
+
+	SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+
 	/**
 	 * Metodo que muestra la lista de bienes
 	 * 
@@ -70,24 +78,45 @@ public class BienesController {
 
 	@GetMapping(value = "/indexPaginate")
 	public String mostrarIndexPaginado(Model model, Pageable page) {
-		if(busqueda=="") {
-		Page<Bien> lista = serviceBienes.buscarTodas(page);
-		model.addAttribute("bienes", lista);
-		}else {
-		Page<Bien> lista = serviceBienes.search(token, page);
-		model.addAttribute("bienes", lista);
-		busqueda="";
+		if (busqueda == "") {
+			Page<Bien> lista = serviceBienes.buscarTodas(page);
+			model.addAttribute("bienes", lista);
+		} else {
+			Page<Bien> lista = serviceBienes.search(token, page);
+			model.addAttribute("bienes", lista);
+			busqueda = "";
 		}
-		
+
 		return "bienes/listBienes";
 	}
 
+	// Redireccion formulario de busqueda por periodo
+	@GetMapping(value = "/periodPaginate")
+	public String mostrarPeriodoPaginado(Model model, Pageable page) {
+		Page<Bien> lista = serviceBienes.buscarPeriodo(inicio, fin, page);
+		model.addAttribute("bienes", lista);
+		return "bienes/listPeriodo";
+	}
+
+	// Busqueda por alta
 	@RequestMapping(value = "/search", method = RequestMethod.POST)
 	public String buscar(@RequestParam("campo") String campo) {
 		System.out.println("alta: " + campo);
 		busqueda = "si";
 		token = campo;
 		return "redirect:/bienes/indexPaginate";
+	}
+
+	// Busqueda por fecha inicio and fin
+
+	@RequestMapping(value = "/buscar", method = RequestMethod.POST)
+	public String buscarPeriodo(@RequestParam("startDate") String startDate, @RequestParam("endDate") String endDate)
+			throws ParseException {
+		System.out.println("fecha inicio:" + startDate + " fecha fin:" + endDate);
+
+		inicio = dateFormat.parse(startDate);
+		fin = dateFormat.parse(endDate);
+		return "redirect:/bienes/periodPaginate";
 	}
 
 	/**
@@ -178,6 +207,11 @@ public class BienesController {
 	@RequestMapping(value = "/cancel")
 	public String mostrarAcerca() {
 		return "redirect:/bienes/indexPaginate";
+	}
+
+	@RequestMapping(value = "/periodo")
+	public String mostrarPeriodo() {
+		return "redirect:/bienes/periodPaginate";
 	}
 
 	/**
