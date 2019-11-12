@@ -27,6 +27,8 @@ public interface IBienService {
 
 	// Para paginar
 	Page<Bien> buscarTodas(Pageable page);
+	
+	Page<Bien> search(String alta, Pageable page);
 
 	// Para controlar repetidos
 	boolean exiteRegistroPorAltaAnteriorSerie(String alta, String anterior, String serie);

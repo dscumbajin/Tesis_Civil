@@ -69,4 +69,9 @@ public class BienesServiceJPA implements IBienService {
 		return bienesRepo.findByControl("Activo");
 	}
 
+	@Override
+	public Page<Bien> search(String alta, Pageable page) {
+		return bienesRepo.findByAlta(alta, page);
+	}
+
 }

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -42,6 +43,9 @@ public class BienesController {
 
 	private String edicion = "";
 
+	private String busqueda = "";
+
+	private String token="";
 	/**
 	 * Metodo que muestra la lista de bienes
 	 * 
@@ -66,9 +70,24 @@ public class BienesController {
 
 	@GetMapping(value = "/indexPaginate")
 	public String mostrarIndexPaginado(Model model, Pageable page) {
+		if(busqueda=="") {
 		Page<Bien> lista = serviceBienes.buscarTodas(page);
 		model.addAttribute("bienes", lista);
+		}else {
+		Page<Bien> lista = serviceBienes.search(token, page);
+		model.addAttribute("bienes", lista);
+		busqueda="";
+		}
+		
 		return "bienes/listBienes";
+	}
+
+	@RequestMapping(value = "/search", method = RequestMethod.POST)
+	public String buscar(@RequestParam("campo") String campo) {
+		System.out.println("alta: " + campo);
+		busqueda = "si";
+		token = campo;
+		return "redirect:/bienes/indexPaginate";
 	}
 
 	/**

@@ -14,6 +14,7 @@
 <spring:url value="/bienes/create" var="urlCreate" />
 <spring:url value="/bienes/edit" var="urlEdit" />
 <spring:url value="/bienes/delete" var="urlDelete" />
+<spring:url value="/bienes/search" var="urlSearch" />
 <spring:url value="/bienes" var="urlBienes" />
 <spring:url value="/bienes/downloadExcel?type=excel" var="urlXLS" />
 <spring:url value="/bienes/downloadExcel?type=pdf" var="urlPDF" />
@@ -50,10 +51,12 @@
 			</div>
 
 			<div class="btn-group">
-				<a href="${urlPDF} " class="btn btn-info" role="button" title="Reporte">Reportes Pdf</a>
+				<a href="${urlPDF} " class="btn btn-info" role="button"
+					title="Reporte">Reportes Pdf</a>
 			</div>
 			<div class="btn-group">
-				<a href="${urlXLS} " class="btn btn-info" role="button" title="Reporte">Reportes Excel</a>
+				<a href="${urlXLS} " class="btn btn-info" role="button"
+					title="Reporte">Reportes Excel</a>
 			</div>
 
 		</div>
@@ -61,8 +64,15 @@
 
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<input type="text" id="myInput" onkeyup="myFunction()"
-					placeholder="Search for alta nueva..">
+				<form class="form-inline" action="${urlSearch}" method="POST">
+					<div class="form-group">
+						<input type="text" id="myInput" name="campo"
+							onkeyup="myFunction()" placeholder="Search for alta nueva..">
+					</div>
+					<input type="hidden" name="${_csrf.parameterName}"
+						value="${_csrf.token}" />
+					<button type="submit" class="btn btn-primary">Filtrar</button>
+				</form>
 			</div>
 			<div class="panel-body">
 
