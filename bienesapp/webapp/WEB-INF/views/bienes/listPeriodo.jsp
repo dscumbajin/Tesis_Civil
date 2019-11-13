@@ -15,8 +15,8 @@
 <spring:url value="/resources" var="urlPublic" />
 <spring:url value="/bienes/buscar" var="urlBuscar" />
 <spring:url value="/bienes" var="urlBienes" />
-<spring:url value="/bienes/downloadExcel?type=excel" var="urlXLS" />
-<spring:url value="/bienes/downloadExcel?type=pdf" var="urlPDF" />
+<spring:url value="/bienes/periodo?type=excel" var="urlXLS" />
+<spring:url value="/bienes/periodo?type=pdf" var="urlPDF" />
 
 <link href="${urlPublic}/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -46,11 +46,11 @@
 		<div class="btn-toolbar" role="toolbar">
 
 			<div class="btn-group">
-				<a href="${urlPDF} " class="btn btn-info" role="button"
+				<a href="${urlPDF} " class="btn btn-success" role="button"
 					title="Reporte">Reportes Pdf</a>
 			</div>
 			<div class="btn-group">
-				<a href="${urlXLS} " class="btn btn-info" role="button"
+				<a href="${urlXLS} " class="btn btn-success" role="button"
 					title="Reporte">Reportes Excel</a>
 			</div>
 
@@ -70,11 +70,11 @@
 
 					<div class="form-group">
 						<input type="text" class="form-control" id="startDate"
-							name="startDate" placeholder="Fecha Inicio" required="required">
+							name="startDate" placeholder="Fecha Inicio (dd-mm-yyyy)" required="required">
 					</div>
 					<div class="form-group">
 						<input type="text" class="form-control" id="endDate" name="endDate"
-							placeholder="Fecha Fin" required="required">
+							placeholder="Fecha Fin (dd-mm-yyyy)" required="required">
 					</div>
 					<input type="hidden" name="${_csrf.parameterName}"
 						value="${_csrf.token}" />

@@ -17,6 +17,8 @@ public interface IBienes_Estaciones {
 
 	// Listar todos paginacion
 	Page<Bienes_Estaciones> buscarTodos(Pageable page);
+	
+	Page<Bienes_Estaciones> buscarPorIdEstacion(int idEstacion, Pageable page);
 
 	// Buscar por id
 	Bienes_Estaciones buscarPorId(int id);

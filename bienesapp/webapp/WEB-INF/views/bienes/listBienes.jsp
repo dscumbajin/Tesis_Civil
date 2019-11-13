@@ -15,10 +15,10 @@
 <spring:url value="/bienes/edit" var="urlEdit" />
 <spring:url value="/bienes/delete" var="urlDelete" />
 <spring:url value="/bienes/search" var="urlSearch" />
-<spring:url value="/bienes/periodo" var="urlPeriodo" />
+<spring:url value="/bienes/personalizado" var="urlPersonalizado" />
 <spring:url value="/bienes" var="urlBienes" />
-<spring:url value="/bienes/downloadExcel?type=excel" var="urlXLS" />
-<spring:url value="/bienes/downloadExcel?type=pdf" var="urlPDF" />
+<spring:url value="/bienes/downloadTotal?type=excel" var="urlXLS" />
+<spring:url value="/bienes/downloadTotal?type=pdf" var="urlPDF" />
 
 <link href="${urlPublic}/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -47,21 +47,21 @@
 
 		<div class="btn-toolbar" role="toolbar">
 			<div class="btn-group">
-				<a href="${urlCreate}" class="btn btn-success" role="button"
+				<a href="${urlCreate}" class="btn btn-primary" role="button"
 					title="Nueva Pelicula">Nueva</a>
 			</div>
 
 			<div class="btn-group">
-				<a href="${urlPDF} " class="btn btn-info" role="button"
+				<a href="${urlPDF} " class="btn btn-success" role="button"
 					title="Reporte">Reportes Pdf</a>
 			</div>
 			<div class="btn-group">
-				<a href="${urlXLS} " class="btn btn-info" role="button"
+				<a href="${urlXLS} " class="btn btn-success " role="button"
 					title="Reporte">Reportes Excel</a>
 			</div>
 
 			<div class="btn-group">
-				<a href="${urlPeriodo}" class="btn btn-success" role="button"
+				<a href="${urlPersonalizado}" class="btn btn-danger" role="button"
 					title="Reporte por Periodo">Reporte por Periodo</a>
 			</div>
 

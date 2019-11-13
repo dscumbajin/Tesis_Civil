@@ -1,9 +1,12 @@
 package pruebasQUERY;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 
-import uce.edu.ec.app.model.Bien;
-import uce.edu.ec.app.repository.BienesRepository;
+import uce.edu.ec.app.model.Bienes_Estaciones;
+import uce.edu.ec.app.repository.BienesEstacionesRepository;
+
 
 public class asignaciones {
 
@@ -11,13 +14,19 @@ public class asignaciones {
 
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("root-context.xml");
 
-		BienesRepository repo = context.getBean("bienesRepository", BienesRepository.class);
+		BienesEstacionesRepository repo = context.getBean("bienesEstacionesRepository",BienesEstacionesRepository.class);
 
-		Bien bien = repo.findByAlta("0011");
+		PageRequest pageRequest = PageRequest.of(0,10);
+		Page<Bienes_Estaciones> lista = repo.findByIdEstacion(45, pageRequest);
+		for(Bienes_Estaciones b: lista) {
+			System.out.println(b.toString());
+		}
+		
+	//	Bien bien = repo.findByAlta("0011");
 
-		System.out.println(repo.existsById(bien.getId()));
+		//System.out.println(repo.existsById(bien.getId()));
 
-		System.out.println(bien.toString());
+	//	System.out.println(bien.toString());
 
 		/*
 		 * BienesEstacionesRepository repo =

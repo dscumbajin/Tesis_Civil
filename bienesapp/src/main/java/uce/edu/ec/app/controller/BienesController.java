@@ -5,6 +5,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.data.domain.Page;
@@ -21,6 +24,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import uce.edu.ec.app.model.Bien;
@@ -28,6 +32,8 @@ import uce.edu.ec.app.model.Bienes_Estaciones;
 import uce.edu.ec.app.service.IBienService;
 import uce.edu.ec.app.service.IBienes_Estaciones;
 import uce.edu.ec.app.service.IDetallesService;
+import uce.edu.ec.app.util.ExcelBuilder;
+import uce.edu.ec.app.util.PDFBuilder;
 
 @Controller
 @RequestMapping(value = "/bienes")
@@ -209,7 +215,7 @@ public class BienesController {
 		return "redirect:/bienes/indexPaginate";
 	}
 
-	@RequestMapping(value = "/periodo")
+	@RequestMapping(value = "/personalizado")
 	public String mostrarPeriodo() {
 		return "redirect:/bienes/periodPaginate";
 	}
@@ -224,5 +230,34 @@ public class BienesController {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 		webDataBinder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
 	}
+
+	// Reportes por periodo
+	@GetMapping(value = "/periodo")
+	public ModelAndView getPeriodo(HttpServletRequest request, HttpServletResponse response) {
+		String reportType = request.getParameter("type");
+		List<Bien> bienes = serviceBienes.buscarTodosPorPeriodo(inicio, fin);
+		if (reportType != null && reportType.equals("excel")) {
+			return new ModelAndView(new ExcelBuilder(), "bienes", bienes);
+
+		} else if (reportType != null && reportType.equals("pdf")) {
+			return new ModelAndView(new PDFBuilder(), "bienes", bienes);
+		}
+		return new ModelAndView("listBienes", "bienes", bienes);
+	}
+	
+	//Reporte Todos los bienes
+	@GetMapping(value = "/downloadTotal")
+	public ModelAndView getReport(HttpServletRequest request, HttpServletResponse response) {
+		String reportType = request.getParameter("type");
+		List<Bien> bienes = serviceBienes.buscarTodas();
+		if (reportType != null && reportType.equals("excel")) {
+			return new ModelAndView(new ExcelBuilder(), "bienes", bienes);
+
+		} else if(reportType != null && reportType.equals("pdf")) {
+			return new ModelAndView(new PDFBuilder() , "bienes", bienes);
+		}
+		return new ModelAndView("listBienes","bienes", bienes);
+	}
+
 
 }

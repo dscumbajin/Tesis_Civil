@@ -3,8 +3,6 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<spring:url value="/resources" var="urlPublic"></spring:url>
-<spring:url value="/" var="urlRoot"></spring:url>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -15,6 +13,8 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <title>Detalles del Estacion</title>
+<spring:url value="/resources" var="urlPublic"></spring:url>
+<spring:url value="/" var="urlRoot"></spring:url>
 
 <link href="${urlPublic}/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -49,9 +49,8 @@
 						</div>
 						<div class="panel-body">
 							<p>
-								Ubicación: ${estacion.ubicacion } <br> 
-								Lugar : ${estacion.lugar} <br>
-								Total Bienes: ${numEquipo}
+								Ubicación: ${estacion.ubicacion } <br> Lugar :
+								${estacion.lugar} <br> Total Bienes: ${numEquipo}
 
 							</p>
 
@@ -63,15 +62,17 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<input type="text" id="myInput" onkeyup="myFunction()"
-						placeholder="Search for alta nueva.."> 
-						<a href="#" class="btn btn-info" role="button" title="Reporte">Reportes</a>
+						placeholder="Search for alta nueva.."> <a href="#"
+						class="btn btn-info" role="button" title="Reporte">Reportes</a>
 				</div>
 				<div class="panel-body">
 					<div class="table-responsive">
 						<table id="myTable"
 							class="table table-bordered table-hover table-striped">
-							<thead>
+							
 								<tr>
+									<th>Lugar</th>
+									<th>Ubicación</th>
 									<th>Persona Usa</th>
 									<th>Alta Nueva</th>
 									<th>Alta Anteriror</th>
@@ -81,15 +82,17 @@
 									<th>Serie</th>
 									<th>Guarda Almacen</th>
 									<th>Causionado</th>
-									<th>Fecha</th>
-
-
-
+									<th>Lugar</th>
+									<th>Registro</th>
+									<th>Cambio</th>
 								</tr>
-							</thead>
-							<tbody>
-								<c:forEach items="${bienes_Estaciones}" var="bien_estacion">
+							
+							
+								<c:forEach items="${bienes_Estaciones.content}"
+									var="bien_estacion">
 									<tr>
+										<td>${bien_estacion.estacion.lugar}</td>
+										<td>${bien_estacion.estacion.ubicacion}</td>
 										<td>${bien_estacion.bien.detalle.asignado}</td>
 										<td>${bien_estacion.bien.alta}</td>
 										<td>${bien_estacion.bien.anterior}</td>
@@ -99,17 +102,27 @@
 										<td>${bien_estacion.bien.serie}</td>
 										<td>${bien_estacion.bien.detalle.guarda_almacen}</td>
 										<td>${bien_estacion.bien.detalle.causionado}</td>
-										<td><fmt:formatDate
-												value="${bien_estacion.bien.fecha_ingreso}"
+										<td>${bien_estacion.estacion.lugar}</td>
+										<td><fmt:formatDate value="${bien_estacion.registro}"
+												pattern="dd-MM-yyyy" /></td>
+										<td><fmt:formatDate value="${bien_estacion.cambio}"
 												pattern="dd-MM-yyyy" /></td>
 
 									</tr>
 								</c:forEach>
-							</tbody>
+							
 						</table>
 					</div>
 				</div>
 			</div>
+			<nav aria-label="">
+				<ul class="pager">
+					<li><a
+						href="${urlRoot}detailPaginate?page=${bienes_Estaciones.number - 1 }">Anterior</a></li>
+					<li><a
+						href="${urlRoot}detailPaginate?page=${bienes_Estaciones.number + 1 }">Siguiente</a></li>
+				</ul>
+			</nav>
 
 		</div>
 		<!-- /.container -->

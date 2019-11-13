@@ -40,7 +40,7 @@
 			<div class='alert alert-danger' role="alert">${alerta}</div>
 		</c:if>
 
-		<a href="${urlAsignacion}" class="btn btn-success" role="button"
+		<a href="${urlAsignacion}" class="btn btn-primary" role="button"
 			title="Nueva Asignacion">Asignaciones</a><br> <br>
 		<div class="panel panel-default">
 			<div class="panel-heading">

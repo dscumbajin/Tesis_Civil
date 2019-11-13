@@ -15,7 +15,8 @@ import uce.edu.ec.app.model.Bien;
 @Repository
 public interface BienesRepository extends JpaRepository<Bien, Integer> {
 	
-	
+	@Query(value = "SELECT * FROM Bienes WHERE fecha_ingreso BETWEEN :startDate AND :endDate", nativeQuery = true)
+	List<Bien> findByPeridoAll(@Param("startDate") Date startDate, @Param("endDate")Date endDate);
 	
 	@Query(value = "SELECT * FROM Bienes WHERE fecha_ingreso BETWEEN :startDate AND :endDate", nativeQuery = true)
 	Page<Bien> findByPeriodo(@Param("startDate") Date startDate, @Param("endDate")Date endDate, Pageable page);

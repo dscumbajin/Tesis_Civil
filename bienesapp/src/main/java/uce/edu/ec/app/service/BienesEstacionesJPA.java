@@ -71,4 +71,9 @@ public class BienesEstacionesJPA implements IBienes_Estaciones {
 		return bienesEstacionesRepo.existsByBien_IdAndEstacion_Id(idBien, idEstacion);
 	}
 
+	@Override
+	public Page<Bienes_Estaciones> buscarPorIdEstacion(int idEstacion, Pageable page) {
+		return bienesEstacionesRepo.findByIdEstacion(idEstacion, page);
+	}
+
 }

@@ -33,8 +33,8 @@
 		<spring:url value="/usuarios/edit" var="urlEdit" />
 		<spring:url value="/usuarios/delete" var="urlDelete" />
 		<spring:url value="/usuarios/create" var="urlCreate" />
-		<a href="${urlCreate}" class="btn btn-success" role="button"
-			title="Nuevo Usuario">Nueva</a><br> <br>
+		<a href="${urlCreate}" class="btn btn-primary" role="button"
+			title="Nuevo Usuario">Nuevo</a><br> <br>
 
 		<div class="table-responsive">
 			<table class="table table-hover table-striped table-bordered">

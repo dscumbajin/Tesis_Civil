@@ -36,7 +36,7 @@
 			<div class='alert alert-success' role="alert">${mensaje}</div>
 		</c:if>
 		
-		<a href="${urlCreate}" class="btn btn-success" role="button"
+		<a href="${urlCreate}" class="btn btn-primary" role="button"
 			title="Nueva Ubicacion">Nueva</a><br> <br>
 
 		<div class="panel panel-default">

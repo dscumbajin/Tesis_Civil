@@ -13,6 +13,8 @@ public interface IBienService {
 
 	// Listar todos
 	List<Bien> buscarTodas();
+	
+	List<Bien> buscarTodosPorPeriodo(Date startDate, Date endDate);
 
 	// Buscar por id
 	Bien buscarPorId(int idBien);

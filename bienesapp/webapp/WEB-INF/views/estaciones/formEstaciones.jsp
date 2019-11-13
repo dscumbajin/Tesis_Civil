@@ -90,11 +90,11 @@
 			</div>
 			<div class="btn-toolbar" role="toolbar">
 				<div class="btn-group">
-					<button type="submit" class="btn btn-danger">Guardar</button>
+					<button type="submit" class="btn btn-primary">Guardar</button>
 				</div>
 
 				<div class="btn-group">
-					<a href="${urlCancel} " class="btn btn-info" role="button"
+					<a href="${urlCancel} " class="btn btn-danger" role="button"
 						title="Cancelar">Cancelar</a>
 				</div>
 

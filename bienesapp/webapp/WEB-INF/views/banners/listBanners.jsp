@@ -31,7 +31,7 @@
       	<div class='alert alert-success' role="alert">${mensaje}</div>      	
       </c:if>
 	  
-      <a href="${urlCreate}" class="btn btn-success" role="button" title="Nuevo Banner" >Nuevo</a><br><br>
+      <a href="${urlCreate}" class="btn btn-primary" role="button" title="Nuevo Banner" >Nuevo</a><br><br>
 
       <div class="table-responsive">
         <table class="table table-hover table-striped table-bordered">
