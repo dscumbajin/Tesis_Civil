@@ -15,6 +15,7 @@
 <title>Detalles del Estacion</title>
 <spring:url value="/resources" var="urlPublic"></spring:url>
 <spring:url value="/" var="urlRoot"></spring:url>
+<spring:url value="/downloadTotalDetalle?type=excel" var="urlXLSDetalle"></spring:url>
 
 <link href="${urlPublic}/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -59,6 +60,27 @@
 				</div>
 			</div>
 
+			<div class="btn-toolbar" role="toolbar">
+
+				<div class="btn-group">
+					<a href="${urlPDF} " class="btn btn-success" role="button"
+						title="Reporte">Reportes Pdf</a>
+				</div>
+				<div class="btn-group">
+					<a href="${urlXLSDetalle} " class="btn btn-success " role="button"
+						title="Reporte">Reportes Excel</a>
+				</div>
+
+				<div class="btn-group">
+					<a href="${urlPersonalizado}" class="btn btn-danger" role="button"
+						title="Reporte por Periodo">Reporte por Periodo</a>
+				</div>
+
+
+			</div>
+			<br>
+
+
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<input type="text" id="myInput" onkeyup="myFunction()"
@@ -69,48 +91,48 @@
 					<div class="table-responsive">
 						<table id="myTable"
 							class="table table-bordered table-hover table-striped">
-							
-								<tr>
-									<th>Lugar</th>
-									<th>Ubicación</th>
-									<th>Persona Usa</th>
-									<th>Alta Nueva</th>
-									<th>Alta Anteriror</th>
-									<th>Descripcion</th>
-									<th>Marca</th>
-									<th>Modelo</th>
-									<th>Serie</th>
-									<th>Guarda Almacen</th>
-									<th>Causionado</th>
-									<th>Lugar</th>
-									<th>Registro</th>
-									<th>Cambio</th>
-								</tr>
-							
-							
-								<c:forEach items="${bienes_Estaciones.content}"
-									var="bien_estacion">
-									<tr>
-										<td>${bien_estacion.estacion.lugar}</td>
-										<td>${bien_estacion.estacion.ubicacion}</td>
-										<td>${bien_estacion.bien.detalle.asignado}</td>
-										<td>${bien_estacion.bien.alta}</td>
-										<td>${bien_estacion.bien.anterior}</td>
-										<td>${bien_estacion.bien.descripcion}</td>
-										<td>${bien_estacion.bien.detalle.marca}</td>
-										<td>${bien_estacion.bien.detalle.modelo}</td>
-										<td>${bien_estacion.bien.serie}</td>
-										<td>${bien_estacion.bien.detalle.guarda_almacen}</td>
-										<td>${bien_estacion.bien.detalle.causionado}</td>
-										<td>${bien_estacion.estacion.lugar}</td>
-										<td><fmt:formatDate value="${bien_estacion.registro}"
-												pattern="dd-MM-yyyy" /></td>
-										<td><fmt:formatDate value="${bien_estacion.cambio}"
-												pattern="dd-MM-yyyy" /></td>
 
-									</tr>
-								</c:forEach>
-							
+							<tr>
+								<th>Lugar</th>
+								<th>Ubicación</th>
+								<th>Persona Usa</th>
+								<th>Alta Nueva</th>
+								<th>Alta Anteriror</th>
+								<th>Descripcion</th>
+								<th>Marca</th>
+								<th>Modelo</th>
+								<th>Serie</th>
+								<th>Guarda Almacen</th>
+								<th>Causionado</th>
+								<th>Lugar</th>
+								<th>Registro</th>
+								<th>Cambio</th>
+							</tr>
+
+
+							<c:forEach items="${bienes_Estaciones.content}"
+								var="bien_estacion">
+								<tr>
+									<td>${bien_estacion.estacion.lugar}</td>
+									<td>${bien_estacion.estacion.ubicacion}</td>
+									<td>${bien_estacion.bien.detalle.asignado}</td>
+									<td>${bien_estacion.bien.alta}</td>
+									<td>${bien_estacion.bien.anterior}</td>
+									<td>${bien_estacion.bien.descripcion}</td>
+									<td>${bien_estacion.bien.detalle.marca}</td>
+									<td>${bien_estacion.bien.detalle.modelo}</td>
+									<td>${bien_estacion.bien.serie}</td>
+									<td>${bien_estacion.bien.detalle.guarda_almacen}</td>
+									<td>${bien_estacion.bien.detalle.causionado}</td>
+									<td>${bien_estacion.estacion.lugar}</td>
+									<td><fmt:formatDate value="${bien_estacion.registro}"
+											pattern="dd-MM-yyyy" /></td>
+									<td><fmt:formatDate value="${bien_estacion.cambio}"
+											pattern="dd-MM-yyyy" /></td>
+
+								</tr>
+							</c:forEach>
+
 						</table>
 					</div>
 				</div>

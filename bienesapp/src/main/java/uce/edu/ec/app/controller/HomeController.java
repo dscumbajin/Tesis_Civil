@@ -2,6 +2,9 @@ package uce.edu.ec.app.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import uce.edu.ec.app.model.Banner;
 import uce.edu.ec.app.model.Bienes_Estaciones;
@@ -21,6 +25,8 @@ import uce.edu.ec.app.service.IBannersService;
 import uce.edu.ec.app.service.IBienes_Estaciones;
 import uce.edu.ec.app.service.IEstacionService;
 import uce.edu.ec.app.service.INoticiasService;
+import uce.edu.ec.app.util.ExcelBuilderDetalle;
+import uce.edu.ec.app.util.PDFBuilder;
 
 @Controller
 public class HomeController {
@@ -64,7 +70,7 @@ public class HomeController {
 		// bienes asignados
 	}
 
-	//Paginacion de los bienes buscados por id de estacion
+	// Paginacion de los bienes buscados por id de estacion
 	@GetMapping(value = "/detailPaginate")
 	public String mostrarDetallePaginado(Model model, Pageable page) {
 		model.addAttribute("numEquipo", numEquipos);
@@ -97,5 +103,20 @@ public class HomeController {
 	@RequestMapping(value = "/formLogin", method = RequestMethod.GET)
 	public String mostrarLogin() {
 		return "formLogin";
+	}
+
+	// Reporte Todos los bienes por salas
+	@GetMapping(value = "/downloadTotalDetalle")
+	public ModelAndView getReport(HttpServletRequest request, HttpServletResponse response) {
+		String reportType = request.getParameter("type");
+		// Todos los bienes pero por id de estacion
+		List<Bienes_Estaciones> bienes_Estaciones = serviceAsignaciones.buscarIdPorIdEstacion(idEstacionB);
+		if (reportType != null && reportType.equals("excel")) {
+			return new ModelAndView(new ExcelBuilderDetalle(), "bienes_Estaciones", bienes_Estaciones);
+
+		} else if (reportType != null && reportType.equals("pdf")) {
+			return new ModelAndView(new PDFBuilder(), "bienes_Estaciones", bienes_Estaciones);
+		}
+		return new ModelAndView("detalle", "bienes_Estaciones", bienes_Estaciones);
 	}
 }
