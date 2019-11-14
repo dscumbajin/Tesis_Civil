@@ -1,5 +1,6 @@
 package uce.edu.ec.app.controller;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -42,6 +43,8 @@ public class BienesEstacionesController {
 	private IEstacionService servicioEstaciones;
 
 	private String edicion = "";
+
+	SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
 	@GetMapping(value = "/index")
 	public String mostrarIndex(Model model) {
@@ -87,6 +90,11 @@ public class BienesEstacionesController {
 				bien.setControl("Inactivo");
 				servicioBienes.insertar(bien);
 				bienes_Estaciones.setRegistro(bien.getFecha_ingreso());
+				try {
+					bienes_Estaciones.setCambio(dateFormat.parse("09-09-9999"));
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
 				System.out.println(bien.toString());
 				servicioBienesEstaciones.insertar(bienes_Estaciones);
 				attributes.addFlashAttribute("mensaje", "El registro fue guardado");
@@ -100,20 +108,25 @@ public class BienesEstacionesController {
 			Estacion lugar = servicioEstaciones.buscarPorId(Integer.parseInt(idEstacion));
 			System.out.println("Antes:" + bienes_Estaciones);
 
-			if (bienes_Estaciones.getCambio() == null) {
-				bienes_Estaciones.setEstacion(lugar);
-				bienes_Estaciones.setCambio(new Date());
-				servicioBienesEstaciones.insertar(bienes_Estaciones);
-				System.out.println("Despues:" + bienes_Estaciones);
-				attributes.addFlashAttribute("mensaje", "El registro fue editado");
+			try {
+				if (bienes_Estaciones.getCambio() == dateFormat.parse("09-09-9999")) {
+					bienes_Estaciones.setEstacion(lugar);
+					bienes_Estaciones.setCambio(new Date());
+					servicioBienesEstaciones.insertar(bienes_Estaciones);
+					System.out.println("Despues:" + bienes_Estaciones);
+					attributes.addFlashAttribute("mensaje", "El registro fue editado");
 
-			} else {
-				bienes_Estaciones.setRegistro(bienes_Estaciones.getCambio());
-				bienes_Estaciones.setEstacion(lugar);
-				bienes_Estaciones.setCambio(new Date());
-				servicioBienesEstaciones.insertar(bienes_Estaciones);
-				System.out.println("Despues:" + bienes_Estaciones);
-				attributes.addFlashAttribute("mensaje", "El registro fue editado");
+				} else {
+					bienes_Estaciones.setRegistro(bienes_Estaciones.getCambio());
+					bienes_Estaciones.setEstacion(lugar);
+					bienes_Estaciones.setCambio(new Date());
+					servicioBienesEstaciones.insertar(bienes_Estaciones);
+					System.out.println("Despues:" + bienes_Estaciones);
+					attributes.addFlashAttribute("mensaje", "El registro fue editado");
+				}
+			} catch (ParseException e) {
+
+				e.printStackTrace();
 			}
 			edicion = "";
 		}

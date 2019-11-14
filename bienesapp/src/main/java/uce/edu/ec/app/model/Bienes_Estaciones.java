@@ -29,7 +29,6 @@ public class Bienes_Estaciones {
 
 	// Constructor valores por defecto al registrar un objeto de esta clase
 	public Bienes_Estaciones(){
-		this.registro = new Date();
 	}
 
 	public int getId() {

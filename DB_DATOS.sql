@@ -75,24 +75,24 @@ CREATE TABLE IF NOT EXISTS `bienes_estaciones` (
   `id_bien` int(11) NOT NULL,
   `id_estacion` int(11) NOT NULL,
   `registro` date NOT NULL,
-  `cambio` date DEFAULT NULL,
+  `cambio` date NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id_bien` (`id_bien`),
   KEY `bienes_estaciones_ibfk_2` (`id_estacion`),
   CONSTRAINT `bienes_estaciones_ibfk_1` FOREIGN KEY (`id_bien`) REFERENCES `bienes` (`id`),
   CONSTRAINT `bienes_estaciones_ibfk_2` FOREIGN KEY (`id_estacion`) REFERENCES `estaciones` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=120 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=121 DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla appbienes.bienes_estaciones: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla appbienes.bienes_estaciones: ~9 rows (aproximadamente)
 /*!40000 ALTER TABLE `bienes_estaciones` DISABLE KEYS */;
 INSERT INTO `bienes_estaciones` (`id`, `id_bien`, `id_estacion`, `registro`, `cambio`) VALUES
 	(111, 39, 42, '2019-10-25', '2019-11-05'),
 	(112, 40, 41, '2019-11-05', '2019-11-05'),
-	(113, 41, 42, '2019-10-25', NULL),
-	(114, 42, 41, '2019-10-25', NULL),
-	(115, 43, 41, '2019-10-25', NULL),
-	(116, 44, 44, '2019-11-05', NULL),
-	(117, 45, 43, '2019-10-25', NULL),
+	(113, 41, 42, '2019-10-25', '9999-09-09'),
+	(114, 42, 41, '2019-10-25', '9999-09-09'),
+	(115, 43, 41, '2019-10-25', '9999-09-09'),
+	(116, 44, 44, '2019-11-05', '9999-09-09'),
+	(117, 45, 43, '2019-10-25', '9999-09-09'),
 	(118, 46, 44, '2019-10-25', '2019-11-05'),
 	(119, 38, 41, '2019-11-05', '2019-11-05');
 /*!40000 ALTER TABLE `bienes_estaciones` ENABLE KEYS */;
@@ -111,7 +111,7 @@ CREATE TABLE IF NOT EXISTS `detalles` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla appbienes.detalles: ~9 rows (aproximadamente)
+-- Volcando datos para la tabla appbienes.detalles: ~10 rows (aproximadamente)
 /*!40000 ALTER TABLE `detalles` DISABLE KEYS */;
 INSERT INTO `detalles` (`id`, `asignado`, `causionado`, `estado`, `estatus`, `guarda_almacen`, `marca`, `modelo`, `tipo`) VALUES
 	(39, 'Profesor', 'RAMIRO PILALUISA', 'Bueno', 'Activo', 'UDAY ORTIZ BERTHA JIMENA', 'SONY', 'VPL-EX275', 'MAQUINARIA Y EQUIPO'),
@@ -133,15 +133,16 @@ CREATE TABLE IF NOT EXISTS `estaciones` (
   `lugar` varchar(255) DEFAULT NULL,
   `ubicacion` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla appbienes.estaciones: ~3 rows (aproximadamente)
+-- Volcando datos para la tabla appbienes.estaciones: ~5 rows (aproximadamente)
 /*!40000 ALTER TABLE `estaciones` DISABLE KEYS */;
 INSERT INTO `estaciones` (`id`, `imagen`, `lugar`, `ubicacion`) VALUES
-	(41, '8QS6ND9NSalaB.jpg', 'Sala B', 'LAB . CÓMPUTO INGENIERÍA CIVIL N°2'),
-	(42, 'V9CLHI4OSalaA.jpg', 'Sala A', 'LAB . CÓMPUTO INGENIERÍA CIVIL N°1'),
+	(41, '8QS6ND9NSalaB.jpg', 'Sala A', 'LAB . CÓMPUTO INGENIERÍA CIVIL N°2'),
+	(42, 'V9CLHI4OSalaA.jpg', 'Sala B', 'LAB . CÓMPUTO INGENIERÍA CIVIL N°1'),
 	(43, 'TGMU8VTHSalaC.jpg', 'Sala C', 'LAB . CÓMPUTO INGENIERÍA CIVIL N°2'),
-	(44, 'G2XCZZ7Hbodega.jpg', 'Bodega', 'LAB . CÓMPUTO INGENIERÍA CIVIL N°1');
+	(44, 'G2XCZZ7Hbodega.jpg', 'Bodega', 'LAB . CÓMPUTO INGENIERÍA CIVIL N°1'),
+	(45, 'L1Z11QU7SalaD.jpg', 'Sala D', 'LAB . CÓMPUTO INGENIERÍA CIVIL N°1');
 /*!40000 ALTER TABLE `estaciones` ENABLE KEYS */;
 
 -- Volcando estructura para tabla appbienes.noticias
@@ -152,16 +153,15 @@ CREATE TABLE IF NOT EXISTS `noticias` (
   `fecha` datetime DEFAULT NULL,
   `titulo` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla appbienes.noticias: ~3 rows (aproximadamente)
+-- Volcando datos para la tabla appbienes.noticias: ~4 rows (aproximadamente)
 /*!40000 ALTER TABLE `noticias` DISABLE KEYS */;
 INSERT INTO `noticias` (`id`, `detalle`, `estatus`, `fecha`, `titulo`) VALUES
-	(3, '<p>Utilizar JS para el DOM</p>\r\n<p>editado</p>', 'Activa', '2019-10-29 12:56:58', 'Creando BÃºsquedas '),
 	(4, '<p>Crear un atributo \'no se \'</p>\r\n<p>Contructor por defecto habil</p>\r\n<p>Buscar todos los bienes habiles</p>\r\n<p>Cuando se asigne modifocar el \'no se \' a inabil</p>', 'Activa', '2019-10-23 15:37:36', 'Solo mostrar los que aun no estan asignados '),
 	(5, '<p>Implemnetar los metodos editar y eliminar Para los Usuarios</p>\r\n<p>Tomar en cuenta que al eliminar se debe borrar tambien el rol al cual esta asignado</p>\r\n<p>y en editar se debe tambien poder cambiar de rol</p>', 'Activa', '2019-10-25 00:21:49', 'Para el vienes'),
-	(6, '<p>aun no hacemos los reportes</p>', 'Activa', '2019-10-29 12:57:25', '4'),
-	(7, '<p>Registro de bienes no repetidos</p>', 'Activa', '2019-11-05 16:16:43', 'validaciÃ³n 3 campos alta nueva , anterior, serie');
+	(7, '<p>Registro de bienes no repetidos</p>', 'Activa', '2019-11-05 16:16:43', 'validaciÃ³n 3 campos alta nueva , anterior, serie'),
+	(8, '<p>Se crea el reporte en PDF y Excel&nbsp; de los bienes por cada estacion y lugar que se encuentran</p>', 'Activa', '2019-11-13 18:58:27', 'Reporte de Detalles');
 /*!40000 ALTER TABLE `noticias` ENABLE KEYS */;
 
 -- Volcando estructura para tabla appbienes.perfiles
@@ -175,7 +175,7 @@ CREATE TABLE IF NOT EXISTS `perfiles` (
   CONSTRAINT `authorities_ibfk_2` FOREIGN KEY (`cuenta`) REFERENCES `usuarios` (`cuenta`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla appbienes.perfiles: ~4 rows (aproximadamente)
+-- Volcando datos para la tabla appbienes.perfiles: ~3 rows (aproximadamente)
 /*!40000 ALTER TABLE `perfiles` DISABLE KEYS */;
 INSERT INTO `perfiles` (`id`, `cuenta`, `perfil`) VALUES
 	(4, 'admin', 'ADMINISTRADOR'),
