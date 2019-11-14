@@ -1,6 +1,7 @@
 package uce.edu.ec.app.util;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -20,12 +21,18 @@ import uce.edu.ec.app.model.Bien;
 
 public class ExcelBuilder extends AbstractXlsView {
 
-	SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+	private Date name = new Date();
+
+	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
 	@SuppressWarnings("deprecation")
 	@Override
 	protected void buildExcelDocument(Map<String, Object> model, Workbook workbook, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		response.setHeader("Content-Disposition", "attachment; filename=\"bienes.xls\"");
+		response.setHeader("Content-Disposition",
+				"attachment; filename=\"" + "bienes_" + dateFormat.format(name) + ".xls\"");
+
+		@SuppressWarnings("unchecked")
 		List<Bien> bienes = (List<Bien>) model.get("bienes");
 		Sheet sheet = workbook.createSheet("Bienes List");
 		sheet.setDefaultColumnWidth(15);
