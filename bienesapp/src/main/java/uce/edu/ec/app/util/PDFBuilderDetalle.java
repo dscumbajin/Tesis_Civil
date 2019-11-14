@@ -62,9 +62,9 @@ public class PDFBuilderDetalle extends AbstractITextPdfView {
 
 		}
 
-		PdfPTable table = new PdfPTable(12);
+		PdfPTable table = new PdfPTable(13);
 		table.setWidthPercentage(100.0f);
-		table.setWidths(new float[] { 1.0f, 1.0f, 1.0f, 2.0f, 1.3f, 1.3f, 1.3f, 1.3f, 1.3f, 1.3f, 1.3f, 1.3f});
+		table.setWidths(new float[] { 1.0f, 1.0f, 1.0f, 2.0f, 1.3f, 1.3f, 1.3f, 1.3f, 1.3f, 1.3f, 1.3f, 1.3f, 1.3f });
 		table.setSpacingBefore(10);
 		table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_CENTER);
 		// define font for table header row
@@ -106,8 +106,8 @@ public class PDFBuilderDetalle extends AbstractITextPdfView {
 		table.addCell(cell);
 		cell.setPhrase(new Phrase("Registro", font));
 		table.addCell(cell);
-//		cell.setPhrase(new Phrase("Cambio", font));
-//		table.addCell(cell);
+		cell.setPhrase(new Phrase("Cambio", font));
+		table.addCell(cell);
 
 		// write table row data
 		for (Bienes_Estaciones bien_Estacion : bienes_Estaciones) {
@@ -123,7 +123,7 @@ public class PDFBuilderDetalle extends AbstractITextPdfView {
 			table.addCell(bien_Estacion.getEstacion().getLugar());
 			table.addCell(bien_Estacion.getEstacion().getUbicacion());
 			table.addCell(String.valueOf(bien_Estacion.getRegistro()));
-			// table.addCell(String.valueOf(bien_Estacion.getCambio()));
+			table.addCell(String.valueOf(bien_Estacion.getCambio()));
 
 		}
 

@@ -22,6 +22,8 @@
 	rel="stylesheet">
 <link href="${urlPublic}/bootstrap/css/theme.css" rel="stylesheet">
 <link href="${urlPublic}/css/my-style.css">
+<link href="${urlPublic}/images/logouce.ico.ico" type="image/x-icon"
+	rel="shortcut icon" />
 
 </head>
 
@@ -62,6 +64,8 @@
 		</div>
 		<br>
 
+
+
 		<div class="panel panel-default">
 			<div class="panel-heading">
 
@@ -70,11 +74,13 @@
 
 					<div class="form-group">
 						<input type="text" class="form-control" id="startDate"
-							name="startDate" placeholder="Fecha Inicio (dd-mm-yyyy)" required="required">
+							name="startDate" placeholder="Fecha Inicio (dd-mm-yyyy)"
+							required="required">
 					</div>
 					<div class="form-group">
-						<input type="text" class="form-control" id="endDate" name="endDate"
-							placeholder="Fecha Fin (dd-mm-yyyy)" required="required">
+						<input type="text" class="form-control" id="endDate"
+							name="endDate" placeholder="Fecha Fin (dd-mm-yyyy)"
+							required="required">
 					</div>
 					<input type="hidden" name="${_csrf.parameterName}"
 						value="${_csrf.token}" />
@@ -196,5 +202,6 @@
 			});
 		});
 	</script>
+
 </body>
 </html>

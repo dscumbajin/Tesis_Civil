@@ -16,7 +16,7 @@
 	 <spring:url value="/banners/delete" var="urlDelete" />
     <link href="${urlPublic}/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="${urlPublic}/bootstrap/css/theme.css" rel="stylesheet">
-    
+    <link href="${urlPublic}/images/logouce.ico.ico" type="image/x-icon" rel="shortcut icon"/>
   </head>
 
   <body>

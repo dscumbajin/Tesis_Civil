@@ -26,7 +26,6 @@ import uce.edu.ec.app.service.IBienes_Estaciones;
 import uce.edu.ec.app.service.IEstacionService;
 import uce.edu.ec.app.service.INoticiasService;
 import uce.edu.ec.app.util.ExcelBuilderDetalle;
-import uce.edu.ec.app.util.PDFBuilder;
 import uce.edu.ec.app.util.PDFBuilderDetalle;
 
 @Controller
@@ -81,6 +80,41 @@ public class HomeController {
 		return "detalle";
 	}
 
+	// Reporte Todos los bienes por salas
+	@GetMapping(value = "/downloadTotalDetalle")
+	public ModelAndView getReport(HttpServletRequest request, HttpServletResponse response) {
+		String reportType = request.getParameter("type");
+		// Todos los bienes pero por id de estacion
+		List<Bienes_Estaciones> bienes_Estaciones = serviceAsignaciones.buscarIdPorIdEstacion(idEstacionB);
+		if (reportType != null && reportType.equals("excel")) {
+			return new ModelAndView(new ExcelBuilderDetalle(), "bienes_Estaciones", bienes_Estaciones);
+
+		} else if (reportType != null && reportType.equals("pdf")) {
+			return new ModelAndView(new PDFBuilderDetalle(), "bienes_Estaciones", bienes_Estaciones);
+		}
+		return new ModelAndView("detalle", "bienes_Estaciones", bienes_Estaciones);
+	}
+
+	@RequestMapping(value = "/personalizado")
+	public String mostrarPeriodo() {
+		return "redirect:/detallePeriodoPaginate";
+	}
+	
+	// Redireccion formulario de busqueda por periodo
+	@GetMapping(value = "/detallePeriodoPaginate")
+	public String mostrarPeriodoPaginado(Model model, Pageable page) {
+		model.addAttribute("numEquipo", numEquipos);
+		model.addAttribute("estacion", serviceEstaciones.buscarPorId(idEstacionB));
+		Page<Bienes_Estaciones> bienes_Estaciones = serviceAsignaciones.buscarPorIdEstacion(idEstacionB, page);
+		model.addAttribute("bienes_Estaciones", bienes_Estaciones);
+		return "detalleCambioPeriodo";
+	}
+	
+	@RequestMapping(value = "/cancel")
+	public String Cancelar() {
+		return "redirect:/detailPaginate";
+	}
+
 	@ModelAttribute("banners")
 	public List<Banner> getBanners() {
 		return serviceBanners.buscarActivos();
@@ -104,20 +138,5 @@ public class HomeController {
 	@RequestMapping(value = "/formLogin", method = RequestMethod.GET)
 	public String mostrarLogin() {
 		return "formLogin";
-	}
-
-	// Reporte Todos los bienes por salas
-	@GetMapping(value = "/downloadTotalDetalle")
-	public ModelAndView getReport(HttpServletRequest request, HttpServletResponse response) {
-		String reportType = request.getParameter("type");
-		// Todos los bienes pero por id de estacion
-		List<Bienes_Estaciones> bienes_Estaciones = serviceAsignaciones.buscarIdPorIdEstacion(idEstacionB);
-		if (reportType != null && reportType.equals("excel")) {
-			return new ModelAndView(new ExcelBuilderDetalle(), "bienes_Estaciones", bienes_Estaciones);
-
-		} else if (reportType != null && reportType.equals("pdf")) {
-			return new ModelAndView(new PDFBuilderDetalle(), "bienes_Estaciones", bienes_Estaciones);
-		}
-		return new ModelAndView("detalle", "bienes_Estaciones", bienes_Estaciones);
 	}
 }

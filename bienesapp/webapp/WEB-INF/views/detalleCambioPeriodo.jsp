@@ -16,7 +16,7 @@
 
 <spring:url value="/resources" var="urlPublic"></spring:url>
 <spring:url value="/" var="urlRoot"></spring:url>
-<spring:url value="/personalizado" var="urlPersonalizado" />
+<spring:url value="/cancel" var="urlCancel"></spring:url>
 <spring:url value="/downloadTotalDetalle?type=excel" var="urlXLSDetalle"></spring:url>
 <spring:url value="/downloadTotalDetalle?type=pdf" var="urlPDFDetalle" />
 <link href="${urlPublic}/images/logouce.ico.ico" type="image/x-icon"
@@ -76,8 +76,8 @@
 				</div>
 
 				<div class="btn-group">
-					<a href="${urlPersonalizado}" class="btn btn-danger" role="button"
-						title="Reporte por Periodo">Reporte por Periodo</a>
+					<a href="${urlCancel} " class="btn btn-danger" role="button"
+						title="Cancelar">Cancelar</a>
 				</div>
 
 
@@ -87,10 +87,25 @@
 
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<input type="text" id="myInput" onkeyup="myFunction()"
-						placeholder="Search for alta nueva.."> <a href="#"
-						class="btn btn-primary" role="button" title="Reporte">Busqueda</a>
+					<form class="form-inline" action="${urlBuscar}" method="POST">
+
+
+						<div class="form-group">
+							<input type="text" class="form-control" id="startDate"
+								name="startDate" placeholder="Fecha Inicio (dd-mm-yyyy)"
+								required="required">
+						</div>
+						<div class="form-group">
+							<input type="text" class="form-control" id="endDate"
+								name="endDate" placeholder="Fecha Fin (dd-mm-yyyy)"
+								required="required">
+						</div>
+						<input type="hidden" name="${_csrf.parameterName}"
+							value="${_csrf.token}" />
+						<button type="submit" class="btn btn-primary">Buscar</button>
+					</form>
 				</div>
+
 				<div class="panel-body">
 					<div class="table-responsive">
 						<table id="myTable"
@@ -165,5 +180,21 @@
 	<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
 	<script src="${urlPublic}/bootstrap/js/bootstrap.min.js"></script>
 	<script src="${urlPublic}/js/detalles.js"></script>
+
+	<script>
+		$(function() {
+			$("#startDate").datepicker({
+				dateFormat : 'dd-mm-yy'
+			});
+		});
+	</script>
+
+	<script>
+		$(function() {
+			$("#endDate").datepicker({
+				dateFormat : 'dd-mm-yy'
+			});
+		});
+	</script>
 </body>
 </html>

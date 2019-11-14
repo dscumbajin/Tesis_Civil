@@ -22,6 +22,8 @@
 <link href="${urlPublic}/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
 <link href="${urlPublic}/bootstrap/css/theme.css" rel="stylesheet">
+<link href="${urlPublic}/images/logouce.ico.ico" type="image/x-icon"
+	rel="shortcut icon" />
 
 <link rel="stylesheet"
 	href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">

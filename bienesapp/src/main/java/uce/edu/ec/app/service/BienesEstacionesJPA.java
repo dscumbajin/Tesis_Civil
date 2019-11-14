@@ -1,5 +1,6 @@
 package uce.edu.ec.app.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -74,6 +75,11 @@ public class BienesEstacionesJPA implements IBienes_Estaciones {
 	@Override
 	public Page<Bienes_Estaciones> buscarPorIdEstacion(int idEstacion, Pageable page) {
 		return bienesEstacionesRepo.findByIdEstacion(idEstacion, page);
+	}
+
+	@Override
+	public Page<Bienes_Estaciones> buscarCambiosPorPeriodo(Date startDate, Date endDate, Pageable page) {
+		return bienesEstacionesRepo.findByPeriodo(startDate, endDate, page);
 	}
 
 }

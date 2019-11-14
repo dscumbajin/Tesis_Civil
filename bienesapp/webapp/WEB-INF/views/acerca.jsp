@@ -10,7 +10,7 @@
 <meta name="author" content="">
 <title>CineSite | Bienvenido</title>
 <spring:url value="/resources" var="urlPublic" />
-
+<link href="${urlPublic}/images/logouce.ico.ico" type="image/x-icon" rel="shortcut icon"/>
 <link href="${urlPublic}/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
 <link href="${urlPublic}/bootstrap/css/theme.css" rel="stylesheet">

@@ -10,10 +10,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
+
 <title>Login</title>
 <spring:url value="/resources" var="urlPublic" />
 <spring:url value="/" var="urlRoot" />
-
+<link href="${urlPublic}/images/logouce.ico.ico" type="image/x-icon"
+	rel="shortcut icon" />
 <link href="${urlPublic}/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
 <link href="${urlPublic}/bootstrap/css/theme.css" rel="stylesheet">
@@ -41,8 +43,8 @@
 				Administracion</h3>
 			<label for="username" class="sr-only">Usuario</label> <input
 				type="text" id="username" name="username" class="form-control"
-				placeholder="Usuario" required autofocus> <br>
-			<label for="password" class="sr-only">Contraseña</label> <input
+				placeholder="Usuario" required autofocus> <br> <label
+				for="password" class="sr-only">Contraseña</label> <input
 				type="password" id="password" name="password" class="form-control"
 				placeholder="Password" required> <input type="hidden"
 				name="${_csrf.parameterName}" value="${_csrf.token}" />

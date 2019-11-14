@@ -14,6 +14,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
+<link href="${urlPublic}/images/logouce.ico.ico" type="image/x-icon" rel="shortcut icon"/>
+
 <title>Control de Bienes Site | Bienvenido</title>
 
 <link href="${urlPublic}/bootstrap/css/bootstrap.min.css"
