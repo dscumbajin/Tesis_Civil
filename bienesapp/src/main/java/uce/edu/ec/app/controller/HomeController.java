@@ -27,6 +27,7 @@ import uce.edu.ec.app.service.IEstacionService;
 import uce.edu.ec.app.service.INoticiasService;
 import uce.edu.ec.app.util.ExcelBuilderDetalle;
 import uce.edu.ec.app.util.PDFBuilder;
+import uce.edu.ec.app.util.PDFBuilderDetalle;
 
 @Controller
 public class HomeController {
@@ -115,7 +116,7 @@ public class HomeController {
 			return new ModelAndView(new ExcelBuilderDetalle(), "bienes_Estaciones", bienes_Estaciones);
 
 		} else if (reportType != null && reportType.equals("pdf")) {
-			return new ModelAndView(new PDFBuilder(), "bienes_Estaciones", bienes_Estaciones);
+			return new ModelAndView(new PDFBuilderDetalle(), "bienes_Estaciones", bienes_Estaciones);
 		}
 		return new ModelAndView("detalle", "bienes_Estaciones", bienes_Estaciones);
 	}

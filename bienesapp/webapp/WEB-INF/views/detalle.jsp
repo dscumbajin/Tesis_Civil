@@ -16,6 +16,7 @@
 <spring:url value="/resources" var="urlPublic"></spring:url>
 <spring:url value="/" var="urlRoot"></spring:url>
 <spring:url value="/downloadTotalDetalle?type=excel" var="urlXLSDetalle"></spring:url>
+<spring:url value="/downloadTotalDetalle?type=pdf" var="urlPDFDetalle" />
 
 <link href="${urlPublic}/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -63,7 +64,7 @@
 			<div class="btn-toolbar" role="toolbar">
 
 				<div class="btn-group">
-					<a href="${urlPDF} " class="btn btn-success" role="button"
+					<a href="${urlPDFDetalle} " class="btn btn-success" role="button"
 						title="Reporte">Reportes Pdf</a>
 				</div>
 				<div class="btn-group">
@@ -85,7 +86,7 @@
 				<div class="panel-heading">
 					<input type="text" id="myInput" onkeyup="myFunction()"
 						placeholder="Search for alta nueva.."> <a href="#"
-						class="btn btn-info" role="button" title="Reporte">Reportes</a>
+						class="btn btn-primary" role="button" title="Reporte">Busqueda</a>
 				</div>
 				<div class="panel-body">
 					<div class="table-responsive">
@@ -93,8 +94,6 @@
 							class="table table-bordered table-hover table-striped">
 
 							<tr>
-								<th>Lugar</th>
-								<th>Ubicación</th>
 								<th>Persona Usa</th>
 								<th>Alta Nueva</th>
 								<th>Alta Anteriror</th>
@@ -105,6 +104,7 @@
 								<th>Guarda Almacen</th>
 								<th>Causionado</th>
 								<th>Lugar</th>
+								<th>Ubicación</th>
 								<th>Registro</th>
 								<th>Cambio</th>
 							</tr>
@@ -113,8 +113,6 @@
 							<c:forEach items="${bienes_Estaciones.content}"
 								var="bien_estacion">
 								<tr>
-									<td>${bien_estacion.estacion.lugar}</td>
-									<td>${bien_estacion.estacion.ubicacion}</td>
 									<td>${bien_estacion.bien.detalle.asignado}</td>
 									<td>${bien_estacion.bien.alta}</td>
 									<td>${bien_estacion.bien.anterior}</td>
@@ -125,6 +123,7 @@
 									<td>${bien_estacion.bien.detalle.guarda_almacen}</td>
 									<td>${bien_estacion.bien.detalle.causionado}</td>
 									<td>${bien_estacion.estacion.lugar}</td>
+									<td>${bien_estacion.estacion.ubicacion}</td>
 									<td><fmt:formatDate value="${bien_estacion.registro}"
 											pattern="dd-MM-yyyy" /></td>
 									<td><fmt:formatDate value="${bien_estacion.cambio}"
