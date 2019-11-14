@@ -1,8 +1,8 @@
 package uce.edu.ec.app.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,8 +38,10 @@ public class UsuariosController {
 		return "usuarios/formUsuario";
 	}
 
-	@GetMapping("/index")
-	public String index(Model model) {
+	@GetMapping(value = "/indexPaginate")
+	public String mostrarIndexPaginado(Model model, Pageable page) {
+		Page<Usuario> usuarios = serviceUsuarios.buscarTodos(page);
+		model.addAttribute("usuarios", usuarios);
 		return "usuarios/listUsuarios";
 	}
 
@@ -71,7 +73,7 @@ public class UsuariosController {
 			perfilTmp.setPerfil(perfil);
 			servicePerfiles.guardar(perfilTmp);
 
-			return "redirect:/usuarios/index";
+			return "redirect:/usuarios/indexPaginate";
 
 		}
 
@@ -93,25 +95,12 @@ public class UsuariosController {
 		servicePerfiles.eliminar(perfil.getId());
 		serviceUsuarios.eliminar(idUsuario);
 		attributes.addFlashAttribute("mensaje", "Registro eliminado");
-		return "redirect:/usuarios/index";
-	}
-
-	@GetMapping("/demo-bcrypt")
-	public String pruebaBCrypt() {
-		String password = "mari123";
-		String encriptado = encoder.encode(password);
-		System.out.println("Password encriptado: " + encriptado);
-		return "usuarios/demo";
-	}
-
-	@ModelAttribute("usuarios")
-	public List<Usuario> getBienes() {
-		return serviceUsuarios.buscarTodos();
+		return "redirect:/usuarios/indexPaginate";
 	}
 
 	@RequestMapping(value = "/cancel")
 	public String mostrarAcerca() {
-		return "redirect:/usuarios/index";
+		return "redirect:/usuarios/indexPaginate";
 	}
 
 }

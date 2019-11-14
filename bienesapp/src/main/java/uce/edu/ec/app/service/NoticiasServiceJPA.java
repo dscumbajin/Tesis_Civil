@@ -3,6 +3,8 @@ package uce.edu.ec.app.service;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import uce.edu.ec.app.model.Noticia;
@@ -56,6 +58,11 @@ public class NoticiasServiceJPA implements INoticiasService {
 	@Override
 	public boolean existePorTitulo(String titulo) {
 		return noticiasRepo.existsByTitulo(titulo);
+	}
+
+	@Override
+	public Page<Noticia> buscarTodas(Pageable page) {
+		return noticiasRepo.findAll(page);
 	}
 
 }

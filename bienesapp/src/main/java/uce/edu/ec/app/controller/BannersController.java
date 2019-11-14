@@ -5,6 +5,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -39,6 +41,13 @@ public class BannersController {
 	@GetMapping("/index")
 	public String mostrarIndex(Model model) {
 		List<Banner> banners = serviceBanners.buscarTodos();
+		model.addAttribute("banners", banners);
+		return "banners/listBanners";
+	}
+
+	@GetMapping(value = "/indexPaginate")
+	public String mostrarIndexPaginado(Model model, Pageable page) {
+		Page<Banner> banners = serviceBanners.buscarTodos(page);
 		model.addAttribute("banners", banners);
 		return "banners/listBanners";
 	}
@@ -85,15 +94,14 @@ public class BannersController {
 
 				serviceBanners.insertar(banner);
 				attributes.addFlashAttribute("mensaje", "El registro fue guardado");
-				return "redirect:/banners/index";
+				return "redirect:/banners/indexPaginate";
 			}
 		} else {
 			serviceBanners.insertar(banner);
 			attributes.addFlashAttribute("mensaje", "El registro fue editado");
-			edicion ="";
-			return "redirect:/banners/index";
+			edicion = "";
+			return "redirect:/banners/indexPaginate";
 		}
-		
 
 	}
 
@@ -111,12 +119,12 @@ public class BannersController {
 	public String eliminar(@PathVariable("id") int idBanner, RedirectAttributes attributes) {
 		serviceBanners.eliminar(idBanner);
 		attributes.addFlashAttribute("mensaje", "Registro eliminado");
-		return "redirect:/banners/index";
+		return "redirect:/banners/indexPaginate";
 	}
 
 	@RequestMapping(value = "/cancel")
 	public String mostrarAcerca() {
-		return "redirect:/banners/index";
+		return "redirect:/banners/indexPaginate";
 	}
 
 }

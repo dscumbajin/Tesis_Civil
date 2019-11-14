@@ -1,7 +1,8 @@
 package uce.edu.ec.app.controller;
 
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -26,10 +27,9 @@ public class NoticiasController {
 
 	private String edicion = "";
 
-	// Metodo que muestra la lista de noticias
-	@GetMapping(value = "/index")
-	public String mostrarIndex(Model model) {
-		List<Noticia> listaNoticias = serviceNoticias.buscarTodas();
+	@GetMapping(value = "/indexPaginate")
+	public String mostrarIndexPaginado(Model model, Pageable page) {
+		Page<Noticia> listaNoticias = serviceNoticias.buscarTodas(page);
 		model.addAttribute("noticias", listaNoticias);
 		return "noticias/listNoticias";
 	}
@@ -65,13 +65,13 @@ public class NoticiasController {
 			} else {
 				serviceNoticias.guardar(noticia);
 				attributes.addFlashAttribute("msg", "Los datos de la noticia fueron guardados!");
-				return "redirect:/noticias/index";
+				return "redirect:/noticias/indexPaginate";
 			}
 		} else {
 			serviceNoticias.guardar(noticia);
 			attributes.addFlashAttribute("msg", "Los datos de la noticia fueron modificados!");
-			edicion="";
-			return "redirect:/noticias/index";
+			edicion = "";
+			return "redirect:/noticias/indexPaginate";
 		}
 
 	}
@@ -89,7 +89,7 @@ public class NoticiasController {
 		serviceNoticias.eliminar(idNoticia);
 		attributes.addFlashAttribute("msg", "La noticia fue eliminada!.");
 
-		return "redirect:/noticias/index";
+		return "redirect:/noticias/indexPaginate";
 	}
 
 	/**
@@ -109,6 +109,6 @@ public class NoticiasController {
 
 	@RequestMapping(value = "/cancel")
 	public String mostrarAcerca() {
-		return "redirect:/noticias/index";
+		return "redirect:/noticias/indexPaginate";
 	}
 }

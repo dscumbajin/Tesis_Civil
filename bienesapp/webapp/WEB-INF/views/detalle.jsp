@@ -17,6 +17,7 @@
 <spring:url value="/resources" var="urlPublic"></spring:url>
 <spring:url value="/" var="urlRoot"></spring:url>
 <spring:url value="/personalizado" var="urlPersonalizado" />
+<spring:url value="/search" var="urlSearch" />
 <spring:url value="/downloadTotalDetalle?type=excel" var="urlXLSDetalle"></spring:url>
 <spring:url value="/downloadTotalDetalle?type=pdf" var="urlPDFDetalle" />
 <link href="${urlPublic}/images/logouce.ico.ico" type="image/x-icon"
@@ -87,9 +88,15 @@
 
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<input type="text" id="myInput" onkeyup="myFunction()"
-						placeholder="Search for alta nueva.."> <a href="#"
-						class="btn btn-primary" role="button" title="Reporte">Busqueda</a>
+					<form class="form-inline" action="${urlSearch}" method="POST">
+						<div class="form-group">
+							<input type="text" id="myInput" name="campo"
+								placeholder="Search for alta nueva..">
+						</div>
+						<input type="hidden" name="${_csrf.parameterName}"
+							value="${_csrf.token}" />
+						<button type="submit" class="btn btn-primary">Buscar</button>
+					</form>
 				</div>
 				<div class="panel-body">
 					<div class="table-responsive">

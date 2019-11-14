@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import uce.edu.ec.app.model.Banner;
@@ -50,6 +52,11 @@ public class BannersServiceJPA implements IBannersService {
 	@Override
 	public boolean existePorTitulo(String titulo) {
 		return bannersRepo.existsByTitulo(titulo);
+	}
+
+	@Override
+	public Page<Banner> buscarTodos(Pageable page) {
+		return bannersRepo.findAll(page);
 	}
 
 }

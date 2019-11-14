@@ -21,6 +21,8 @@ public interface IEstacionService {
 
 	Page<Estacion> buscarTodos(Pageable page);
 	
+	Page<Estacion> buscarPorLugar(String lugar, Pageable page);
+	
 	boolean existeEstacion(String ubicacion, String lugar);
 
 }

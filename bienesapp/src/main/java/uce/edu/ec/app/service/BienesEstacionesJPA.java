@@ -83,4 +83,14 @@ public class BienesEstacionesJPA implements IBienes_Estaciones {
 		return bienesEstacionesRepo.findByEstacion_IdAndCambioBetween(idEstacion, startDate, endDate, page);
 	}
 
+	@Override
+	public Page<Bienes_Estaciones> buscarPorAltaBien(String Alta, Pageable page) {
+		return bienesEstacionesRepo.findByBien_Alta(Alta, page);
+	}
+
+	@Override
+	public Page<Bienes_Estaciones> buscarPorEstacion_IdAndBien_Alta(int idEstacion, String alta, Pageable page) {
+		return bienesEstacionesRepo.findByEstacion_IdAndBien_Alta(idEstacion, alta, page);
+	}
+
 }

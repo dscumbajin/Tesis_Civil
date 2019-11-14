@@ -17,11 +17,13 @@
 <spring:url value="/asignaciones/edit" var="urlEdit" />
 <spring:url value="/asignaciones/delete" var="urlDelete" />
 <spring:url value="/asignaciones" var="urlAsignaciones" />
+<spring:url value="/asignaciones/search" var="urlSearch" />
 
 <link href="${urlPublic}/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
 <link href="${urlPublic}/bootstrap/css/theme.css" rel="stylesheet">
-<link href="${urlPublic}/images/logouce.ico.ico" type="image/x-icon" rel="shortcut icon"/>
+<link href="${urlPublic}/images/logouce.ico.ico" type="image/x-icon"
+	rel="shortcut icon" />
 </head>
 
 <body>
@@ -44,8 +46,15 @@
 			title="Nueva Asignacion">Asignaciones</a><br> <br>
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<input type="text" id="myInput" onkeyup="myFunction()"
-					placeholder="Search for alta nueva..">
+				<form class="form-inline" action="${urlSearch}" method="POST">
+					<div class="form-group">
+						<input type="text" id="myInput" name="campo"
+							placeholder="Search for alta nueva..">
+					</div>
+					<input type="hidden" name="${_csrf.parameterName}"
+						value="${_csrf.token}" />
+					<button type="submit" class="btn btn-primary">Buscar</button>
+				</form>
 			</div>
 			<div class="panel-body">
 				<div class="table-responsive">

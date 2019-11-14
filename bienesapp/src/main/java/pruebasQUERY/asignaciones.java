@@ -1,7 +1,6 @@
 package pruebasQUERY;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -20,12 +19,14 @@ public class asignaciones {
 		BienesEstacionesRepository repo = context.getBean("bienesEstacionesRepository",
 				BienesEstacionesRepository.class);
 
-		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+	//	SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
 		PageRequest pageRequest = PageRequest.of(0, 10);
-		Page<Bienes_Estaciones> lista = repo.findByEstacion_IdAndCambioBetween(44, dateFormat.parse("04-11-2019"),
-				dateFormat.parse("10-11-2019"), pageRequest);
+		//Page<Bienes_Estaciones> lista = repo.findByEstacion_IdAndCambioBetween(44, dateFormat.parse("04-11-2019"),dateFormat.parse("10-11-2019"), pageRequest);
 
+		//Page<Bienes_Estaciones> lista = repo.findByBien_Alta("9173645", pageRequest);
+		
+		Page<Bienes_Estaciones> lista = repo.findByEstacion_IdAndBien_Alta(41, "7113099", pageRequest);
 		for (Bienes_Estaciones b : lista) {
 			System.out.println(b.getBien());
 		}

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -42,6 +43,9 @@ public class EstacionController {
 
 	private String edicion = "";
 
+	private String busqueda = "";
+	private String token = "";
+
 	// Crear un objeto tipo Estacion
 	@GetMapping(value = "/create")
 	public String crear(@ModelAttribute Estacion estacion, Model model) {
@@ -57,8 +61,14 @@ public class EstacionController {
 
 	@GetMapping(value = "/indexPaginate")
 	public String mostrarIndexPaginado(Model model, Pageable page) {
-		Page<Estacion> lista = servicioEstaciones.buscarTodos(page);
-		model.addAttribute("estaciones", lista);
+		if (busqueda == "") {
+			Page<Estacion> lista = servicioEstaciones.buscarTodos(page);
+			model.addAttribute("estaciones", lista);
+		} else {
+			Page<Estacion> lista = servicioEstaciones.buscarPorLugar(token, page);
+			model.addAttribute("estaciones", lista);
+			busqueda="";
+		}
 		return "estaciones/listEstaciones";
 	}
 
@@ -147,6 +157,15 @@ public class EstacionController {
 
 	@RequestMapping(value = "/cancel")
 	public String mostrarAcerca() {
+		return "redirect:/estaciones/indexPaginate";
+	}
+
+	// Busqueda por alta
+	@RequestMapping(value = "/search", method = RequestMethod.POST)
+	public String buscar(@RequestParam("inputLugar") String inputLugar) {
+		System.out.println("alta: " + inputLugar);
+		busqueda = "si";
+		token = inputLugar;
 		return "redirect:/estaciones/indexPaginate";
 	}
 }

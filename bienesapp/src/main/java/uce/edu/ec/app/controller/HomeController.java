@@ -50,12 +50,15 @@ public class HomeController {
 	private int numEquipos = 0;
 
 	private String busqueda = "";
+
 	private String paginado = "";
+
+	private String token = "";
 
 	private Date inicio = null;
 
 	private Date fin = null;
-	
+
 	private List<Bienes_Estaciones> cambioPeriodoDetalle;
 
 	SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
@@ -89,8 +92,16 @@ public class HomeController {
 	public String mostrarDetallePaginado(Model model, Pageable page) {
 		model.addAttribute("numEquipo", numEquipos);
 		model.addAttribute("estacion", serviceEstaciones.buscarPorId(idEstacionB));
-		Page<Bienes_Estaciones> bienes_Estaciones = serviceAsignaciones.buscarPorIdEstacion(idEstacionB, page);
-		model.addAttribute("bienes_Estaciones", bienes_Estaciones);
+		if (busqueda == "") {
+			Page<Bienes_Estaciones> bienes_Estaciones = serviceAsignaciones.buscarPorIdEstacion(idEstacionB, page);
+			model.addAttribute("bienes_Estaciones", bienes_Estaciones);
+
+		} else {
+			Page<Bienes_Estaciones> bienes_Estaciones = serviceAsignaciones
+					.buscarPorEstacion_IdAndBien_Alta(idEstacionB, token, page);
+			model.addAttribute("bienes_Estaciones", bienes_Estaciones);
+			busqueda = "";
+		}
 		return "detalle";
 	}
 
@@ -116,7 +127,7 @@ public class HomeController {
 			model.addAttribute("estacion", serviceEstaciones.buscarPorId(idEstacionB));
 			Page<Bienes_Estaciones> bienes_Estaciones = serviceAsignaciones
 					.buscarCambiosPorPeriodoAndIdEstacion(idEstacionB, inicio, fin, page);
-			cambioPeriodoDetalle =bienes_Estaciones.getContent();
+			cambioPeriodoDetalle = bienes_Estaciones.getContent();
 			model.addAttribute("bienes_Estaciones", bienes_Estaciones);
 			System.out.println("Primer paginado: " + busqueda + paginado);
 		}
@@ -170,6 +181,15 @@ public class HomeController {
 	public String Cancelar() {
 		busqueda = "";
 		paginado = "";
+		return "redirect:/detailPaginate";
+	}
+
+	// Busqueda por alta
+	@RequestMapping(value = "/search", method = RequestMethod.POST)
+	public String buscar(@RequestParam("campo") String campo) {
+		System.out.println("alta: " + campo);
+		busqueda = "si";
+		token = campo;
 		return "redirect:/detailPaginate";
 	}
 

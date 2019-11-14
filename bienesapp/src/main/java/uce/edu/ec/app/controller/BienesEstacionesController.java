@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -44,6 +45,10 @@ public class BienesEstacionesController {
 
 	private String edicion = "";
 
+	private String busqueda = "";
+
+	private String token = "";
+
 	SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
 	@GetMapping(value = "/index")
@@ -55,8 +60,16 @@ public class BienesEstacionesController {
 
 	@GetMapping(value = "/indexPaginate")
 	public String mostrarIndexPaginado(Model model, Pageable page) {
-		Page<Bienes_Estaciones> listaAsignaciones = servicioBienesEstaciones.buscarTodos(page);
-		model.addAttribute("asignaciones", listaAsignaciones);
+		
+		if(busqueda=="") {
+			Page<Bienes_Estaciones> listaAsignaciones = servicioBienesEstaciones.buscarTodos(page);
+			model.addAttribute("asignaciones", listaAsignaciones);
+				
+		}else {
+			Page<Bienes_Estaciones> listaAsignaciones = servicioBienesEstaciones.buscarPorAltaBien(token, page);
+			model.addAttribute("asignaciones", listaAsignaciones);
+			busqueda="";
+		}
 		return "asignaciones/listAsignaciones";
 	}
 
@@ -172,6 +185,15 @@ public class BienesEstacionesController {
 
 	@RequestMapping(value = "/cancel")
 	public String mostrarAcerca() {
+		return "redirect:/asignaciones/indexPaginate";
+	}
+
+	// Busqueda por alta
+	@RequestMapping(value = "/search", method = RequestMethod.POST)
+	public String buscar(@RequestParam("campo") String campo) {
+		System.out.println("alta: " + campo);
+		busqueda = "si";
+		token = campo;
 		return "redirect:/asignaciones/indexPaginate";
 	}
 

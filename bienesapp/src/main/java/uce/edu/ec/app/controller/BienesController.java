@@ -58,6 +58,7 @@ public class BienesController {
 
 	private Date fin = null;
 
+	private List<Bien> bienesPorPeriodo ;
 	SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
 	/**
@@ -103,6 +104,7 @@ public class BienesController {
 	public String mostrarPeriodoPaginado(Model model, Pageable page) {
 		Page<Bien> lista = serviceBienes.buscarPeriodo(inicio, fin, page);
 		model.addAttribute("bienes", lista);
+		bienesPorPeriodo= lista.getContent();
 		return "bienes/listPeriodo";
 	}
 
@@ -236,7 +238,7 @@ public class BienesController {
 	@GetMapping(value = "/periodo")
 	public ModelAndView getPeriodo(HttpServletRequest request, HttpServletResponse response) {
 		String reportType = request.getParameter("type");
-		List<Bien> bienes = serviceBienes.buscarTodosPorPeriodo(inicio, fin);
+		List<Bien> bienes = bienesPorPeriodo;
 		if (reportType != null && reportType.equals("excel")) {
 			return new ModelAndView(new ExcelBuilder(), "bienes", bienes);
 

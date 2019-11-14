@@ -11,11 +11,15 @@
 <meta name="author" content="">
 <title>Listado de Usuarios</title>
 <spring:url value="/resources" var="urlPublic" />
-
+<spring:url value="/usuarios/edit" var="urlEdit" />
+<spring:url value="/usuarios/delete" var="urlDelete" />
+<spring:url value="/usuarios/create" var="urlCreate" />
+<spring:url value="/usuarios" var="urlUsuarios" />
 <link href="${urlPublic}/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
 <link href="${urlPublic}/bootstrap/css/theme.css" rel="stylesheet">
-<link href="${urlPublic}/images/logouce.ico.ico" type="image/x-icon" rel="shortcut icon"/>
+<link href="${urlPublic}/images/logouce.ico.ico" type="image/x-icon"
+	rel="shortcut icon" />
 
 </head>
 
@@ -31,9 +35,7 @@
 			<div class='alert alert-success' role='alert'>${msg}</div>
 		</c:if>
 
-		<spring:url value="/usuarios/edit" var="urlEdit" />
-		<spring:url value="/usuarios/delete" var="urlDelete" />
-		<spring:url value="/usuarios/create" var="urlCreate" />
+
 		<a href="${urlCreate}" class="btn btn-primary" role="button"
 			title="Nuevo Usuario">Nuevo</a><br> <br>
 
@@ -50,7 +52,7 @@
 					<th>Opciones</th>
 				</tr>
 
-				<c:forEach var="usuario" items="${usuarios}">
+				<c:forEach items="${usuarios.content}" var="usuario">
 					<tr>
 						<td>${usuario.id}</td>
 						<td>${usuario.nombre}</td>
@@ -70,6 +72,14 @@
 
 			</table>
 		</div>
+		<nav aria-label="">
+			<ul class="pager">
+				<li><a
+					href="${urlUsuarios}/indexPaginate?page=${usuarios.number - 1 }">Anterior</a></li>
+				<li><a
+					href="${urlUsuarios}/indexPaginate?page=${usuarios.number + 1 }">Siguiente</a></li>
+			</ul>
+		</nav>
 
 		<hr class="featurette-divider">
 

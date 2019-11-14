@@ -80,9 +80,4 @@ public class BienesServiceJPA implements IBienService {
 		return bienesRepo.findByPeriodo(startDate, endDate, page);
 	}
 
-	@Override
-	public List<Bien> buscarTodosPorPeriodo(Date startDate, Date endDate) {
-		return bienesRepo.findByPeridoAll(startDate, endDate);
-	}
-
 }

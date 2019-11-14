@@ -11,11 +11,15 @@
 <meta name="author" content="">
 <title>Listado de Noticias</title>
 <spring:url value="/resources" var="urlPublic" />
-
+<spring:url value="/noticias/edit" var="urlEdit" />
+<spring:url value="/noticias/delete" var="urlDelete" />
+<spring:url value="/noticias/create" var="urlCreate" />
+<spring:url value="/noticias" var="urlNoticias" />
 <link href="${urlPublic}/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
 <link href="${urlPublic}/bootstrap/css/theme.css" rel="stylesheet">
-<link href="${urlPublic}/images/logouce.ico.ico" type="image/x-icon" rel="shortcut icon"/>
+<link href="${urlPublic}/images/logouce.ico.ico" type="image/x-icon"
+	rel="shortcut icon" />
 
 </head>
 
@@ -31,12 +35,8 @@
 			<div class='alert alert-success' role='alert'>${msg}</div>
 		</c:if>
 
-		<spring:url value="/noticias/edit" var="urlEdit" />
-		<spring:url value="/noticias/delete" var="urlDelete" />
-		<spring:url value="/noticias/create" var="urlCreate" />
 		<a href="${urlCreate}" class="btn btn-primary" role="button"
-			title="Nueva noticia">Nueva</a><br>
-		<br>
+			title="Nueva noticia">Nueva</a><br> <br>
 
 		<div class="table-responsive">
 			<table class="table table-hover table-striped table-bordered">
@@ -48,7 +48,7 @@
 					<th>Opciones</th>
 				</tr>
 
-				<c:forEach var="noticia" items="${noticias}">
+				<c:forEach items="${noticias.content}" var="noticia">
 					<tr>
 						<td>${noticia.id}</td>
 						<td>${noticia.titulo}</td>
@@ -74,6 +74,14 @@
 
 			</table>
 		</div>
+		<nav aria-label="">
+			<ul class="pager">
+				<li><a
+					href="${urlNoticias}/indexPaginate?page=${noticias.number - 1 }">Anterior</a></li>
+				<li><a
+					href="${urlNoticias}/indexPaginate?page=${noticias.number + 1 }">Siguiente</a></li>
+			</ul>
+		</nav>
 
 		<hr class="featurette-divider">
 

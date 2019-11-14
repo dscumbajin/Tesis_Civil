@@ -16,12 +16,14 @@
 <spring:url value="/estaciones/create" var="urlCreate" />
 <spring:url value="/estaciones/edit" var="urlEdit" />
 <spring:url value="/estaciones/delete" var="urlDelete" />
+<spring:url value="/estaciones/search" var="urlSearch" />
 <spring:url value="/estaciones" var="urlEstaciones" />
 
 <link href="${urlPublic}/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
 <link href="${urlPublic}/bootstrap/css/theme.css" rel="stylesheet">
-<link href="${urlPublic}/images/logouce.ico.ico" type="image/x-icon" rel="shortcut icon"/>
+<link href="${urlPublic}/images/logouce.ico.ico" type="image/x-icon"
+	rel="shortcut icon" />
 </head>
 
 <body>
@@ -35,14 +37,21 @@
 		<c:if test="${mensaje!=null}">
 			<div class='alert alert-success' role="alert">${mensaje}</div>
 		</c:if>
-		
+
 		<a href="${urlCreate}" class="btn btn-primary" role="button"
 			title="Nueva Ubicacion">Nueva</a><br> <br>
 
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<input type="text" id="myInput" onkeyup="myFunction()"
-					placeholder="Search for Lugar..">
+				<form class="form-inline" action="${urlSearch}" method="POST">
+					<div class="form-group">
+						<input type="text" id="myInput" name="inputLugar"
+							placeholder="Search for lugar..">
+					</div>
+					<input type="hidden" name="${_csrf.parameterName}"
+						value="${_csrf.token}" />
+					<button type="submit" class="btn btn-primary">Buscar</button>
+				</form>
 			</div>
 			<div class="panel-body">
 				<div class="table-responsive">

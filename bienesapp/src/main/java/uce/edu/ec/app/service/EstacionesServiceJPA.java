@@ -65,4 +65,9 @@ public class EstacionesServiceJPA implements IEstacionService {
 		return estacionesRepo.existsByUbicacionAndLugar(ubicacion, lugar);
 	}
 
+	@Override
+	public Page<Estacion> buscarPorLugar(String lugar, Pageable page) {
+		return estacionesRepo.findByLugar(lugar, page);
+	}
+
 }
