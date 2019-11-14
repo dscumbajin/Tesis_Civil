@@ -85,9 +85,11 @@ public class BienesController {
 	@GetMapping(value = "/indexPaginate")
 	public String mostrarIndexPaginado(Model model, Pageable page) {
 		if (busqueda == "") {
+			//Todos los registros
 			Page<Bien> lista = serviceBienes.buscarTodas(page);
 			model.addAttribute("bienes", lista);
 		} else {
+			//Formulario con registro buscado
 			Page<Bien> lista = serviceBienes.search(token, page);
 			model.addAttribute("bienes", lista);
 			busqueda = "";
@@ -119,7 +121,6 @@ public class BienesController {
 	public String buscarPeriodo(@RequestParam("startDate") String startDate, @RequestParam("endDate") String endDate)
 			throws ParseException {
 		System.out.println("fecha inicio:" + startDate + " fecha fin:" + endDate);
-
 		inicio = dateFormat.parse(startDate);
 		fin = dateFormat.parse(endDate);
 		return "redirect:/bienes/periodPaginate";

@@ -23,8 +23,8 @@ public interface IBienes_Estaciones {
 	// Listar registros por id de estacion
 	Page<Bienes_Estaciones> buscarPorIdEstacion(int idEstacion, Pageable page);
 
-	//Listar registros que se han cambiado en un periodo de tiempo
-	Page<Bienes_Estaciones> buscarCambiosPorPeriodo(Date startDate, Date endDate, Pageable page);
+	//Listar registros que se han cambiado en un periodo de tiempo por idEstacion
+	Page<Bienes_Estaciones> buscarCambiosPorPeriodoAndIdEstacion(int idEstacion, Date startDate, Date endDate, Pageable page);
 	
 	// Buscar por id
 	Bienes_Estaciones buscarPorId(int id);

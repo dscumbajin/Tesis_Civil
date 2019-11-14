@@ -17,8 +17,9 @@
 <spring:url value="/resources" var="urlPublic"></spring:url>
 <spring:url value="/" var="urlRoot"></spring:url>
 <spring:url value="/cancel" var="urlCancel"></spring:url>
-<spring:url value="/downloadTotalDetalle?type=excel" var="urlXLSDetalle"></spring:url>
-<spring:url value="/downloadTotalDetalle?type=pdf" var="urlPDFDetalle" />
+<spring:url value="/buscar" var="urlBuscar" />
+<spring:url value="/cambioDetalle?type=excel" var="urlXLSDetalle"></spring:url>
+<spring:url value="/cambioDetalle?type=pdf" var="urlPDFDetalle" />
 <link href="${urlPublic}/images/logouce.ico.ico" type="image/x-icon"
 	rel="shortcut icon" />
 <link href="${urlPublic}/bootstrap/css/bootstrap.min.css"
@@ -157,9 +158,9 @@
 			<nav aria-label="">
 				<ul class="pager">
 					<li><a
-						href="${urlRoot}detailPaginate?page=${bienes_Estaciones.number - 1 }">Anterior</a></li>
+						href="${urlRoot}detallePeriodoPaginate?page=${bienes_Estaciones.number - 1 }">Anterior</a></li>
 					<li><a
-						href="${urlRoot}detailPaginate?page=${bienes_Estaciones.number + 1 }">Siguiente</a></li>
+						href="${urlRoot}detallePeriodoPaginate?page=${bienes_Estaciones.number + 1 }">Siguiente</a></li>
 				</ul>
 			</nav>
 

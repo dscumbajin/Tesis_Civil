@@ -5,12 +5,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Component;
 
 import com.itextpdf.text.BaseColor;
@@ -32,8 +29,6 @@ import uce.edu.ec.app.model.Bien;
 @Component
 public class PDFBuilder extends AbstractITextPdfView {
 
-	@Autowired
-	private ResourceLoader resourceLoader;
 	SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 
 	@SuppressWarnings("unchecked")

@@ -15,21 +15,21 @@ import uce.edu.ec.app.model.Bienes_Estaciones;
 @Repository
 public interface BienesEstacionesRepository extends JpaRepository<Bienes_Estaciones, Integer> {
 
-	//Buscar el registro de asignacion por id del bien
+	// Buscar el registro de asignacion por id del bien
 	Bienes_Estaciones findByBien_Id(int idBien);
-	
-	//Listar los bienes por id de estacion
+
+	// Listar los bienes por id de estacion
 	List<Bienes_Estaciones> findByEstacion_Id(int id);
-	
-	//Listar los bienes asignados mediante el id de la estacion //paginado
+
+	// Listar los bienes asignados mediante el id de la estacion //paginado
 	@Query(value = "SELECT * FROM BIENES_ESTACIONES WHERE ID_ESTACION = ?1", nativeQuery = true)
 	Page<Bienes_Estaciones> findByIdEstacion(@Param("ID_ESTACION") int id_estacion, Pageable page);
 
-	//Buscar los bienes que fueron cambiados en algun periodo //Paginado
-	@Query(value = "SELECT * FROM bienes_estaciones be WHERE be.cambio BETWEEN :startDate AND :endDate ORDER BY be.cambio DESC", nativeQuery = true)
-	Page<Bienes_Estaciones> findByPeriodo(@Param("startDate") Date startDate, @Param("endDate") Date endDate, Pageable page);
+// Buscar los bienes que fueron cambiados en algun periodo //Paginado
+	Page<Bienes_Estaciones> findByEstacion_IdAndCambioBetween(int idEstacion, Date startDate, Date endDate, Pageable page);
 
-	//Verificar si existe el registro por medio de los parametros idBien and idEstacion
+	// Verificar si existe el registro por medio de los parametros idBien and
+	// idEstacion
 	boolean existsByBien_IdAndEstacion_Id(int idBien, int idEstacion);
 
 }

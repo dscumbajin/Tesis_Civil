@@ -8,8 +8,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Component;
 
 import com.itextpdf.text.BaseColor;
@@ -30,9 +28,6 @@ import uce.edu.ec.app.model.Bienes_Estaciones;
 
 @Component
 public class PDFBuilderDetalle extends AbstractITextPdfView {
-
-	@Autowired
-	private ResourceLoader resourceLoader;
 
 	SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 

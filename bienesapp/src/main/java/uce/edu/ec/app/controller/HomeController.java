@@ -1,5 +1,8 @@
 package uce.edu.ec.app.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -46,6 +49,17 @@ public class HomeController {
 	private int idEstacionB = 0;
 	private int numEquipos = 0;
 
+	private String busqueda = "";
+	private String paginado = "";
+
+	private Date inicio = null;
+
+	private Date fin = null;
+	
+	private List<Bienes_Estaciones> cambioPeriodoDetalle;
+
+	SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String goHome() {
 		return "home";
@@ -80,6 +94,48 @@ public class HomeController {
 		return "detalle";
 	}
 
+	@RequestMapping(value = "/personalizado")
+	public String mostrarPeriodo() {
+		return "redirect:/detallePeriodoPaginate";
+	}
+
+	// Redireccion formulario de busqueda por periodo
+	@GetMapping(value = "/detallePeriodoPaginate")
+	public String mostrarPeriodoPaginado(Model model, Pageable page) {
+
+		if (busqueda == "") {
+
+			System.out.println("Inicio: " + busqueda);
+			// Formulario en blanco
+			model.addAttribute("numEquipo", numEquipos);
+			model.addAttribute("estacion", serviceEstaciones.buscarPorId(idEstacionB));
+
+		} else if (paginado == "si") {
+			// Formulario con busqueda personalizada
+			model.addAttribute("numEquipo", numEquipos);
+			model.addAttribute("estacion", serviceEstaciones.buscarPorId(idEstacionB));
+			Page<Bienes_Estaciones> bienes_Estaciones = serviceAsignaciones
+					.buscarCambiosPorPeriodoAndIdEstacion(idEstacionB, inicio, fin, page);
+			cambioPeriodoDetalle =bienes_Estaciones.getContent();
+			model.addAttribute("bienes_Estaciones", bienes_Estaciones);
+			System.out.println("Primer paginado: " + busqueda + paginado);
+		}
+		return "detalleCambioPeriodo";
+	}
+
+	// Busqueda por fecha inicio and fin
+
+	@RequestMapping(value = "/buscar", method = RequestMethod.POST)
+	public String buscarPeriodo(@RequestParam("startDate") String startDate, @RequestParam("endDate") String endDate)
+			throws ParseException {
+		System.out.println("fecha inicio:" + startDate + " fecha fin:" + endDate);
+		inicio = dateFormat.parse(startDate);
+		fin = dateFormat.parse(endDate);
+		busqueda = "si";
+		paginado = "si";
+		return "redirect:/detallePeriodoPaginate";
+	}
+
 	// Reporte Todos los bienes por salas
 	@GetMapping(value = "/downloadTotalDetalle")
 	public ModelAndView getReport(HttpServletRequest request, HttpServletResponse response) {
@@ -95,23 +151,25 @@ public class HomeController {
 		return new ModelAndView("detalle", "bienes_Estaciones", bienes_Estaciones);
 	}
 
-	@RequestMapping(value = "/personalizado")
-	public String mostrarPeriodo() {
-		return "redirect:/detallePeriodoPaginate";
+	@GetMapping(value = "/cambioDetalle")
+	public ModelAndView getDetallePeriodo(HttpServletRequest request, HttpServletResponse response) {
+		String reportType = request.getParameter("type");
+		// Todos los bienes pero por id de estacion
+		List<Bienes_Estaciones> bienes_Estaciones = cambioPeriodoDetalle;
+		if (reportType != null && reportType.equals("excel")) {
+			return new ModelAndView(new ExcelBuilderDetalle(), "bienes_Estaciones", bienes_Estaciones);
+
+		} else if (reportType != null && reportType.equals("pdf")) {
+			return new ModelAndView(new PDFBuilderDetalle(), "bienes_Estaciones", bienes_Estaciones);
+		}
+		return new ModelAndView("detalle", "bienes_Estaciones", bienes_Estaciones);
+
 	}
-	
-	// Redireccion formulario de busqueda por periodo
-	@GetMapping(value = "/detallePeriodoPaginate")
-	public String mostrarPeriodoPaginado(Model model, Pageable page) {
-		model.addAttribute("numEquipo", numEquipos);
-		model.addAttribute("estacion", serviceEstaciones.buscarPorId(idEstacionB));
-		Page<Bienes_Estaciones> bienes_Estaciones = serviceAsignaciones.buscarPorIdEstacion(idEstacionB, page);
-		model.addAttribute("bienes_Estaciones", bienes_Estaciones);
-		return "detalleCambioPeriodo";
-	}
-	
+
 	@RequestMapping(value = "/cancel")
 	public String Cancelar() {
+		busqueda = "";
+		paginado = "";
 		return "redirect:/detailPaginate";
 	}
 
