@@ -25,6 +25,7 @@
 <link href="${urlPublic}/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
 <link href="${urlPublic}/bootstrap/css/theme.css" rel="stylesheet">
+<link href="${urlPublic}/css/my-style.css" rel="stylesheet">
 
 </head>
 
@@ -85,33 +86,39 @@
 			</div>
 			<br>
 
+		</div>
+		<!-- /.container -->
 
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<form class="form-inline" action="${urlBuscar}" method="POST">
+	</div>
+	<!-- /container -->
+	<div id="main-container">
+
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<form class="form-inline" action="${urlBuscar}" method="POST">
 
 
-						<div class="form-group">
-							<input type="text" class="form-control" id="startDate"
-								name="startDate" placeholder="Fecha Inicio (dd-mm-yyyy)"
-								required="required">
-						</div>
-						<div class="form-group">
-							<input type="text" class="form-control" id="endDate"
-								name="endDate" placeholder="Fecha Fin (dd-mm-yyyy)"
-								required="required">
-						</div>
-						<input type="hidden" name="${_csrf.parameterName}"
-							value="${_csrf.token}" />
-						<button type="submit" class="btn btn-primary">Buscar</button>
-					</form>
-				</div>
+					<div class="form-group">
+						<input type="text" class="form-control" id="startDate"
+							name="startDate" placeholder="Fecha Inicio (dd-mm-yyyy)"
+							required="required">
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control" id="endDate"
+							name="endDate" placeholder="Fecha Fin (dd-mm-yyyy)"
+							required="required">
+					</div>
+					<input type="hidden" name="${_csrf.parameterName}"
+						value="${_csrf.token}" />
+					<button type="submit" class="btn btn-primary">Buscar</button>
+				</form>
+			</div>
 
-				<div class="panel-body">
-					<div class="table-responsive">
-						<table id="myTable"
-							class="table table-bordered table-hover table-striped">
-
+			<div class="panel-body">
+				<div class="table-responsive">
+					<table id="myTable"
+						class="table table-bordered table-hover table-striped">
+						<thead>
 							<tr>
 								<th>Persona Usa</th>
 								<th>Alta Nueva</th>
@@ -128,45 +135,45 @@
 								<th>Cambio</th>
 							</tr>
 
+						</thead>
+						<c:forEach items="${bienes_Estaciones.content}"
+							var="bien_estacion">
+							<tr>
+								<td>${bien_estacion.bien.detalle.asignado}</td>
+								<td>${bien_estacion.bien.alta}</td>
+								<td>${bien_estacion.bien.anterior}</td>
+								<td>${bien_estacion.bien.descripcion}</td>
+								<td>${bien_estacion.bien.detalle.marca}</td>
+								<td>${bien_estacion.bien.detalle.modelo}</td>
+								<td>${bien_estacion.bien.serie}</td>
+								<td>${bien_estacion.bien.detalle.guarda_almacen}</td>
+								<td>${bien_estacion.bien.detalle.causionado}</td>
+								<td>${bien_estacion.estacion.lugar}</td>
+								<td>${bien_estacion.estacion.ubicacion}</td>
+								<td><fmt:formatDate value="${bien_estacion.registro}"
+										pattern="dd-MM-yyyy" /></td>
+								<td><fmt:formatDate value="${bien_estacion.cambio}"
+										pattern="dd-MM-yyyy" /></td>
 
-							<c:forEach items="${bienes_Estaciones.content}"
-								var="bien_estacion">
-								<tr>
-									<td>${bien_estacion.bien.detalle.asignado}</td>
-									<td>${bien_estacion.bien.alta}</td>
-									<td>${bien_estacion.bien.anterior}</td>
-									<td>${bien_estacion.bien.descripcion}</td>
-									<td>${bien_estacion.bien.detalle.marca}</td>
-									<td>${bien_estacion.bien.detalle.modelo}</td>
-									<td>${bien_estacion.bien.serie}</td>
-									<td>${bien_estacion.bien.detalle.guarda_almacen}</td>
-									<td>${bien_estacion.bien.detalle.causionado}</td>
-									<td>${bien_estacion.estacion.lugar}</td>
-									<td>${bien_estacion.estacion.ubicacion}</td>
-									<td><fmt:formatDate value="${bien_estacion.registro}"
-											pattern="dd-MM-yyyy" /></td>
-									<td><fmt:formatDate value="${bien_estacion.cambio}"
-											pattern="dd-MM-yyyy" /></td>
+							</tr>
+						</c:forEach>
 
-								</tr>
-							</c:forEach>
-
-						</table>
-					</div>
+					</table>
 				</div>
 			</div>
-			<nav aria-label="">
-				<ul class="pager">
-					<li><a
-						href="${urlRoot}detallePeriodoPaginate?page=${bienes_Estaciones.number - 1 }">Anterior</a></li>
-					<li><a
-						href="${urlRoot}detallePeriodoPaginate?page=${bienes_Estaciones.number + 1 }">Siguiente</a></li>
-				</ul>
-			</nav>
-
 		</div>
-		<!-- /.container -->
+		<nav aria-label="">
+			<ul class="pager">
+				<li><a
+					href="${urlRoot}detallePeriodoPaginate?page=${bienes_Estaciones.number - 1 }">Anterior</a></li>
+				<li><a
+					href="${urlRoot}detallePeriodoPaginate?page=${bienes_Estaciones.number + 1 }">Siguiente</a></li>
+			</ul>
+		</nav>
 
+	</div>
+	<!-- /.container -->
+	<div class="container theme-showcase">
 		<hr class="featurette-divider">
 		<jsp:include page="includes/footer.jsp"></jsp:include>
 	</div>

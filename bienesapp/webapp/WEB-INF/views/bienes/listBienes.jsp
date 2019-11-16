@@ -19,12 +19,28 @@
 <spring:url value="/bienes" var="urlBienes" />
 <spring:url value="/bienes/downloadTotal?type=excel" var="urlXLS" />
 <spring:url value="/bienes/downloadTotal?type=pdf" var="urlPDF" />
-
+<link href="${urlPublic}/images/logouce.ico.ico" type="image/x-icon"
+	rel="shortcut icon" />
 <link href="${urlPublic}/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
 <link href="${urlPublic}/bootstrap/css/theme.css" rel="stylesheet">
-<link href="${urlPublic}/css/my-style.css">
-<link href="${urlPublic}/images/logouce.ico.ico" type="image/x-icon" rel="shortcut icon"/>
+<link href="${urlPublic}/css/my-style.css" rel="stylesheet">
+
+
+<!-- DATA TABLE 
+	<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">	
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+
+	<script type="text/javascript">
+	    $(document).ready(function() {
+	        //Asegurate que el id que le diste a la tabla sea igual al texto despues del simbolo #
+	        $('#userList').DataTable();
+	    } );
+	</script>
+-->
+
 </head>
 
 <body>
@@ -69,6 +85,11 @@
 		</div>
 		<br>
 
+
+	</div>
+	<!-- /container -->
+
+	<div id="main-container">
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<form class="form-inline" action="${urlSearch}" method="POST">
@@ -86,30 +107,31 @@
 
 				<div class="table-responsive">
 					<table id="myTable"
-						class="table table-hover table-striped table-bordered">
-						<tr>
-							<th>Alta Nueva</th>
-							<th>Alta Anterior</th>
-							<th>Serie</th>
-							<th>Descripción</th>
-							<th>Fecha de Ingreso</th>
-							<th>Costo</th>
-							<th>Vida Util</th>
-							<th>Depreciación</th>
-							<th>Fecha Garantía</th>
-							<th>Color</th>
-							<th>Material</th>
-							<th>Asignado</th>
-							<th>Causionado</th>
-							<th>Estado</th>
-							<th>Estatus</th>
-							<th>Guarda Almacen</th>
-							<th>Marca</th>
-							<th>Modelo</th>
-							<th>Tipo</th>
-							<th>Opciones</th>
-						</tr>
-
+						class=" table-rwd  table-hover table-striped table-bordered">
+						<thead>
+							<tr>
+								<th>Alta Nueva</th>
+								<th>Alta Anterior</th>
+								<th>Serie</th>
+								<th>Descripción</th>
+								<th>Fecha de Ingreso</th>
+								<th>Costo</th>
+								<th>Vida Util</th>
+								<th>Depreciación</th>
+								<th>Fecha Garantía</th>
+								<th>Color</th>
+								<th>Material</th>
+								<th>Asignado</th>
+								<th>Causionado</th>
+								<th>Estado</th>
+								<th>Estatus</th>
+								<th>Guarda Almacen</th>
+								<th>Marca</th>
+								<th>Modelo</th>
+								<th>Tipo</th>
+								<th>Opciones</th>
+							</tr>
+						</thead>
 						<c:forEach items="${bienes.content}" var="bien">
 							<tr>
 								<td>${bien.alta }</td>
@@ -119,8 +141,8 @@
 								<td><fmt:formatDate value="${bien.fecha_ingreso}"
 										pattern="dd-MM-yyyy" /></td>
 								<td>${bien.costo }</td>
-								<td>${bien.vida_util }años</td>
-								<td>${bien.depreciacion }años</td>
+								<td>${bien.vida_util }<samp>años</samp></td>
+								<td>${bien.depreciacion }<samp>años</samp></td>
 								<td><fmt:formatDate value="${bien.garantia}"
 										pattern="dd-MM-yyyy" /></td>
 								<td>${bien.color}</td>
@@ -171,9 +193,11 @@
 					href="${urlBienes}/indexPaginate?page=${bienes.number + 1 }">Siguiente</a></li>
 			</ul>
 		</nav>
+	</div>
+	<!-- /container -->
+	<div class="container theme-showcase">
 
 		<hr class="featurette-divider">
-
 		<jsp:include page="../includes/footer.jsp"></jsp:include>
 
 	</div>

@@ -18,6 +18,7 @@
 <link href="${urlPublic}/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
 <link href="${urlPublic}/bootstrap/css/theme.css" rel="stylesheet">
+<link href="${urlPublic}/css/my-style.css" rel="stylesheet">
 <link href="${urlPublic}/images/logouce.ico.ico" type="image/x-icon"
 	rel="shortcut icon" />
 
@@ -40,14 +41,15 @@
 
 		<div class="table-responsive">
 			<table class="table table-hover table-striped table-bordered">
-				<tr>
-					<th>Id</th>
-					<th>Titulo</th>
-					<th>Fecha</th>
-					<th>Estatus</th>
-					<th>Opciones</th>
-				</tr>
-
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Titulo</th>
+						<th>Fecha</th>
+						<th>Estatus</th>
+						<th>Opciones</th>
+					</tr>
+				</thead>
 				<c:forEach items="${noticias.content}" var="noticia">
 					<tr>
 						<td>${noticia.id}</td>

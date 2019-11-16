@@ -20,6 +20,7 @@
 <link href="${urlPublic}/bootstrap/css/theme.css" rel="stylesheet">
 <link href="${urlPublic}/images/logouce.ico.ico" type="image/x-icon"
 	rel="shortcut icon" />
+<link href="${urlPublic}/css/my-style.css" rel="stylesheet">
 </head>
 
 <body>
@@ -35,20 +36,20 @@
 		</c:if>
 
 		<a href="${urlCreate}" class="btn btn-primary" role="button"
-			title="Nuevo Banner">Nuevo</a><br>
-		<br>
+			title="Nuevo Banner">Nuevo</a><br> <br>
 
 		<div class="table-responsive">
 			<table class="table table-hover table-striped table-bordered">
-				<tr>
-					<th>Id</th>
-					<th>Titulo</th>
-					<th>Fecha Publicacion</th>
-					<th>Nombre Archivo</th>
-					<th>Estatus</th>
-					<th>Opciones</th>
-				</tr>
-
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Titulo</th>
+						<th>Fecha Publicacion</th>
+						<th>Nombre Archivo</th>
+						<th>Estatus</th>
+						<th>Opciones</th>
+					</tr>
+				</thead>
 				<c:forEach items="${banners.content}" var="banner">
 					<tr>
 						<td>${banner.id}</td>

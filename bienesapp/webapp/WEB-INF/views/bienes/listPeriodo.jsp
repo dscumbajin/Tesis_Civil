@@ -21,7 +21,7 @@
 <link href="${urlPublic}/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
 <link href="${urlPublic}/bootstrap/css/theme.css" rel="stylesheet">
-<link href="${urlPublic}/css/my-style.css">
+<link href="${urlPublic}/css/my-style.css" rel="stylesheet">
 <link href="${urlPublic}/images/logouce.ico.ico" type="image/x-icon"
 	rel="shortcut icon" />
 
@@ -64,8 +64,10 @@
 		</div>
 		<br>
 
+	</div>
+	<!-- /container -->
 
-
+	<div id="main-container">
 		<div class="panel panel-default">
 			<div class="panel-heading">
 
@@ -92,29 +94,30 @@
 
 				<div class="table-responsive">
 					<table id="myTable"
-						class="table table-hover table-striped table-bordered">
-						<tr>
-							<th>Alta Nueva</th>
-							<th>Alta Anterior</th>
-							<th>Serie</th>
-							<th>Descripción</th>
-							<th>Fecha de Ingreso</th>
-							<th>Costo</th>
-							<th>Vida Util</th>
-							<th>Depreciación</th>
-							<th>Fecha Garantía</th>
-							<th>Color</th>
-							<th>Material</th>
-							<th>Asignado</th>
-							<th>Causionado</th>
-							<th>Estado</th>
-							<th>Estatus</th>
-							<th>Guarda Almacen</th>
-							<th>Marca</th>
-							<th>Modelo</th>
-							<th>Tipo</th>
-						</tr>
-
+						class="table-rwd  table-hover table-striped table-bordered">
+						<thead>
+							<tr>
+								<th>Alta Nueva</th>
+								<th>Alta Anterior</th>
+								<th>Serie</th>
+								<th>Descripción</th>
+								<th>Fecha de Ingreso</th>
+								<th>Costo</th>
+								<th>Vida Util</th>
+								<th>Depreciación</th>
+								<th>Fecha Garantía</th>
+								<th>Color</th>
+								<th>Material</th>
+								<th>Asignado</th>
+								<th>Causionado</th>
+								<th>Estado</th>
+								<th>Estatus</th>
+								<th>Guarda Almacen</th>
+								<th>Marca</th>
+								<th>Modelo</th>
+								<th>Tipo</th>
+							</tr>
+						</thead>
 						<c:forEach items="${bienes.content}" var="bien">
 							<tr>
 								<td>${bien.alta }</td>
@@ -169,6 +172,10 @@
 					href="${urlBienes}/periodPaginate?page=${bienes.number + 1 }">Siguiente</a></li>
 			</ul>
 		</nav>
+
+	</div>
+
+	<div class="container theme-showcase">
 
 		<hr class="featurette-divider">
 

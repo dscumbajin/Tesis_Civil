@@ -24,6 +24,7 @@
 <link href="${urlPublic}/bootstrap/css/theme.css" rel="stylesheet">
 <link href="${urlPublic}/images/logouce.ico.ico" type="image/x-icon"
 	rel="shortcut icon" />
+<link href="${urlPublic}/css/my-style.css" rel="stylesheet">
 </head>
 
 <body>
@@ -44,6 +45,9 @@
 
 		<a href="${urlAsignacion}" class="btn btn-primary" role="button"
 			title="Nueva Asignacion">Asignaciones</a><br> <br>
+
+
+
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<form class="form-inline" action="${urlSearch}" method="POST">
@@ -60,16 +64,17 @@
 				<div class="table-responsive">
 					<table id="myTable"
 						class="table table-hover table-striped table-bordered">
-						<tr>
-							<th>Alta Nueva</th>
-							<th>Bien</th>
-							<th>Ubicacion</th>
-							<th>Lugar</th>
-							<th>Registro</th>
-							<th>Cambio</th>
-							<th>Opciones</th>
-						</tr>
-
+						<thead>
+							<tr>
+								<th>Alta Nueva</th>
+								<th>Bien</th>
+								<th>Ubicacion</th>
+								<th>Lugar</th>
+								<th>Registro</th>
+								<th>Cambio</th>
+								<th>Opciones</th>
+							</tr>
+						</thead>
 						<c:forEach items="${asignaciones.content}" var="asignacion">
 							<tr>
 								<td>${asignacion.bien.alta}</td>

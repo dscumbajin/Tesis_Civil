@@ -3,6 +3,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -25,6 +26,8 @@
 <link href="${urlPublic}/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
 <link href="${urlPublic}/bootstrap/css/theme.css" rel="stylesheet">
+
+<link href="${urlPublic}/css/my-style.css" rel="stylesheet">
 
 </head>
 
@@ -81,28 +84,36 @@
 						title="Reporte por Periodo">Reporte por Periodo</a>
 				</div>
 
-
 			</div>
 			<br>
 
+		</div>
+		<!-- /.container -->
 
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<form class="form-inline" action="${urlSearch}" method="POST">
-						<div class="form-group">
-							<input type="text" id="myInput" name="campo"
-								placeholder="Search for alta nueva..">
-						</div>
-						<input type="hidden" name="${_csrf.parameterName}"
-							value="${_csrf.token}" />
+	</div>
+	<!-- /container -->
+
+
+	<div id="main-container">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<form class="form-inline" action="${urlSearch}" method="POST">
+					<div class="form-group">
+						<input type="text" id="myInput" name="campo"
+							placeholder="Search for alta nueva..">
 						<button type="submit" class="btn btn-primary">Buscar</button>
-					</form>
-				</div>
-				<div class="panel-body">
-					<div class="table-responsive">
-						<table id="myTable"
-							class="table table-bordered table-hover table-striped">
 
+					</div>
+					<input type="hidden" name="${_csrf.parameterName}"
+						value="${_csrf.token}" />
+				</form>
+			</div>
+			<div class="panel-body">
+
+				<div class="table-responsive">
+					<table id="myTable"
+						class="table table-bordered table-hover table-striped">
+						<thead>
 							<tr>
 								<th>Persona Usa</th>
 								<th>Alta Nueva</th>
@@ -118,51 +129,51 @@
 								<th>Registro</th>
 								<th>Cambio</th>
 							</tr>
+						</thead>
 
+						<c:forEach items="${bienes_Estaciones.content}"
+							var="bien_estacion">
+							<tr>
+								<td>${bien_estacion.bien.detalle.asignado}</td>
+								<td>${bien_estacion.bien.alta}</td>
+								<td>${bien_estacion.bien.anterior}</td>
+								<td>${bien_estacion.bien.descripcion}</td>
+								<td>${bien_estacion.bien.detalle.marca}</td>
+								<td>${bien_estacion.bien.detalle.modelo}</td>
+								<td>${bien_estacion.bien.serie}</td>
+								<td>${bien_estacion.bien.detalle.guarda_almacen}</td>
+								<td>${bien_estacion.bien.detalle.causionado}</td>
+								<td>${bien_estacion.estacion.lugar}</td>
+								<td>${bien_estacion.estacion.ubicacion}</td>
+								<td><fmt:formatDate value="${bien_estacion.registro}"
+										pattern="dd-MM-yyyy" /></td>
+								<td><fmt:formatDate value="${bien_estacion.cambio}"
+										pattern="dd-MM-yyyy" /></td>
 
-							<c:forEach items="${bienes_Estaciones.content}"
-								var="bien_estacion">
-								<tr>
-									<td>${bien_estacion.bien.detalle.asignado}</td>
-									<td>${bien_estacion.bien.alta}</td>
-									<td>${bien_estacion.bien.anterior}</td>
-									<td>${bien_estacion.bien.descripcion}</td>
-									<td>${bien_estacion.bien.detalle.marca}</td>
-									<td>${bien_estacion.bien.detalle.modelo}</td>
-									<td>${bien_estacion.bien.serie}</td>
-									<td>${bien_estacion.bien.detalle.guarda_almacen}</td>
-									<td>${bien_estacion.bien.detalle.causionado}</td>
-									<td>${bien_estacion.estacion.lugar}</td>
-									<td>${bien_estacion.estacion.ubicacion}</td>
-									<td><fmt:formatDate value="${bien_estacion.registro}"
-											pattern="dd-MM-yyyy" /></td>
-									<td><fmt:formatDate value="${bien_estacion.cambio}"
-											pattern="dd-MM-yyyy" /></td>
+							</tr>
+						</c:forEach>
 
-								</tr>
-							</c:forEach>
-
-						</table>
-					</div>
+					</table>
 				</div>
 			</div>
-			<nav aria-label="">
-				<ul class="pager">
-					<li><a
-						href="${urlRoot}detailPaginate?page=${bienes_Estaciones.number - 1 }">Anterior</a></li>
-					<li><a
-						href="${urlRoot}detailPaginate?page=${bienes_Estaciones.number + 1 }">Siguiente</a></li>
-				</ul>
-			</nav>
-
 		</div>
-		<!-- /.container -->
+		<nav aria-label="">
+			<ul class="pager">
+				<li><a
+					href="${urlRoot}detailPaginate?page=${bienes_Estaciones.number - 1 }">Anterior</a></li>
+				<li><a
+					href="${urlRoot}detailPaginate?page=${bienes_Estaciones.number + 1 }">Siguiente</a></li>
+			</ul>
+		</nav>
 
-		<hr class="featurette-divider">
-		<jsp:include page="includes/footer.jsp"></jsp:include>
 	</div>
 	<!-- /container -->
+	<div class="container theme-showcase">
+		<hr class="featurette-divider">
+		<jsp:include page="includes/footer.jsp"></jsp:include>
 
+	</div>
+	<!-- /container -->
 	<!-- Bootstrap core JavaScript
 		================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->

@@ -24,6 +24,9 @@
 <link href="${urlPublic}/bootstrap/css/theme.css" rel="stylesheet">
 <link href="${urlPublic}/images/logouce.ico.ico" type="image/x-icon"
 	rel="shortcut icon" />
+
+<link href="${urlPublic}/css/my-style.css" rel="stylesheet">
+
 </head>
 
 <body>
@@ -57,13 +60,14 @@
 				<div class="table-responsive">
 					<table id="myTable"
 						class="table table-hover table-striped table-bordered">
-						<tr>
-							<th>Ubicación</th>
-							<th>Lugar</th>
-							<th>Imagen</th>
-							<th>Opciones</th>
-						</tr>
-
+						<thead>
+							<tr>
+								<th>Ubicación</th>
+								<th>Lugar</th>
+								<th>Imagen</th>
+								<th>Opciones</th>
+							</tr>
+						</thead>
 						<c:forEach items="${estaciones.content}" var="estacion">
 							<tr>
 								<td>${estacion.ubicacion}</td>

@@ -20,6 +20,7 @@
 <link href="${urlPublic}/bootstrap/css/theme.css" rel="stylesheet">
 <link href="${urlPublic}/images/logouce.ico.ico" type="image/x-icon"
 	rel="shortcut icon" />
+<link href="${urlPublic}/css/my-style.css" rel="stylesheet">
 
 </head>
 
@@ -41,17 +42,18 @@
 
 		<div class="table-responsive">
 			<table class="table table-hover table-striped table-bordered">
-				<tr>
-					<th>Id</th>
-					<th>Nombres</th>
-					<th>Apellidos</th>
-					<th>Cuenta</th>
-					<th>E-mail</th>
-					<th>Estatus</th>
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Nombres</th>
+						<th>Apellidos</th>
+						<th>Cuenta</th>
+						<th>E-mail</th>
+						<th>Estatus</th>
 
-					<th>Opciones</th>
-				</tr>
-
+						<th>Opciones</th>
+					</tr>
+				</thead>
 				<c:forEach items="${usuarios.content}" var="usuario">
 					<tr>
 						<td>${usuario.id}</td>
