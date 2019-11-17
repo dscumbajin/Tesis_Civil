@@ -2,7 +2,7 @@
 <%@taglib uri="http://www.springframework.org/security/tags"
 	prefix="sec"%>
 <spring:url value="/" var="urlRoot"></spring:url>
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <!-- Fixed navbar -->
 <nav class="navbar navbar-inverse navbar-fixed-top">
 	<div class="container">
@@ -21,8 +21,8 @@
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
 
-					<li><a href="${urlRoot}about">Acerca</a></li>
-					<li><a class="glyphicon glyphicon-log-in" href="${urlRoot}formLogin"> Login</a></li>
+					<li><a href="${urlRoot}about">Acerca <i class="fa fa-question-circle-o" aria-hidden="true" ></i></a></li>
+					<li><a href="${urlRoot}formLogin"><i class="fa fa-sign-in" aria-hidden="true" style="color: blue"></i> Login</a></li>
 				</ul>
 			</div>
 			<!--/.nav-collapse -->
@@ -48,7 +48,7 @@
 					<li><a href="${urlRoot}noticias/indexPaginate?page=0">Noticias</a></li>
 					<li><a href="${urlRoot}banners/indexPaginate?page=0">Banners</a></li>
 					<li><a href="${urlRoot}usuarios/indexPaginate?page=0">Usuarios</a></li>
-					<li><a class="glyphicon glyphicon-log-out" href="${urlRoot}admin/logout"> Salir</a></li>
+					<li><a href="${urlRoot}admin/logout"><i class="fa fa-sign-out" aria-hidden="true" style="color: red"></i> Salir</a></li>
 				</ul>
 			</div>
 			<!--/.nav-collapse -->
@@ -70,7 +70,7 @@
 				<ul class="nav navbar-nav">
 					<li><a href="${urlRoot}noticias/indexPaginate?page=0">Noticias</a></li>
 					<li><a href="${urlRoot}banners/indexPaginate?page=0">Banners</a></li>
-					<li><a class="glyphicon glyphicon-log-out" href="${urlRoot}admin/logout">Salir</a></li>
+					<li><a href="${urlRoot}admin/logout"><i class="fa fa-sign-out" aria-hidden="true" style="color: red"></i> Salir</a></li>
 				</ul>
 			</div>
 			<!--/.nav-collapse -->

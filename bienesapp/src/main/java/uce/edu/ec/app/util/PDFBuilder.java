@@ -103,26 +103,31 @@ public class PDFBuilder extends AbstractITextPdfView {
 			cell.setPhrase(new Phrase("Asignado", font));
 			table.addCell(cell);
 
-			// write table row data
-			for (Bien bien : bienes) {
-				table.addCell(bien.getAlta());
-				table.addCell(bien.getAnterior());
-				table.addCell(bien.getDescripcion());
-				table.addCell(bien.getSerie());
-				table.addCell(String.valueOf(bien.getFecha_ingreso()));
-				table.addCell(String.valueOf(bien.getCosto()));
-				table.addCell(String.valueOf(bien.getVida_util()));
-				table.addCell(String.valueOf(bien.getDepreciacion()));
-				table.addCell(String.valueOf(bien.getGarantia()));
-				table.addCell(bien.getDetalle().getAsignado());
+			try {
+				// write table row data
+				for (Bien bien : bienes) {
+					table.addCell(bien.getAlta());
+					table.addCell(bien.getAnterior());
+					table.addCell(bien.getDescripcion());
+					table.addCell(bien.getSerie());
+					table.addCell(String.valueOf(bien.getFecha_ingreso()));
+					table.addCell(String.valueOf(bien.getCosto()));
+					table.addCell(String.valueOf(bien.getVida_util()));
+					table.addCell(String.valueOf(bien.getDepreciacion()));
+					table.addCell(String.valueOf(bien.getGarantia()));
+					table.addCell(bien.getDetalle().getAsignado());
+
+				}
+
+				doc.add(table);
+				doc.close();
+			} catch (Exception e) {
 
 			}
 
-			doc.add(table);
-			doc.close();
 		} catch (DocumentException ex) {
 
-		}catch (java.io.IOException ex) {
+		} catch (java.io.IOException ex) {
 		}
 	}
 }

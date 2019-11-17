@@ -29,6 +29,8 @@
 
 <link href="${urlPublic}/css/my-style.css" rel="stylesheet">
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 
 <body>
@@ -71,12 +73,12 @@
 			<div class="btn-toolbar" role="toolbar">
 
 				<div class="btn-group">
-					<a href="${urlPDFDetalle} " class="btn btn-success" role="button"
-						title="Reporte">Reportes Pdf</a>
+					<a href="${urlPDFDetalle} "  class="btn btn-outline-dark" role="button"
+						title="Reporte">  Reportes Pdf <i class="fa fa-file-pdf-o" style="font-size:24px;color:red"></i></a>
 				</div>
 				<div class="btn-group">
-					<a href="${urlXLSDetalle} " class="btn btn-success " role="button"
-						title="Reporte">Reportes Excel</a>
+					<a href="${urlXLSDetalle} "  class="btn btn-outline-dark" role="button"
+						title="Reporte">Reportes Excel  <i class="fa fa-file-excel-o"style="font-size:24px;color:green;"></i></a>
 				</div>
 
 				<div class="btn-group">
@@ -106,10 +108,12 @@
 					</div>
 					<input type="hidden" name="${_csrf.parameterName}"
 						value="${_csrf.token}" />
-				</form>
-
-				<br> <label>Buscar:</label> <input id="searchTerm" type="text"
+						
+						<div class="form-group">
+						 <label>Buscar:</label> <input id="searchTerm" type="text"
 					onkeyup="doSearch()" />
+						</div>
+				</form>
 			</div>
 			<div class="panel-body">
 

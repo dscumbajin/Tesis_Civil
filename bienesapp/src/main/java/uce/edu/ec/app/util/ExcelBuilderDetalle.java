@@ -74,22 +74,27 @@ public class ExcelBuilderDetalle extends AbstractXlsView {
 		headerRow.getCell(12).setCellStyle(style);
 
 		int row = 1;
-		for (Bienes_Estaciones bien_Estacion : bienes_Estaciones) {
-			Row dataRow = sheet.createRow(row++);
-			dataRow.createCell(0).setCellValue(bien_Estacion.getBien().getDetalle().getAsignado());
-			dataRow.createCell(1).setCellValue(bien_Estacion.getBien().getAlta());
-			dataRow.createCell(2).setCellValue(bien_Estacion.getBien().getAnterior());
-			dataRow.createCell(3).setCellValue(bien_Estacion.getBien().getDescripcion());
-			dataRow.createCell(4).setCellValue(bien_Estacion.getBien().getDetalle().getMarca());
-			dataRow.createCell(5).setCellValue(bien_Estacion.getBien().getDetalle().getModelo());
-			dataRow.createCell(6).setCellValue(bien_Estacion.getBien().getSerie());
-			dataRow.createCell(7).setCellValue(bien_Estacion.getBien().getDetalle().getGuarda_almacen());
-			dataRow.createCell(8).setCellValue(bien_Estacion.getBien().getDetalle().getCausionado());
-			dataRow.createCell(9).setCellValue(bien_Estacion.getEstacion().getLugar());
-			dataRow.createCell(10).setCellValue(bien_Estacion.getEstacion().getUbicacion());
-			dataRow.createCell(11).setCellValue(dateFormat.format(bien_Estacion.getRegistro()));
-			dataRow.createCell(12).setCellValue(dateFormat.format(bien_Estacion.getCambio()));
+		try {
+			for (Bienes_Estaciones bien_Estacion : bienes_Estaciones) {
+				Row dataRow = sheet.createRow(row++);
+				dataRow.createCell(0).setCellValue(bien_Estacion.getBien().getDetalle().getAsignado());
+				dataRow.createCell(1).setCellValue(bien_Estacion.getBien().getAlta());
+				dataRow.createCell(2).setCellValue(bien_Estacion.getBien().getAnterior());
+				dataRow.createCell(3).setCellValue(bien_Estacion.getBien().getDescripcion());
+				dataRow.createCell(4).setCellValue(bien_Estacion.getBien().getDetalle().getMarca());
+				dataRow.createCell(5).setCellValue(bien_Estacion.getBien().getDetalle().getModelo());
+				dataRow.createCell(6).setCellValue(bien_Estacion.getBien().getSerie());
+				dataRow.createCell(7).setCellValue(bien_Estacion.getBien().getDetalle().getGuarda_almacen());
+				dataRow.createCell(8).setCellValue(bien_Estacion.getBien().getDetalle().getCausionado());
+				dataRow.createCell(9).setCellValue(bien_Estacion.getEstacion().getLugar());
+				dataRow.createCell(10).setCellValue(bien_Estacion.getEstacion().getUbicacion());
+				dataRow.createCell(11).setCellValue(dateFormat.format(bien_Estacion.getRegistro()));
+				dataRow.createCell(12).setCellValue(dateFormat.format(bien_Estacion.getCambio()));
 
+			}
+
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
 
 	}

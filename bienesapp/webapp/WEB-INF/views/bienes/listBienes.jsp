@@ -25,21 +25,8 @@
 	rel="stylesheet">
 <link href="${urlPublic}/bootstrap/css/theme.css" rel="stylesheet">
 <link href="${urlPublic}/css/my-style.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-
-<!-- DATA TABLE 
-	<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-	<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">	
-	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
-
-	<script type="text/javascript">
-	    $(document).ready(function() {
-	        //Asegurate que el id que le diste a la tabla sea igual al texto despues del simbolo #
-	        $('#userList').DataTable();
-	    } );
-	</script>
--->
 
 </head>
 
@@ -64,16 +51,16 @@
 		<div class="btn-toolbar" role="toolbar">
 			<div class="btn-group">
 				<a href="${urlCreate}" class="btn btn-primary" role="button"
-					title="Nueva Pelicula">Nueva</a>
+					title="Nueva Pelicula"><i class="fa fa-plus" aria-hidden="true"></i> Nueva</a>
 			</div>
 
 			<div class="btn-group">
-				<a href="${urlPDF} " class="btn btn-success" role="button"
-					title="Reporte">Reportes Pdf</a>
+				<a href="${urlPDF} " class="btn btn-outline-dark" role="button"
+					title="Reporte">Reportes Pdf <i class="fa fa-file-pdf-o" style="font-size:24px;color:red"></i></a>
 			</div>
 			<div class="btn-group">
-				<a href="${urlXLS} " class="btn btn-success " role="button"
-					title="Reporte">Reportes Excel</a>
+				<a href="${urlXLS} " class="btn btn-outline-dark" role="button"
+					title="Reporte">Reportes Excel <i class="fa fa-file-excel-o"style="font-size:24px;color:green;"></i></a>
 			</div>
 
 			<div class="btn-group">

@@ -111,25 +111,29 @@ public class PDFBuilderDetalle extends AbstractITextPdfView {
 			table.addCell(cell);
 
 			// write table row data
-			for (Bienes_Estaciones bien_Estacion : bienes_Estaciones) {
-				table.addCell(bien_Estacion.getBien().getDetalle().getAsignado());
-				table.addCell(bien_Estacion.getBien().getAlta());
-				table.addCell(bien_Estacion.getBien().getAnterior());
-				table.addCell(bien_Estacion.getBien().getDescripcion());
-				table.addCell(bien_Estacion.getBien().getDetalle().getMarca());
-				table.addCell(bien_Estacion.getBien().getDetalle().getModelo());
-				table.addCell(bien_Estacion.getBien().getSerie());
-				table.addCell(bien_Estacion.getBien().getDetalle().getGuarda_almacen());
-				table.addCell(bien_Estacion.getBien().getDetalle().getCausionado());
-				table.addCell(bien_Estacion.getEstacion().getLugar());
-				table.addCell(bien_Estacion.getEstacion().getUbicacion());
-				table.addCell(String.valueOf(bien_Estacion.getRegistro()));
-				table.addCell(String.valueOf(bien_Estacion.getCambio()));
+			try {
+				for (Bienes_Estaciones bien_Estacion : bienes_Estaciones) {
+					table.addCell(bien_Estacion.getBien().getDetalle().getAsignado());
+					table.addCell(bien_Estacion.getBien().getAlta());
+					table.addCell(bien_Estacion.getBien().getAnterior());
+					table.addCell(bien_Estacion.getBien().getDescripcion());
+					table.addCell(bien_Estacion.getBien().getDetalle().getMarca());
+					table.addCell(bien_Estacion.getBien().getDetalle().getModelo());
+					table.addCell(bien_Estacion.getBien().getSerie());
+					table.addCell(bien_Estacion.getBien().getDetalle().getGuarda_almacen());
+					table.addCell(bien_Estacion.getBien().getDetalle().getCausionado());
+					table.addCell(bien_Estacion.getEstacion().getLugar());
+					table.addCell(bien_Estacion.getEstacion().getUbicacion());
+					table.addCell(String.valueOf(bien_Estacion.getRegistro()));
+					table.addCell(String.valueOf(bien_Estacion.getCambio()));
+
+				}
+				doc.add(table);
+				doc.close();
+			} catch (Exception e) {
 
 			}
 
-			doc.add(table);
-			doc.close();
 		} catch (DocumentException ex) {
 
 		} catch (java.io.IOException ex) {

@@ -89,29 +89,34 @@ public class ExcelBuilder extends AbstractXlsView {
 		headerRow.getCell(19).setCellStyle(style);
 
 		int row = 1;
-		for (Bien bien : bienes) {
-			Row dataRow = sheet.createRow(row++);
-			dataRow.createCell(0).setCellValue(bien.getId());
-			dataRow.createCell(1).setCellValue(bien.getAlta());
-			dataRow.createCell(2).setCellValue(bien.getAnterior());
-			dataRow.createCell(3).setCellValue(bien.getDescripcion());
-			dataRow.createCell(4).setCellValue(bien.getSerie());
-			dataRow.createCell(5).setCellValue(dateFormat.format(bien.getFecha_ingreso()));
-			dataRow.createCell(6).setCellValue(bien.getCosto());
-			dataRow.createCell(7).setCellValue(bien.getVida_util());
-			dataRow.createCell(8).setCellValue(bien.getDepreciacion());
-			dataRow.createCell(9).setCellValue(dateFormat.format(bien.getGarantia()));
-			dataRow.createCell(10).setCellValue(bien.getColor());
-			dataRow.createCell(11).setCellValue(bien.getMaterial());
-			dataRow.createCell(12).setCellValue(bien.getDetalle().getAsignado());
-			dataRow.createCell(13).setCellValue(bien.getDetalle().getMarca());
-			dataRow.createCell(14).setCellValue(bien.getDetalle().getModelo());
-			dataRow.createCell(15).setCellValue(bien.getDetalle().getEstado());
-			dataRow.createCell(16).setCellValue(bien.getDetalle().getEstatus());
-			dataRow.createCell(17).setCellValue(bien.getDetalle().getTipo());
-			dataRow.createCell(18).setCellValue(bien.getDetalle().getGuarda_almacen());
-			dataRow.createCell(19).setCellValue(bien.getDetalle().getCausionado());
+		try {
+			for (Bien bien : bienes) {
+				Row dataRow = sheet.createRow(row++);
+				dataRow.createCell(0).setCellValue(bien.getId());
+				dataRow.createCell(1).setCellValue(bien.getAlta());
+				dataRow.createCell(2).setCellValue(bien.getAnterior());
+				dataRow.createCell(3).setCellValue(bien.getDescripcion());
+				dataRow.createCell(4).setCellValue(bien.getSerie());
+				dataRow.createCell(5).setCellValue(dateFormat.format(bien.getFecha_ingreso()));
+				dataRow.createCell(6).setCellValue(bien.getCosto());
+				dataRow.createCell(7).setCellValue(bien.getVida_util());
+				dataRow.createCell(8).setCellValue(bien.getDepreciacion());
+				dataRow.createCell(9).setCellValue(dateFormat.format(bien.getGarantia()));
+				dataRow.createCell(10).setCellValue(bien.getColor());
+				dataRow.createCell(11).setCellValue(bien.getMaterial());
+				dataRow.createCell(12).setCellValue(bien.getDetalle().getAsignado());
+				dataRow.createCell(13).setCellValue(bien.getDetalle().getMarca());
+				dataRow.createCell(14).setCellValue(bien.getDetalle().getModelo());
+				dataRow.createCell(15).setCellValue(bien.getDetalle().getEstado());
+				dataRow.createCell(16).setCellValue(bien.getDetalle().getEstatus());
+				dataRow.createCell(17).setCellValue(bien.getDetalle().getTipo());
+				dataRow.createCell(18).setCellValue(bien.getDetalle().getGuarda_almacen());
+				dataRow.createCell(19).setCellValue(bien.getDetalle().getCausionado());
 
+			}
+
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
 
 	}
