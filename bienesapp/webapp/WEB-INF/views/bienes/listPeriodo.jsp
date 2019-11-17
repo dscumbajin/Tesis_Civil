@@ -88,12 +88,15 @@
 						value="${_csrf.token}" />
 					<button type="submit" class="btn btn-primary">Buscar</button>
 				</form>
+				
+				<br>  <label>Buscar:</label> <input id="searchTerm"
+					type="text" onkeyup="doSearch()" />
 			</div>
 
 			<div class="panel-body">
 
 				<div class="table-responsive">
-					<table id="myTable"
+					<table id="datos"
 						class="table-rwd  table-hover table-striped table-bordered">
 						<thead>
 							<tr>
@@ -192,7 +195,7 @@
 
 	<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
 	<script src="${urlPublic}/bootstrap/js/bootstrap.min.js"></script>
-	<script src="${urlPublic}/js/bienes.js"></script>
+	<script src="${urlPublic}/js/buscadorTabla.js" type="text/javascript"></script>
 
 	<script>
 		$(function() {

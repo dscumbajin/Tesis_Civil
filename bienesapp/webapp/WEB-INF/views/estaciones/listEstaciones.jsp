@@ -51,14 +51,17 @@
 						<input type="text" id="myInput" name="inputLugar"
 							placeholder="Search for lugar..">
 					</div>
+
 					<input type="hidden" name="${_csrf.parameterName}"
 						value="${_csrf.token}" />
 					<button type="submit" class="btn btn-primary">Buscar</button>
 				</form>
+				<br>  <label>Buscar:</label> <input id="searchTerm"
+					type="text" onkeyup="doSearch()" />
 			</div>
 			<div class="panel-body">
 				<div class="table-responsive">
-					<table id="myTable"
+					<table id="datos"
 						class="table table-hover table-striped table-bordered">
 						<thead>
 							<tr>
@@ -112,6 +115,6 @@
 
 	<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
 	<script src="${urlPublic}/bootstrap/js/bootstrap.min.js"></script>
-	<script src="${urlPublic}/js/ubicaciones.js"></script>
+	<script src="${urlPublic}/js/buscadorTabla.js" type="text/javascript"></script>
 </body>
 </html>

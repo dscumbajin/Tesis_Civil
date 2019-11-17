@@ -36,10 +36,15 @@
 		</c:if>
 
 		<a href="${urlCreate}" class="btn btn-primary" role="button"
-			title="Nuevo Banner">Nuevo</a><br> <br>
+			title="Nuevo Banner">Nuevo</a><br> <br> 
+			
+			
+		<label>Buscar:</label> 
+		<input id="searchTerm" type="text" onkeyup="doSearch()" /> <br>
+		<br>
 
 		<div class="table-responsive">
-			<table class="table table-hover table-striped table-bordered">
+			<table id="datos" class="table table-hover table-striped table-bordered">
 				<thead>
 					<tr>
 						<th>Id</th>
@@ -99,5 +104,6 @@
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script src="${urlPublic}/bootstrap/js/bootstrap.min.js"></script>
+	<script src="${urlPublic}/js/buscadorTabla.js" type="text/javascript"></script>
 </body>
 </html>

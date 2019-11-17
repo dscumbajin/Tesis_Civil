@@ -11,9 +11,11 @@ table {
 	font-size: 12px;
 	
 }
-th{
-		padding-left: 2px;
-		padding-right: 2px;
+
+
+th {
+	padding-left: 2px;
+	padding-right: 2px;
 }
 
 th, td {
@@ -24,5 +26,4 @@ thead {
 	background-color: #1a3d53;
 	color: white;
 	text-transform: uppercase;
-
 }

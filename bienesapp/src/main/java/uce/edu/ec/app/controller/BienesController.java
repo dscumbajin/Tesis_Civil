@@ -52,13 +52,15 @@ public class BienesController {
 
 	private String busqueda = "";
 
+	private String paginado = "";
+
 	private String token = "";
 
 	private Date inicio = null;
 
 	private Date fin = null;
 
-	private List<Bien> bienesPorPeriodo ;
+	private List<Bien> bienesPorPeriodo;
 	SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
 	/**
@@ -86,11 +88,11 @@ public class BienesController {
 	@GetMapping(value = "/indexPaginate")
 	public String mostrarIndexPaginado(Model model, Pageable page) {
 		if (busqueda == "") {
-			//Todos los registros
+			// Todos los registros
 			Page<Bien> lista = serviceBienes.buscarTodas(page);
 			model.addAttribute("bienes", lista);
 		} else {
-			//Formulario con registro buscado
+			// Formulario con registro buscado
 			Page<Bien> lista = serviceBienes.search(token, page);
 			model.addAttribute("bienes", lista);
 			busqueda = "";
@@ -102,9 +104,14 @@ public class BienesController {
 	// Redireccion formulario de busqueda por periodo
 	@GetMapping(value = "/periodPaginate")
 	public String mostrarPeriodoPaginado(Model model, Pageable page) {
-		Page<Bien> lista = serviceBienes.buscarPeriodo(inicio, fin, page);
-		model.addAttribute("bienes", lista);
-		bienesPorPeriodo= lista.getContent();
+
+		if (busqueda == "") {
+			//Lista vacia
+		} else if (paginado == "si") {
+			Page<Bien> lista = serviceBienes.buscarPeriodo(inicio, fin, page);
+			model.addAttribute("bienes", lista);
+			bienesPorPeriodo = lista.getContent();
+		}
 		return "bienes/listPeriodo";
 	}
 
@@ -125,6 +132,8 @@ public class BienesController {
 		System.out.println("fecha inicio:" + startDate + " fecha fin:" + endDate);
 		inicio = dateFormat.parse(startDate);
 		fin = dateFormat.parse(endDate);
+		busqueda = "si";
+		paginado = "si";
 		return "redirect:/bienes/periodPaginate";
 	}
 
@@ -215,6 +224,8 @@ public class BienesController {
 
 	@RequestMapping(value = "/cancel")
 	public String mostrarAcerca() {
+		busqueda = "";
+		paginado = "";
 		return "redirect:/bienes/indexPaginate";
 	}
 
@@ -247,8 +258,8 @@ public class BienesController {
 		}
 		return new ModelAndView("listBienes", "bienes", bienes);
 	}
-	
-	//Reporte Todos los bienes
+
+	// Reporte Todos los bienes
 	@GetMapping(value = "/downloadTotal")
 	public ModelAndView getReport(HttpServletRequest request, HttpServletResponse response) {
 		String reportType = request.getParameter("type");
@@ -256,11 +267,10 @@ public class BienesController {
 		if (reportType != null && reportType.equals("excel")) {
 			return new ModelAndView(new ExcelBuilder(), "bienes", bienes);
 
-		} else if(reportType != null && reportType.equals("pdf")) {
-			return new ModelAndView(new PDFBuilder() , "bienes", bienes);
+		} else if (reportType != null && reportType.equals("pdf")) {
+			return new ModelAndView(new PDFBuilder(), "bienes", bienes);
 		}
-		return new ModelAndView("listBienes","bienes", bienes);
+		return new ModelAndView("listBienes", "bienes", bienes);
 	}
-
 
 }
