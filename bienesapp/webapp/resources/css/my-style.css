@@ -9,9 +9,7 @@ h1 {
 table {
 	text-align: center;
 	font-size: 12px;
-	
 }
-
 
 th {
 	padding-left: 2px;
@@ -26,4 +24,9 @@ thead {
 	background-color: #1a3d53;
 	color: white;
 	text-transform: uppercase;
+}
+
+.centrar {
+	margin: 0 auto;
+	width: 200px;
 }

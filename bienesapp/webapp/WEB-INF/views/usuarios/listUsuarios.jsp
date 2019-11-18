@@ -13,7 +13,6 @@
 <spring:url value="/resources" var="urlPublic" />
 <spring:url value="/usuarios/edit" var="urlEdit" />
 <spring:url value="/usuarios/delete" var="urlDelete" />
-<spring:url value="/usuarios/create" var="urlCreate" />
 <spring:url value="/usuarios" var="urlUsuarios" />
 <link href="${urlPublic}/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -35,10 +34,6 @@
 		<c:if test="${msg !=null }">
 			<div class='alert alert-success' role='alert'>${msg}</div>
 		</c:if>
-
-
-		<a href="${urlCreate}" class="btn btn-primary" role="button"
-			title="Nuevo Usuario">Nuevo</a><br> <br> 
 			
 			<label>Buscar:</label>
 		<input id="searchTerm" type="text" onkeyup="doSearch()" />

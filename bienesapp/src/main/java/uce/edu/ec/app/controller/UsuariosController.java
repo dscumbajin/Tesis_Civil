@@ -33,9 +33,9 @@ public class UsuariosController {
 	@Autowired
 	private IPerfilesService servicePerfiles;
 
-	@GetMapping("/create")
-	public String crear(@ModelAttribute Usuario usuario) {
-		return "usuarios/formUsuario";
+	@GetMapping("/createNewUser")
+	public String crearNew(@ModelAttribute Usuario usuario) {
+		return "usuarios/newUser";
 	}
 
 	@GetMapping(value = "/indexPaginate")
@@ -45,19 +45,19 @@ public class UsuariosController {
 		return "usuarios/listUsuarios";
 	}
 
-	@PostMapping("/save")
-	public String guardar(@ModelAttribute Usuario usuario, Model model, @RequestParam("perfil") String perfil,
+	@PostMapping("/saveNewUser")
+	public String guardarNewUser(@ModelAttribute Usuario usuario, Model model, @RequestParam("perfil") String perfil,
 			BindingResult result, RedirectAttributes attributes, @RequestParam("cuenta") String cuenta,
 			@RequestParam("email") String email) {
 
 		if (result.hasErrors()) {
 			System.out.println("Existen errores");
-			return "usuarios/formUsuario";
+			return "usuarios/newUser";
 		}
 
 		if (serviceUsuarios.existePorCunetaEmail(cuenta, email)) {
 			model.addAttribute("alerta", "Ya existe un registro con cuenta: " + cuenta + " y email: " + email);
-			return "usuarios/formUsuario";
+			return "usuarios/newUser";
 
 		} else {
 			System.out.println("Usuario: " + usuario);
@@ -72,10 +72,36 @@ public class UsuariosController {
 			perfilTmp.setCuenta(usuario.getCuenta());
 			perfilTmp.setPerfil(perfil);
 			servicePerfiles.guardar(perfilTmp);
-
-			return "redirect:/usuarios/indexPaginate";
+			attributes.addFlashAttribute("mensaje", "Usuario Creado");
+			return "redirect:/formLogin";
 
 		}
+
+	}
+
+	@PostMapping("/save")
+	public String guardar(@ModelAttribute Usuario usuario, Model model, @RequestParam("perfil") String perfil,
+			BindingResult result, RedirectAttributes attributes, @RequestParam("cuenta") String cuenta,
+			@RequestParam("email") String email, @RequestParam("id") int id, @RequestParam("activo") String activo) {
+
+		if (result.hasErrors()) {
+			System.out.println("Existen errores");
+			return "usuarios/formUsuario";
+		}
+
+		usuario = serviceUsuarios.buscarPorId(id);
+		System.out.println("Cuenta por id: " + usuario.getCuenta());
+		Perfil p = servicePerfiles.buscarPorCuneta(usuario.getCuenta());
+		System.out.println(p.toString());
+
+		System.out.println("Entro a la edicion");
+		usuario.setActivo(Integer.parseInt(activo));
+		usuario.setEmail(email);
+		serviceUsuarios.guardar(usuario);
+		p.setCuenta(usuario.getCuenta());
+		p.setPerfil(perfil);
+		servicePerfiles.guardar(p);
+		return "redirect:/usuarios/indexPaginate";
 
 	}
 
@@ -84,7 +110,7 @@ public class UsuariosController {
 	public String Editar(@PathVariable("id") int idUsuario, Model model) {
 		Usuario usuario = serviceUsuarios.buscarPorId(idUsuario);
 		model.addAttribute("usuario", usuario);
-		return "usuarios/formUsuario";
+		return "usuarios/editUsuario";
 	}
 
 	// Eliminar por id
@@ -99,8 +125,13 @@ public class UsuariosController {
 	}
 
 	@RequestMapping(value = "/cancel")
-	public String mostrarAcerca() {
+	public String cancelar() {
 		return "redirect:/usuarios/indexPaginate";
+	}
+
+	@RequestMapping(value = "/cancelNewUser")
+	public String cancelarNewUser() {
+		return "redirect:/formLogin";
 	}
 
 }

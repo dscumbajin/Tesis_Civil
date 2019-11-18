@@ -29,9 +29,9 @@ CREATE TABLE IF NOT EXISTS `banners` (
 -- Volcando datos para la tabla appbienes.banners: ~3 rows (aproximadamente)
 /*!40000 ALTER TABLE `banners` DISABLE KEYS */;
 INSERT INTO `banners` (`id`, `archivo`, `estatus`, `fecha`, `titulo`) VALUES
-	(8, 'MEJ90XV8uce.jpg', 'Activo', '2019-11-05 15:56:50', 'uce'),
+	(8, 'MEJ90XV8uce.jpg', 'Activo', '2019-11-14 15:25:09', 'uce'),
 	(9, 'YTYUDTZ2titulo.jpg', 'Activo', '2019-11-05 15:57:08', 'titulo'),
-	(10, 'HF28XMZPcivil.jpg', 'Activo', '2019-11-05 15:57:21', 'civil');
+	(10, 'HF28XMZPcivil.jpg', 'Inactivo', '2019-11-16 19:37:23', 'civil');
 /*!40000 ALTER TABLE `banners` ENABLE KEYS */;
 
 -- Volcando estructura para tabla appbienes.bienes
@@ -153,15 +153,15 @@ CREATE TABLE IF NOT EXISTS `noticias` (
   `fecha` datetime DEFAULT NULL,
   `titulo` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla appbienes.noticias: ~4 rows (aproximadamente)
 /*!40000 ALTER TABLE `noticias` DISABLE KEYS */;
 INSERT INTO `noticias` (`id`, `detalle`, `estatus`, `fecha`, `titulo`) VALUES
-	(4, '<p>Crear un atributo \'no se \'</p>\r\n<p>Contructor por defecto habil</p>\r\n<p>Buscar todos los bienes habiles</p>\r\n<p>Cuando se asigne modifocar el \'no se \' a inabil</p>', 'Activa', '2019-10-23 15:37:36', 'Solo mostrar los que aun no estan asignados '),
+	(4, '<p>Crear un atributo \'no se \'</p>\r\n<p>Contructor por defecto habil</p>\r\n<p>Buscar todos los bienes habiles</p>\r\n<p>Cuando se asigne modifocar el \'no se \' a inabil</p>', 'Activa', '2019-11-14 13:44:50', 'Solo mostrar los que aun no estan asignados '),
 	(5, '<p>Implemnetar los metodos editar y eliminar Para los Usuarios</p>\r\n<p>Tomar en cuenta que al eliminar se debe borrar tambien el rol al cual esta asignado</p>\r\n<p>y en editar se debe tambien poder cambiar de rol</p>', 'Activa', '2019-10-25 00:21:49', 'Para el vienes'),
-	(7, '<p>Registro de bienes no repetidos</p>', 'Activa', '2019-11-05 16:16:43', 'validaciÃ³n 3 campos alta nueva , anterior, serie'),
-	(8, '<p>Se crea el reporte en PDF y Excel&nbsp; de los bienes por cada estacion y lugar que se encuentran</p>', 'Activa', '2019-11-13 18:58:27', 'Reporte de Detalles');
+	(8, '<p>Se crea el reporte en PDF y Excel&nbsp; de los bienes por cada estacion y lugar que se encuentran</p>', 'Activa', '2019-11-13 18:58:27', 'Reporte de Detalles'),
+	(9, '<p>hay que renderizar la consulta por el periodo en la vista detalleCambioPeriodo</p>\r\n<p>ademas hay q implementar el m&eacute;todo de buscar por alta en BIENES_ESTACIONES @Query</p>', 'Activa', '2019-11-13 22:30:19', '14/11/2019');
 /*!40000 ALTER TABLE `noticias` ENABLE KEYS */;
 
 -- Volcando estructura para tabla appbienes.perfiles
@@ -170,16 +170,16 @@ CREATE TABLE IF NOT EXISTS `perfiles` (
   `cuenta` varchar(100) NOT NULL,
   `perfil` varchar(70) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `authorities_idx_2` (`cuenta`,`perfil`),
-  UNIQUE KEY `cuenta_perfil_UNIQUE` (`cuenta`,`perfil`),
+  KEY `authorities_idx_2` (`cuenta`,`perfil`),
   CONSTRAINT `authorities_ibfk_2` FOREIGN KEY (`cuenta`) REFERENCES `usuarios` (`cuenta`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla appbienes.perfiles: ~3 rows (aproximadamente)
+-- Volcando datos para la tabla appbienes.perfiles: ~4 rows (aproximadamente)
 /*!40000 ALTER TABLE `perfiles` DISABLE KEYS */;
 INSERT INTO `perfiles` (`id`, `cuenta`, `perfil`) VALUES
 	(4, 'admin', 'ADMINISTRADOR'),
 	(1, 'dscumbajin', 'ADMINISTRADOR'),
+	(5, 'jarmas', 'ESTANDAR'),
 	(2, 'wssalazar', 'ESTANDAR');
 /*!40000 ALTER TABLE `perfiles` ENABLE KEYS */;
 
@@ -193,16 +193,16 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `email` varchar(100) NOT NULL,
   `activo` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `cuenta_UNIQUE` (`cuenta`),
-  UNIQUE KEY `mail_UNIQUE` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+  KEY `cuenta_UNIQUE` (`cuenta`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla appbienes.usuarios: ~3 rows (aproximadamente)
+-- Volcando datos para la tabla appbienes.usuarios: ~4 rows (aproximadamente)
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
 INSERT INTO `usuarios` (`id`, `nombre`, `apellido`, `cuenta`, `pwd`, `email`, `activo`) VALUES
 	(1, 'darwin', 'cumbajin', 'dscumbajin', '$2a$10$CnYDdJvlpwXWIfe0iaH4POd/5KmTA9Jj7bhTjUen.HqkSXpYxL5MK', 'dscumbajin@uce.edu.ec', 1),
 	(2, 'wiliam', 'salazar', 'wssalazar', '$2a$10$GLMYSHnZwmm4RyRL/dYRBO.Kyv4dSsU8mLoUs/Fc9LiWsWYhvEAL6', 'wssalazar@uce.edu.ec', 1),
-	(4, 'admin', 'admin', 'admin', '$2a$10$19gTxJHmGQZ/tOtq6OZ5SOtdm4h9gEka.LjBlzK1p0QXMKCkPDj9q', 'admin@uce.edu.ec', 1);
+	(4, 'admin', 'admin', 'admin', '$2a$10$19gTxJHmGQZ/tOtq6OZ5SOtdm4h9gEka.LjBlzK1p0QXMKCkPDj9q', 'admin@uce.edu.ec', 1),
+	(5, 'juan', 'armas', 'jarmas', '$2a$10$PDaJg9aGC4Tn49slZfPN0uhVI8bV8FKUq/clf4WAXZKXSq2adgJ1m', 'jarmas@uce.edu.ec', 0);
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

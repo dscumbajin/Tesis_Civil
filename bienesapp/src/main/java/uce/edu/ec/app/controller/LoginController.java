@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class LoginController {
 
 	@GetMapping(value = "/index")
-	public String mostrarPrincipalAdmin( Authentication authentication) {
+	public String mostrarPrincipalAdmin(Authentication authentication) {
 		System.out.println("Username: " + authentication.getName());
-		
-		for(GrantedAuthority rol: authentication.getAuthorities()) {
-			System.out.println("Rol: "+rol.getAuthority());
+
+		for (GrantedAuthority rol : authentication.getAuthorities()) {
+			System.out.println("Rol: " + rol.getAuthority());
 		}
 		return "admin";
 	}
@@ -29,4 +29,5 @@ public class LoginController {
 		logoutHandler.logout(request, null, null);
 		return "redirect:/formLogin";
 	}
+
 }

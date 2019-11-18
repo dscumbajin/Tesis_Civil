@@ -14,18 +14,25 @@
 <title>Login</title>
 <spring:url value="/resources" var="urlPublic" />
 <spring:url value="/" var="urlRoot" />
+<spring:url value="/usuarios/createNewUser" var="urlCreate" />
+
 <link href="${urlPublic}/images/logouce.ico.ico" type="image/x-icon"
 	rel="shortcut icon" />
 <link href="${urlPublic}/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
 <link href="${urlPublic}/bootstrap/css/theme.css" rel="stylesheet">
 <link href="${urlPublic}/bootstrap/css/signin.css" rel="stylesheet">
+<link href="${urlPublic}/css/my-style.css" rel="stylesheet">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
 </head>
 
 <body>
 
 	<jsp:include page="includes/menu.jsp"></jsp:include>
+
 
 	<div class="container theme-showcase" role="main">
 		<hr class="featurette-divider">
@@ -36,8 +43,12 @@
 			<c:if test="${param.error!= null }">
 				<img src="${urlPublic}/images/error.png" width="48" height="48"
 					class="center">
-				<h4 class="form-signin-heading" style="color: red">Acceso
+				<h4 class=" centrar form-signin-heading" style="color: red">Acceso
 					Denegado</h4>
+			</c:if>
+
+			<c:if test="${mensaje!=null}">
+				<div class='alert alert-success' role="alert">${mensaje}</div>
 			</c:if>
 			<h3 class="form-signin-heading">Control de Bienes Site |
 				Administracion</h3>
@@ -49,16 +60,21 @@
 				placeholder="Password" required> <input type="hidden"
 				name="${_csrf.parameterName}" value="${_csrf.token}" />
 			<button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
-		</form>
 
+		</form>
+	</div>
+	<!-- /container -->
+	<div class="container theme-showcase">
+		<div class="centrar col-12 forgot">
+
+			<p>
+				<a href="${urlCreate}">Crear Usuario - Registrarse</a>
+		</div>
 
 		<hr class="featurette-divider">
 		<br> <br> <br>
 		<jsp:include page="includes/footer.jsp"></jsp:include>
 	</div>
-
-
-
 	<!-- /container -->
 	<!-- Bootstrap core JavaScript
 		================================================== -->
