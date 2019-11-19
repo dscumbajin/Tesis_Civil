@@ -58,4 +58,9 @@ public class UsuariosServiceJPA implements IUsuariosService {
 		return usuariosRepo.findAll(page);
 	}
 
+	@Override
+	public Usuario buscarCuentaAndEmail(String cuenta, String email) {
+		return usuariosRepo.findByCuentaAndEmail(cuenta, email);
+	}
+
 }

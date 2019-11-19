@@ -15,6 +15,7 @@
 <spring:url value="/resources" var="urlPublic" />
 <spring:url value="/" var="urlRoot" />
 <spring:url value="/usuarios/createNewUser" var="urlCreate" />
+<spring:url value="/usuarios/changePassword" var="urlChange"></spring:url>
 
 <link href="${urlPublic}/images/logouce.ico.ico" type="image/x-icon"
 	rel="shortcut icon" />
@@ -69,6 +70,8 @@
 
 			<p>
 				<a href="${urlCreate}">Crear Usuario - Registrarse</a>
+			<p>
+				<a href="${urlChange}">Olvidaste tu Contraseña ?</a>
 		</div>
 
 		<hr class="featurette-divider">

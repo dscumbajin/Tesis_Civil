@@ -8,10 +8,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="author" content="">
-<title>Edición Usuarios</title>
+<title>Usuarios</title>
 <spring:url value="/resources" var="urlPublic" />
-<spring:url value="/usuarios/save" var="urlForm" />
-<spring:url value="/usuarios/cancel" var="urlCancel"></spring:url>
+<spring:url value="/usuarios/savePassword" var="urlForm" />
+<spring:url value="/usuarios/cancelNewUser" var="urlCancel"></spring:url>
+<spring:url value="/usuarios/buscar" var="urlBuscar"></spring:url>
 <link href="${urlPublic}/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
 <link href="${urlPublic}/bootstrap/css/theme.css" rel="stylesheet">
@@ -33,69 +34,43 @@
 		<c:if test="${not empty alerta}">
 			<div class='alert alert-danger' role="alert">${alerta}</div>
 		</c:if>
+		
+		<c:if test="${mensaje!=null}">
+			<div class='alert alert-success' role="alert">${mensaje}</div>
+		</c:if>
 
 		<h3 class="blog-title">
-			<span class="label label-success">Edición Usuario</span>
+			<span class="label label-success">Cambio de Contraseña</span>
 
 		</h3>
 
 		<div class="panel panel-default">
 			<div class="panel-heading">
+				<form:form action="${urlBuscar}" method="get">
 
+					<label>Cuenta</label>
+					<input id="cuenta" name="cuenta1" type="text" autocomplete="off">
+					<label>E-mail</label>
+					<input id="email" name="email1" type="email" autocomplete="off">
+					<input type="hidden" name="${_csrf.parameterName}"
+						value="${_csrf.token}" />
+					<button type="submit" class="btn btn-primary">Filtrar</button>
+				</form:form>
 			</div>
-			<div class=" panel-body">
+			<div class="panel-body">
+
 				<form:form action="${urlForm}" method="post"
 					modelAttribute="usuario">
 					<form:hidden path="id" />
-					<br>
-					<div class="row">
-						<div class="col-sm-6">
-							<div class="form-group">
-								<label for="perfil" class="control-label">PERFIL</label> <select
-									id="perfil" name="perfil" class="form-control">
-									<option value="ADMINISTRADOR">ADMINISTRADOR</option>
-									<option value="ESTANDAR">ESTANDAR</option>
-								</select>
-							</div>
-						</div>
-
-						<div class="col-sm-6">
-							<div class="form-group">
-								<label for="activo" class="control-label">Estatus</label>
-								<form:select id="activo" path="activo" class="form-control">
-									<form:option value="1">Activo</form:option>
-									<form:option value="0">Inactivo</form:option>
-								</form:select>
-							</div>
-						</div>
-
-
-					</div>
 
 					<br>
 					<div class="row">
 
-						<div class="col-sm-6">
-							<div class="form-group">
-								<label for="cuenta">Cuenta</label>
-								<form:input type="text" class="form-control" path="cuenta"
-									id="cuenta" required="required" />
-							</div>
-						</div>
-						<!--  
 						<div class="col-sm-3">
 							<div class="form-group">
 								<label for="pwd">Password</label>
 								<form:input type="password" class="form-control" path="pwd"
 									id="pwd" required="required" />
-							</div>
-						</div>
--->
-						<div class="col-sm-6">
-							<div class="form-group">
-								<label for="email">Email</label>
-								<form:input type="email" class="form-control" path="email"
-									id="email" placeholder="Correo electrónico" required="required" />
 							</div>
 						</div>
 
@@ -128,5 +103,6 @@
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script src="${urlPublic}/bootstrap/js/bootstrap.min.js"></script>
+
 </body>
 </html>

@@ -134,4 +134,49 @@ public class UsuariosController {
 		return "redirect:/formLogin";
 	}
 
+	@RequestMapping(value = "/changePassword")
+	public String cambiarContraseña(Model model) {
+		model.addAttribute("usuario", new Usuario());
+		return "usuarios/editPassword";
+	}
+
+	@GetMapping(value = "/buscar")
+	public String buscarUsuario(Model model, @RequestParam("cuenta1") String cuenta1,
+			@RequestParam("email1") String email1) {
+
+		if (serviceUsuarios.existePorCunetaEmail(cuenta1, email1)) {
+			Usuario usuario = serviceUsuarios.buscarCuentaAndEmail(cuenta1, email1);
+			
+			System.out.println(usuario.toString());
+			model.addAttribute("usuario", usuario);
+			model.addAttribute("mensaje", "Ingrese la nueva clave para el usuario: "+usuario.getCuenta());
+
+		} else {
+			model.addAttribute("usuario", new Usuario());
+			model.addAttribute("alerta", "No existe el Usuario: "+ cuenta1);
+		}
+		return "usuarios/editPassword";
+	}
+
+	@PostMapping("/savePassword")
+	public String guardarClave(@ModelAttribute Usuario usuario, Model model, BindingResult result,
+			RedirectAttributes attributes, @RequestParam("id") int id, @RequestParam("pwd") String pwd) {
+
+		if (result.hasErrors()) {
+			System.out.println("Existen errores");
+			return "usuarios/formUsuario";
+		}
+		try {
+			usuario = serviceUsuarios.buscarPorId(id);
+			System.out.println("Entro a la edicion");
+			String tmpPass = pwd;
+			String encriptado = encoder.encode(tmpPass);
+			usuario.setPwd(encriptado);
+			serviceUsuarios.guardar(usuario);
+		} catch (Exception e) {
+
+		}
+		return "redirect:/formLogin";
+
+	}
 }

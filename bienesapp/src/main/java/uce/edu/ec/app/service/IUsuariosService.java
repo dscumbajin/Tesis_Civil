@@ -29,4 +29,7 @@ public interface IUsuariosService {
 
 	//Eliminar
 	void eliminar(int idUsuario);
+	
+	//Buscar el Usuario por cuenta and email
+	Usuario buscarCuentaAndEmail(String cuenta, String email);
 }
