@@ -75,7 +75,7 @@
 					<div class="form-group">
 						<label for="lugar">Lugar</label>
 						<form:input type="text" class="form-control" path="lugar"
-							id="lugar" required="required" />
+							id="lugar" required="required" autocomplete="off" />
 					</div>
 				</div>
 

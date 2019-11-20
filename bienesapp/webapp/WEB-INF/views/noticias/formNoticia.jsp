@@ -40,7 +40,7 @@
 						<label for="titulo">Título</label>
 						<form:hidden path="id" />
 						<form:input class="form-control" path="titulo" id="titulo"
-							required="required" />
+							required="required" autocomplete="off"/>
 					</div>
 				</div>
 				<div class="col-sm-3">

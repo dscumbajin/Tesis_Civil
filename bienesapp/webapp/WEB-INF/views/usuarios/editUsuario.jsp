@@ -79,7 +79,7 @@
 							<div class="form-group">
 								<label for="cuenta">Cuenta</label>
 								<form:input type="text" class="form-control" path="cuenta"
-									id="cuenta" required="required" />
+									id="cuenta" required="required" autocomplete="off" />
 							</div>
 						</div>
 						<!--  
@@ -95,7 +95,7 @@
 							<div class="form-group">
 								<label for="email">Email</label>
 								<form:input type="email" class="form-control" path="email"
-									id="email" placeholder="Correo electrónico" required="required" />
+									id="email" placeholder="Correo electrónico" required="required" autocomplete="off"/>
 							</div>
 						</div>
 

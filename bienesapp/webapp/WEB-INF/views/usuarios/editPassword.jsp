@@ -34,12 +34,12 @@
 		<c:if test="${not empty alerta}">
 			<div class='alert alert-danger' role="alert">${alerta}</div>
 		</c:if>
-		
+
 		<c:if test="${mensaje!=null}">
 			<div class='alert alert-success' role="alert">${mensaje}</div>
 		</c:if>
 
-		<h3 class="blog-title">
+		<h3 class=" blog-title">
 			<span class="label label-success">Cambio de Contraseña</span>
 
 		</h3>
@@ -49,9 +49,12 @@
 				<form:form action="${urlBuscar}" method="get">
 
 					<label>Cuenta</label>
-					<input id="cuenta" name="cuenta1" type="text" autocomplete="off">
+					<input id="cuenta" name="cuenta1" type="text" placeholder="Cuenta"
+						required="required" autocomplete="off">
 					<label>E-mail</label>
-					<input id="email" name="email1" type="email" autocomplete="off">
+					<input id="email" name="email1" type="email"
+						placeholder="Correo electrónico" required="required"
+						autocomplete="off">
 					<input type="hidden" name="${_csrf.parameterName}"
 						value="${_csrf.token}" />
 					<button type="submit" class="btn btn-primary">Filtrar</button>
@@ -66,9 +69,9 @@
 					<br>
 					<div class="row">
 
-						<div class="col-sm-3">
+						<div class="col-sm-6">
 							<div class="form-group">
-								<label for="pwd">Password</label>
+								<label class="centrar" for="pwd">Password</label>
 								<form:input type="password" class="form-control" path="pwd"
 									id="pwd" required="required" />
 							</div>

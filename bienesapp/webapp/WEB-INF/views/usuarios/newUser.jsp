@@ -48,21 +48,21 @@
 					<div class="form-group">
 						<label for="nombre">Nombres</label>
 						<form:input type="text" class="form-control" path="nombre"
-							id="nombre" required="required" />
+							id="nombre" required="required" autocomplete="off" />
 					</div>
 				</div>
 				<div class="col-sm-3">
 					<div class="form-group">
 						<label for="apellido">Apellidos</label>
 						<form:input type="text" class="form-control" path="apellido"
-							id="apellido" required="required" />
+							id="apellido" required="required" autocomplete="off" />
 					</div>
 				</div>
 				<div class="col-sm-3">
 					<div class="form-group">
 						<label for="cuenta">Cuenta</label>
 						<form:input type="text" class="form-control" path="cuenta"
-							id="cuenta" required="required" />
+							id="cuenta" required="required" autocomplete="off" />
 					</div>
 				</div>
 
@@ -70,7 +70,7 @@
 					<div class="form-group">
 						<label for="pwd">Password</label>
 						<form:input type="password" class="form-control" path="pwd"
-							id="pwd" required="required" />
+							id="pwd" required="required" autocomplete="off"/>
 					</div>
 				</div>
 
@@ -78,7 +78,7 @@
 					<div class="form-group">
 						<label for="email">Email</label>
 						<form:input type="email" class="form-control" path="email"
-							id="email" placeholder="Correo electrónico" required="required" />
+							id="email" placeholder="Correo electrónico" required="required" autocomplete="off" />
 					</div>
 				</div>
 

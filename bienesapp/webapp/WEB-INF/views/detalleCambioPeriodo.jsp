@@ -101,12 +101,12 @@
 					<div class="form-group">
 						<input type="text" class="form-control" id="startDate"
 							name="startDate" placeholder="Fecha Inicio (dd-mm-yyyy)"
-							required="required">
+							required="required" autocomplete="off">
 					</div>
 					<div class="form-group">
 						<input type="text" class="form-control" id="endDate"
 							name="endDate" placeholder="Fecha Fin (dd-mm-yyyy)"
-							required="required">
+							required="required" autocomplete="off">
 					</div>
 					<input type="hidden" name="${_csrf.parameterName}"
 						value="${_csrf.token}" />

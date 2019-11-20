@@ -102,7 +102,7 @@
 				<form class="form-inline" action="${urlSearch}" method="POST">
 					<div class="form-group">
 						<input type="text" id="myInput" name="campo"
-							placeholder="Search for alta nueva..">
+							placeholder="Search for alta nueva.." autocomplete="off">
 						<button type="submit" class="btn btn-primary">Buscar</button>
 
 					</div>

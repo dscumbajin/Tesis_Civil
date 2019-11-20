@@ -67,14 +67,14 @@
 						<form:hidden path="id" />
 						<form:hidden path="detalle.id" />
 						<form:input type="text" class="form-control" path="alta" id="alta"
-							required="required" />
+							required="required" autocomplete="off" />
 					</div>
 				</div>
 				<div class="col-sm-3">
 					<div class="form-group">
 						<label for="anterior">Alta Anterior</label>
 						<form:input type="text" class="form-control" path="anterior"
-							id="anterior" required="required" />
+							id="anterior" required="required" autocomplete="off" />
 					</div>
 				</div>
 				<div class="col-sm-3">
@@ -96,7 +96,7 @@
 					<div class="form-group">
 						<label for="costo">Costo</label>
 						<form:input type="text" class="form-control" path="costo"
-							id="costo" required="required" />
+							id="costo" required="required" autocomplete="off"/>
 					</div>
 				</div>
 
