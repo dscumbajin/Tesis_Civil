@@ -45,7 +45,7 @@
 					<li><a href="${urlRoot}bienes/indexPaginate?page=0">Bienes</a></li>
 					<li><a href="${urlRoot}estaciones/indexPaginate?page=0">Estaciones</a></li>
 					<li><a href="${urlRoot}asignaciones/indexPaginate?page=0">Asignaciones</a></li>
-					<li><a href="${urlRoot}noticias/indexPaginate?page=0">Noticias</a></li>
+					<li><a href="${urlRoot}noticias/indexPaginate?page=0">Notificaciones</a></li>
 					<li><a href="${urlRoot}banners/indexPaginate?page=0">Banners</a></li>
 					<li><a href="${urlRoot}usuarios/indexPaginate?page=0">Usuarios</a></li>
 					<li><a href="${urlRoot}admin/logout"><i class="fa fa-sign-out" aria-hidden="true" style="color: red"></i> Salir</a></li>
@@ -68,7 +68,7 @@
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
-					<li><a href="${urlRoot}noticias/indexPaginate?page=0">Noticias</a></li>
+					<li><a href="${urlRoot}noticias/indexPaginate?page=0">Notificaciones</a></li>
 					<li><a href="${urlRoot}banners/indexPaginate?page=0">Banners</a></li>
 					<li><a href="${urlRoot}admin/logout"><i class="fa fa-sign-out" aria-hidden="true" style="color: red"></i> Salir</a></li>
 				</ul>

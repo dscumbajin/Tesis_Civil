@@ -57,7 +57,7 @@
 					</div>
 					<input type="hidden" name="${_csrf.parameterName}"
 						value="${_csrf.token}" />
-					<button type="submit" class="btn btn-primary">Buscar</button>
+					<button type="submit" title="Buscar" class="btn btn-primary">Buscar</button>
 				</form>
 				<br>  <label>Buscar:</label> <input id="searchTerm"
 					type="text" onkeyup="doSearch()" />
@@ -89,7 +89,7 @@
 										pattern="dd-MM-yyyy" /></td>
 
 								<td><a href="${urlEdit}/${asignacion.id}"
-									class="btn btn-success btn-sm" role="button" title="Edit"><span
+									class="btn btn-success btn-sm" role="button" title="Editar"><span
 										class="glyphicon glyphicon-pencil"></span></a> <a
 									href="${urlDelete}/${asignacion.id}"
 									class="btn btn-danger btn-sm" role="button" title="Eliminar"><span

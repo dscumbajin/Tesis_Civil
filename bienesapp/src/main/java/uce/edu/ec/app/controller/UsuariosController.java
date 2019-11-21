@@ -173,6 +173,7 @@ public class UsuariosController {
 			String encriptado = encoder.encode(tmpPass);
 			usuario.setPwd(encriptado);
 			serviceUsuarios.guardar(usuario);
+			model.addAttribute("alerta", "Contraseña cambiada para la cuenta: " + usuario.getCuenta());
 		} catch (Exception e) {
 
 		}

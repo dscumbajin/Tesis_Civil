@@ -72,7 +72,7 @@
 						</c:choose>
 
 						<td><a href="${urlEdit}/${banner.id}"
-							class="btn btn-success btn-sm" role="button" title="Edit"><span
+							class="btn btn-success btn-sm" role="button" title="Editar"><span
 								class="glyphicon glyphicon-pencil"></span></a> <a
 							href="${urlDelete}/${banner.id}"
 							onclick='return confirm("¿Estas seguro?")'

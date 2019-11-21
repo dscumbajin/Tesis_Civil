@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>Listado de Noticias</title>
+<title>Notificaciones</title>
 <spring:url value="/resources" var="urlPublic" />
 <spring:url value="/noticias/edit" var="urlEdit" />
 <spring:url value="/noticias/delete" var="urlDelete" />
@@ -30,14 +30,14 @@
 
 	<div class="container theme-showcase" role="main">
 
-		<h3>Listado de Noticias</h3>
+		<h3>Listado de Notificaciones</h3>
 
 		<c:if test="${msg !=null }">
 			<div class='alert alert-success' role='alert'>${msg}</div>
 		</c:if>
 
 		<a href="${urlCreate}" class="btn btn-primary" role="button"
-			title="Nueva noticia">Nueva</a><br> <br>
+			title="Nueva notificación">Nueva</a><br> <br>
 		<label>Buscar:</label>
 		<input id="searchTerm" type="text" onkeyup="doSearch()" />
 		<br>
@@ -70,7 +70,7 @@
 							</c:otherwise>
 						</c:choose>
 						<td><a href="${urlEdit}/${noticia.id}"
-							class="btn btn-success btn-sm" role="button" title="Edit"><span
+							class="btn btn-success btn-sm" role="button" title="Editar"><span
 								class="glyphicon glyphicon-pencil"></span></a> <a
 							href="${urlDelete}/${noticia.id}"
 							onclick='return confirm("¿Estas seguro?")'

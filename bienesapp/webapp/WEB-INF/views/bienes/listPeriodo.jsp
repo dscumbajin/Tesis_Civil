@@ -50,11 +50,11 @@
 
 			<div class="btn-group">
 				<a href="${urlPDF} " class="btn btn-outline-dark" role="button"
-					title="Reporte">Reportes Pdf <i class="fa fa-file-pdf-o" style="font-size:24px;color:red"></i></a>
+					title="Reporte en Pdf">Reportes Pdf <i class="fa fa-file-pdf-o" style="font-size:24px;color:red"></i></a>
 			</div>
 			<div class="btn-group">
 				<a href="${urlXLS} " class="btn btn-outline-dark" role="button"
-					title="Reporte">Reportes Excel <i class="fa fa-file-excel-o"style="font-size:24px;color:green;"></i></a>
+					title="Reporte en Excel">Reportes Excel <i class="fa fa-file-excel-o"style="font-size:24px;color:green;"></i></a>
 			</div>
 
 			<div class="btn-group">
@@ -87,7 +87,7 @@
 					</div>
 					<input type="hidden" name="${_csrf.parameterName}"
 						value="${_csrf.token}" />
-					<button type="submit" class="btn btn-primary">Buscar</button>
+					<button type="submit" title="Buscar" class="btn btn-primary">Buscar</button>
 				</form>
 				
 				<br>  <label>Buscar:</label> <input id="searchTerm"
@@ -131,8 +131,8 @@
 								<td><fmt:formatDate value="${bien.fecha_ingreso}"
 										pattern="dd-MM-yyyy" /></td>
 								<td>${bien.costo }</td>
-								<td>${bien.vida_util }años</td>
-								<td>${bien.depreciacion }años</td>
+								<td>${bien.vida_util } <span>años</span></td>
+								<td>${bien.depreciacion } <span>años</span></td>
 								<td><fmt:formatDate value="${bien.garantia}"
 										pattern="dd-MM-yyyy" /></td>
 								<td>${bien.color}</td>

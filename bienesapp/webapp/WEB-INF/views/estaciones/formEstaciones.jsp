@@ -15,7 +15,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="author" content="">
-<title>Creacion de las Ubicaciones</title>
+<title>Creación de Ubicaciones</title>
 
 <link href="${urlPublic}/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -92,7 +92,7 @@
 			</div>
 			<div class="btn-toolbar" role="toolbar">
 				<div class="btn-group">
-					<button type="submit" class="btn btn-primary">Guardar</button>
+					<button type="submit" title="Guardar" class="btn btn-primary">Guardar</button>
 				</div>
 
 				<div class="btn-group">

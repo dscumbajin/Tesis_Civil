@@ -64,7 +64,7 @@
 						<td>${usuario.email}</td>
 						<td>${usuario.activo}</td>
 						<td><a href="${urlEdit}/${usuario.id}"
-							class="btn btn-success btn-sm" role="button" title="Edit"><span
+							class="btn btn-success btn-sm" role="button" title="Editar"><span
 								class="glyphicon glyphicon-pencil"></span></a> <a
 							href="${urlDelete}/${usuario.id}"
 							onclick='return confirm("¿Estas seguro?")'

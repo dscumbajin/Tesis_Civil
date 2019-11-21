@@ -51,16 +51,21 @@
 			<c:if test="${mensaje!=null}">
 				<div class='alert alert-success' role="alert">${mensaje}</div>
 			</c:if>
+
+			<c:if test="${alerta!=null}">
+				<div class='alert alert-danger' role="alert">${alerta}</div>
+			</c:if>
+
 			<h3 class="form-signin-heading">Control de Bienes Site |
 				Administracion</h3>
 			<label for="username" class="sr-only">Usuario</label> <input
 				type="text" id="username" name="username" class="form-control"
-				placeholder="Usuario" required autofocus autocomplete="off"> <br> <label
-				for="password" class="sr-only">Contraseña</label> <input
+				placeholder="Usuario" required autofocus autocomplete="off">
+			<br> <label for="password" class="sr-only">Contraseña</label> <input
 				type="password" id="password" name="password" class="form-control"
-				placeholder="Password" required autocomplete="off"> <input type="hidden"
-				name="${_csrf.parameterName}" value="${_csrf.token}" />
-			<button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
+				placeholder="Password" required autocomplete="off"> <input
+				type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+			<button title="Entrar" class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
 
 		</form>
 	</div>
@@ -69,9 +74,9 @@
 		<div class="centrar col-12 forgot">
 
 			<p>
-				<a href="${urlCreate}">Crear Usuario - Registrarse</a>
+				<a title="Crear Usuario - Registrarse" href="${urlCreate}">Crear Usuario - Registrarse</a>
 			<p>
-				<a href="${urlChange}">Olvidaste tu Contraseña ?</a>
+				<a title="Olvidaste tu Contraseña ?" href="${urlChange}">Olvidaste tu Contraseña ?</a>
 		</div>
 
 		<hr class="featurette-divider">

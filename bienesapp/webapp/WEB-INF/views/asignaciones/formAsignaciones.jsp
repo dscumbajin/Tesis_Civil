@@ -71,7 +71,7 @@
 
 			<div class="btn-toolbar" role="toolbar">
 				<div class="btn-group">
-					<button type="submit" class="btn btn-primary">Guardar</button>
+					<button type="submit" title="Guardar" class="btn btn-primary">Guardar</button>
 				</div>
 
 				<div class="btn-group">

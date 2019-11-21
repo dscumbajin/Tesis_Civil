@@ -17,7 +17,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>Creacion de Bienes</title>
+<title>Creación de Bienes</title>
 
 <link href="${urlPublic}/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -227,7 +227,7 @@
 
 				<div class="col-sm-3">
 					<div class="form-group">
-						<label for="causionado">Causionado</label>
+						<label for="causionado">Caucionado</label>
 						<form:input type="text" class="form-control"
 							path="detalle.causionado" id="modelo" required="required" />
 					</div>
@@ -236,7 +236,7 @@
 
 			<div class="btn-toolbar" role="toolbar">
 				<div class="btn-group">
-					<button type="submit" class="btn btn-primary">Guardar</button>
+					<button type="submit" title="Guardar" class="btn btn-primary">Guardar</button>
 				</div>
 
 				<div class="btn-group">

@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>Creacion de Noticias</title>
+<title>Creación de Notificaciones</title>
 <spring:url value="/resources" var="urlPublic" />
 <spring:url value="/noticias/save" var="urlForm" />
 <spring:url value="/noticias/cancel" var="urlCancel"></spring:url>
@@ -30,7 +30,7 @@
 			<div class='alert alert-danger' role="alert">${alerta}</div>
 		</c:if>
 		<h3 class="blog-title">
-			<span class="label label-success">Datos de la Noticia</span>
+			<span class="label label-success">Datos de la Notificación</span>
 		</h3>
 
 		<form:form action="${urlForm}" method="POST" modelAttribute="noticia">
@@ -64,7 +64,7 @@
 			</div>
 			<div class="btn-toolbar" role="toolbar">
 				<div class="btn-group">
-					<button type="submit" class="btn btn-primary">Guardar</button>
+					<button type="submit" title="Guardar" class="btn btn-primary">Guardar</button>
 				</div>
 
 				<div class="btn-group">

@@ -12,7 +12,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>Detalles del Estacion</title>
+<title>Detalles del Estación</title>
 
 <spring:url value="/resources" var="urlPublic"></spring:url>
 <spring:url value="/" var="urlRoot"></spring:url>
@@ -70,11 +70,11 @@
 
 				<div class="btn-group">
 					<a href="${urlPDFDetalle} " class="btn btn-outline-dark" role="button"
-						title="Reporte">Reportes Pdf <i class="fa fa-file-pdf-o" style="font-size:24px;color:red"></i></a>
+						title="Reporte en Pdf">Reportes Pdf <i class="fa fa-file-pdf-o" style="font-size:24px;color:red"></i></a>
 				</div>
 				<div class="btn-group">
 					<a href="${urlXLSDetalle} " class="btn btn-outline-dark" role="button"
-						title="Reporte">Reportes Excel <i class="fa fa-file-excel-o"style="font-size:24px;color:green;"></i></a>
+						title="Reporte en Excel">Reportes Excel <i class="fa fa-file-excel-o"style="font-size:24px;color:green;"></i></a>
 				</div>
 
 				<div class="btn-group">
@@ -110,7 +110,7 @@
 					</div>
 					<input type="hidden" name="${_csrf.parameterName}"
 						value="${_csrf.token}" />
-					<button type="submit" class="btn btn-primary">Buscar</button>
+					<button type="submit" title="Buscar" class="btn btn-primary">Buscar</button>
 				</form>
 				
 				<br> <label>Buscar:</label> <input id="searchTerm" type="text"
