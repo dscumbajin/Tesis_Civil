@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<b:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:b="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+     http://www.springframework.org/schema/beans/spring-beans.xsd
+     http://www.springframework.org/schema/security 
+     http://www.springframework.org/schema/security/spring-security.xsd">
+
+	<http auto-config="true">
+		<!-- Declaramos todos los recursos que estaran protegidos -->
+		<intercept-url pattern="/bienes/*"
+			access="hasAnyAuthority('ADMINISTRADOR')" />
+		<intercept-url pattern="/estaciones/*"
+			access="hasAnyAuthority('ADMINISTRADOR')" />
+		<intercept-url pattern="/asignaciones/*"
+			access="hasAnyAuthority('ADMINISTRADOR')" />
+		<intercept-url pattern="/noticias/*"
+			access="hasAnyAuthority('ADMINISTRADOR', 'ESTANDAR')" />
+		<intercept-url pattern="/banners/*"
+			access="hasAnyAuthority('ADMINISTRADOR', 'ESTANDAR')" />
+		<!-- <intercept-url pattern="/" access="hasAnyAuthority('GERENTE','EDITOR')" 
+			/> -->
+
+		<form-login login-page="/formLogin"
+			default-target-url="/admin/index" />
+	</http>
+
+	<!-- Declaracion de Usuarios en memoria -->
+	<!-- <authentication-manager> <authentication-provider> <user-service> <user 
+		name="luis" password="{noop}luis123" authorities="ESTANDAR" /> <user name="darwin" 
+		password="{noop}dar123" authorities="ADMINISTRADOR" /> </user-service> </authentication-provider> 
+		</authentication-manager> -->
+	<!-- Auntenticacion desde base de datos -->
+	<b:bean id="passwordEncoder"
+		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+	<authentication-manager>
+		<authentication-provider>
+			<password-encoder ref="passwordEncoder" />
+			<jdbc-user-service data-source-ref="dataSource"
+				users-by-username-query="select cuenta,pwd,activo from Usuarios where cuenta = ?"
+				authorities-by-username-query="select cuenta,perfil from Perfiles where cuenta = ?" />
+		</authentication-provider>
+	</authentication-manager>
+</b:beans>
