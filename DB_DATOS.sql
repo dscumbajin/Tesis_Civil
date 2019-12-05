@@ -75,7 +75,7 @@ CREATE TABLE IF NOT EXISTS `bienes_estaciones` (
   `id_bien` int(11) NOT NULL,
   `id_estacion` int(11) NOT NULL,
   `registro` date NOT NULL,
-  `cambio` date NOT NULL,
+  `actualizacion` date NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id_bien` (`id_bien`),
   KEY `bienes_estaciones_ibfk_2` (`id_estacion`),
@@ -85,7 +85,7 @@ CREATE TABLE IF NOT EXISTS `bienes_estaciones` (
 
 -- Volcando datos para la tabla appbienes.bienes_estaciones: ~9 rows (aproximadamente)
 /*!40000 ALTER TABLE `bienes_estaciones` DISABLE KEYS */;
-INSERT INTO `bienes_estaciones` (`id`, `id_bien`, `id_estacion`, `registro`, `cambio`) VALUES
+INSERT INTO `bienes_estaciones` (`id`, `id_bien`, `id_estacion`, `registro`, `actualizacion`) VALUES
 	(111, 39, 42, '2019-10-25', '2019-11-05'),
 	(112, 40, 41, '2019-11-05', '2019-11-05'),
 	(113, 41, 42, '2019-10-25', '9999-09-09'),

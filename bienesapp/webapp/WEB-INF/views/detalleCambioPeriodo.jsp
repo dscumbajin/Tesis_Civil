@@ -135,7 +135,7 @@
 								<th>Lugar</th>
 								<th>Ubicación</th>
 								<th>Registro</th>
-								<th>Cambio</th>
+								<th>Actualización</th>
 							</tr>
 
 						</thead>
@@ -155,7 +155,7 @@
 								<td>${bien_estacion.estacion.ubicacion}</td>
 								<td><fmt:formatDate value="${bien_estacion.registro}"
 										pattern="dd-MM-yyyy" /></td>
-								<td><fmt:formatDate value="${bien_estacion.cambio}"
+								<td><fmt:formatDate value="${bien_estacion.actualizacion}"
 										pattern="dd-MM-yyyy" /></td>
 
 							</tr>

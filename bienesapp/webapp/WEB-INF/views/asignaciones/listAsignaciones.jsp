@@ -73,7 +73,7 @@
 								<th>Ubicacion</th>
 								<th>Lugar</th>
 								<th>Registro</th>
-								<th>Cambio</th>
+								<th>Actualización</th>
 								<th>Opciones</th>
 							</tr>
 						</thead>
@@ -85,7 +85,7 @@
 								<td>${asignacion.estacion.lugar}</td>
 								<td><fmt:formatDate value="${asignacion.registro}"
 										pattern="dd-MM-yyyy" /></td>
-								<td><fmt:formatDate value="${asignacion.cambio}"
+								<td><fmt:formatDate value="${asignacion.actualizacion}"
 										pattern="dd-MM-yyyy" /></td>
 
 								<td><a href="${urlEdit}/${asignacion.id}"

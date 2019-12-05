@@ -26,7 +26,7 @@ public interface BienesEstacionesRepository extends JpaRepository<Bienes_Estacio
 	Page<Bienes_Estaciones> findByIdEstacion(@Param("ID_ESTACION") int id_estacion, Pageable page);
 
 	// Buscar los bienes que fueron cambiados en algun periodo //Paginado
-	Page<Bienes_Estaciones> findByEstacion_IdAndCambioBetween(int idEstacion, Date startDate, Date endDate,
+	Page<Bienes_Estaciones> findByEstacion_IdAndActualizacionBetween(int idEstacion, Date startDate, Date endDate,
 			Pageable page);
 
 	// Verificar si existe el registro por medio de los parametros idBien and

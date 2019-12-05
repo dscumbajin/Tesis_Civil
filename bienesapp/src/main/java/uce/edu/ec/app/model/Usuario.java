@@ -20,6 +20,10 @@ public class Usuario {
 	private int activo;
 	private String email;
 
+	public Usuario(String usuario) {
+		this.cuenta =usuario;
+	}
+	
 	public Usuario() {
 		this.activo = 1;
 	}

@@ -107,7 +107,7 @@ public class PDFBuilderDetalle extends AbstractITextPdfView {
 			table.addCell(cell);
 			cell.setPhrase(new Phrase("Registro", font));
 			table.addCell(cell);
-			cell.setPhrase(new Phrase("Cambio", font));
+			cell.setPhrase(new Phrase("Actualización", font));
 			table.addCell(cell);
 
 			// write table row data
@@ -125,7 +125,7 @@ public class PDFBuilderDetalle extends AbstractITextPdfView {
 					table.addCell(bien_Estacion.getEstacion().getLugar());
 					table.addCell(bien_Estacion.getEstacion().getUbicacion());
 					table.addCell(String.valueOf(bien_Estacion.getRegistro()));
-					table.addCell(String.valueOf(bien_Estacion.getCambio()));
+					table.addCell(String.valueOf(bien_Estacion.getActualizacion()));
 
 				}
 				doc.add(table);

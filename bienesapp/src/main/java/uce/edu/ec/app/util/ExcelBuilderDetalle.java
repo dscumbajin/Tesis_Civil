@@ -70,7 +70,7 @@ public class ExcelBuilderDetalle extends AbstractXlsView {
 		headerRow.getCell(10).setCellStyle(style);
 		headerRow.createCell(11).setCellValue("Registro");
 		headerRow.getCell(11).setCellStyle(style);
-		headerRow.createCell(12).setCellValue("Cambio");
+		headerRow.createCell(12).setCellValue("Actualización");
 		headerRow.getCell(12).setCellStyle(style);
 
 		int row = 1;
@@ -89,7 +89,7 @@ public class ExcelBuilderDetalle extends AbstractXlsView {
 				dataRow.createCell(9).setCellValue(bien_Estacion.getEstacion().getLugar());
 				dataRow.createCell(10).setCellValue(bien_Estacion.getEstacion().getUbicacion());
 				dataRow.createCell(11).setCellValue(dateFormat.format(bien_Estacion.getRegistro()));
-				dataRow.createCell(12).setCellValue(dateFormat.format(bien_Estacion.getCambio()));
+				dataRow.createCell(12).setCellValue(dateFormat.format(bien_Estacion.getActualizacion()));
 
 			}
 

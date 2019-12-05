@@ -18,7 +18,7 @@ public class Bienes_Estaciones {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private Date registro;
-	private Date cambio;
+	private Date actualizacion;
 
 	@ManyToOne
 	@JoinColumn(name = "id_bien")
@@ -63,17 +63,17 @@ public class Bienes_Estaciones {
 		this.registro = registro;
 	}
 
-	public Date getCambio() {
-		return cambio;
+	public Date getActualizacion() {
+		return actualizacion;
 	}
 
-	public void setCambio(Date cambio) {
-		this.cambio = cambio;
+	public void setActualizacion(Date actualizacion) {
+		this.actualizacion = actualizacion;
 	}
 
 	@Override
 	public String toString() {
-		return "Bienes_Estaciones [id=" + id + ", registro=" + registro + ", cambio=" + cambio + ", bien=" + bien
+		return "Bienes_Estaciones [id=" + id + ", registro=" + registro + ", actualizacion=" + actualizacion + ", bien=" + bien
 				+ ", estacion=" + estacion + "]";
 	}
 

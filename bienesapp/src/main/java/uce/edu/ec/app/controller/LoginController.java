@@ -16,11 +16,11 @@ public class LoginController {
 	@GetMapping(value = "/index")
 	public String mostrarPrincipalAdmin(Authentication authentication) {
 		System.out.println("Username: " + authentication.getName());
-
 		for (GrantedAuthority rol : authentication.getAuthorities()) {
 			System.out.println("Rol: " + rol.getAuthority());
 		}
 		return "admin";
+
 	}
 
 	@GetMapping(value = "/logout")

@@ -1,6 +1,5 @@
 package uce.edu.ec.app.controller;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -33,6 +32,7 @@ import uce.edu.ec.app.service.IEstacionService;
 @Controller
 @RequestMapping(value = "/asignaciones")
 public class BienesEstacionesController {
+	
 
 	@Autowired
 	private IBienes_Estaciones servicioBienesEstaciones;
@@ -60,15 +60,15 @@ public class BienesEstacionesController {
 
 	@GetMapping(value = "/indexPaginate")
 	public String mostrarIndexPaginado(Model model, Pageable page) {
-		
-		if(busqueda=="") {
+
+		if (busqueda == "") {
 			Page<Bienes_Estaciones> listaAsignaciones = servicioBienesEstaciones.buscarTodos(page);
 			model.addAttribute("asignaciones", listaAsignaciones);
-				
-		}else {
+
+		} else {
 			Page<Bienes_Estaciones> listaAsignaciones = servicioBienesEstaciones.buscarPorAltaBien(token, page);
 			model.addAttribute("asignaciones", listaAsignaciones);
-			busqueda="";
+			busqueda = "";
 		}
 		return "asignaciones/listAsignaciones";
 	}
@@ -103,11 +103,8 @@ public class BienesEstacionesController {
 				bien.setControl("Inactivo");
 				servicioBienes.insertar(bien);
 				bienes_Estaciones.setRegistro(bien.getFecha_ingreso());
-				try {
-					bienes_Estaciones.setCambio(dateFormat.parse("09-09-9999"));
-				} catch (ParseException e) {
-					e.printStackTrace();
-				}
+				bienes_Estaciones.setActualizacion(bien.getFecha_ingreso());
+
 				System.out.println(bien.toString());
 				servicioBienesEstaciones.insertar(bienes_Estaciones);
 				attributes.addFlashAttribute("mensaje", "El registro fue guardado");
@@ -116,31 +113,29 @@ public class BienesEstacionesController {
 			}
 
 		} else {
+		
 			// edicion
 			bienes_Estaciones = servicioBienesEstaciones.buscarPorId(id);
 			Estacion lugar = servicioEstaciones.buscarPorId(Integer.parseInt(idEstacion));
 			System.out.println("Antes:" + bienes_Estaciones);
 
-			try {
-				if (bienes_Estaciones.getCambio() == dateFormat.parse("09-09-9999")) {
-					bienes_Estaciones.setEstacion(lugar);
-					bienes_Estaciones.setCambio(new Date());
-					servicioBienesEstaciones.insertar(bienes_Estaciones);
-					System.out.println("Despues:" + bienes_Estaciones);
-					attributes.addFlashAttribute("mensaje", "El registro fue editado");
+			if (bienes_Estaciones.getActualizacion() == bienes_Estaciones.getRegistro()) {
+				bienes_Estaciones.setEstacion(lugar);
+				bienes_Estaciones.setActualizacion(new Date());
+				servicioBienesEstaciones.insertar(bienes_Estaciones);
+				System.out.println("Despues:" + bienes_Estaciones);
+				attributes.addFlashAttribute("mensaje", "El registro fue editado");
 
-				} else {
-					bienes_Estaciones.setRegistro(bienes_Estaciones.getCambio());
-					bienes_Estaciones.setEstacion(lugar);
-					bienes_Estaciones.setCambio(new Date());
-					servicioBienesEstaciones.insertar(bienes_Estaciones);
-					System.out.println("Despues:" + bienes_Estaciones);
-					attributes.addFlashAttribute("mensaje", "El registro fue editado");
-				}
-			} catch (ParseException e) {
-
-				e.printStackTrace();
+			} else {
+				bienes_Estaciones.setRegistro(bienes_Estaciones.getActualizacion());
+				bienes_Estaciones.setEstacion(lugar);
+				bienes_Estaciones.setActualizacion(new Date());
+				servicioBienesEstaciones.insertar(bienes_Estaciones);
+				System.out.println("Despues:" + bienes_Estaciones);
+				attributes.addFlashAttribute("mensaje", "El registro fue editado");
 			}
+
+			
 			edicion = "";
 		}
 		return "redirect:/asignaciones/indexPaginate";
