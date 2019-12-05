@@ -15,7 +15,8 @@
 <link href="${urlPublic}/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
 <link href="${urlPublic}/bootstrap/css/theme.css" rel="stylesheet">
-<link href="${urlPublic}/images/logouce.ico.ico" type="image/x-icon" rel="shortcut icon"/>
+<link href="${urlPublic}/images/logouce.ico.ico" type="image/x-icon"
+	rel="shortcut icon" />
 </head>
 
 <body>
@@ -48,14 +49,18 @@
 					<div class="form-group">
 						<label for="nombre">Nombres</label>
 						<form:input type="text" class="form-control" path="nombre"
-							id="nombre" required="required" autocomplete="off" />
+							id="nombre" required="required" autocomplete="off"
+							placeholder="Solo Letras"
+							pattern="|^[a-zA-Z]+(\s*[a-zA-Z]*)*[a-zA-Z]+$|" />
 					</div>
 				</div>
 				<div class="col-sm-3">
 					<div class="form-group">
 						<label for="apellido">Apellidos</label>
 						<form:input type="text" class="form-control" path="apellido"
-							id="apellido" required="required" autocomplete="off" />
+							id="apellido" required="required" autocomplete="off"
+							placeholder="Solo Letras"
+							pattern="|^[a-zA-Z]+(\s*[a-zA-Z]*)*[a-zA-Z]+$|" />
 					</div>
 				</div>
 				<div class="col-sm-3">
@@ -70,7 +75,7 @@
 					<div class="form-group">
 						<label for="pwd">Password</label>
 						<form:input type="password" class="form-control" path="pwd"
-							id="pwd" required="required" autocomplete="off"/>
+							id="pwd" required="required" autocomplete="off" />
 					</div>
 				</div>
 
@@ -78,7 +83,11 @@
 					<div class="form-group">
 						<label for="email">Email</label>
 						<form:input type="email" class="form-control" path="email"
-							id="email" placeholder="Correo electrónico" required="required" autocomplete="off" />
+							id="email" placeholder="Correo electrónico" required="required"
+							autocomplete="off"
+							placeholder="aaaaa@uce.edu.ec"
+							pattern="/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3,4})+$/"
+							onKeyUp="javascript:validateMail('email')" />
 					</div>
 				</div>
 
@@ -110,5 +119,6 @@
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script src="${urlPublic}/bootstrap/js/bootstrap.min.js"></script>
+	<script src="${urlPublic}/js/validarEmail.js" type="text/javascript"></script>
 </body>
 </html>
