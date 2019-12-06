@@ -24,7 +24,10 @@
 <link href="${urlPublic}/css/my-style.css" rel="stylesheet">
 <link href="${urlPublic}/images/logouce.ico.ico" type="image/x-icon"
 	rel="shortcut icon" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
 
 </head>
 
@@ -50,11 +53,13 @@
 
 			<div class="btn-group">
 				<a href="${urlPDF} " class="btn btn-outline-dark" role="button"
-					title="Reporte en Pdf">Reportes Pdf <i class="fa fa-file-pdf-o" style="font-size:24px;color:red"></i></a>
+					title="Reporte en Pdf">Reportes Pdf <i class="fa fa-file-pdf-o"
+					style="font-size: 24px; color: red"></i></a>
 			</div>
 			<div class="btn-group">
 				<a href="${urlXLS} " class="btn btn-outline-dark" role="button"
-					title="Reporte en Excel">Reportes Excel <i class="fa fa-file-excel-o"style="font-size:24px;color:green;"></i></a>
+					title="Reporte en Excel">Reportes Excel <i
+					class="fa fa-file-excel-o" style="font-size: 24px; color: green;"></i></a>
 			</div>
 
 			<div class="btn-group">
@@ -77,21 +82,21 @@
 
 					<div class="form-group">
 						<input type="text" class="form-control" id="startDate"
-							name="startDate" placeholder="Fecha Inicio (dd-mm-yyyy)"
-							required="required">
+							name="startDate" placeholder="Fecha Inicio Registro (dd-mm-yyyy)"
+							required="required" autocomplete="off">
 					</div>
 					<div class="form-group">
 						<input type="text" class="form-control" id="endDate"
-							name="endDate" placeholder="Fecha Fin (dd-mm-yyyy)"
-							required="required">
+							name="endDate" placeholder="Fecha Fin Registro (dd-mm-yyyy)"
+							required="required" autocomplete="off">
 					</div>
 					<input type="hidden" name="${_csrf.parameterName}"
 						value="${_csrf.token}" />
 					<button type="submit" title="Buscar" class="btn btn-primary">Buscar</button>
 				</form>
-				
-				<br>  <label>Buscar:</label> <input id="searchTerm"
-					type="text" onkeyup="doSearch()" />
+
+				<br> <label>Buscar:</label> <input id="searchTerm" type="text"
+					onkeyup="doSearch()" />
 			</div>
 
 			<div class="panel-body">
@@ -131,8 +136,8 @@
 								<td><fmt:formatDate value="${bien.fecha_ingreso}"
 										pattern="dd-MM-yyyy" /></td>
 								<td>${bien.costo }</td>
-								<td>${bien.vida_util } <span>años</span></td>
-								<td>${bien.depreciacion } <span>años</span></td>
+								<td>${bien.vida_util }<span>años</span></td>
+								<td>${bien.depreciacion }<span>años</span></td>
 								<td><fmt:formatDate value="${bien.garantia}"
 										pattern="dd-MM-yyyy" /></td>
 								<td>${bien.color}</td>
@@ -191,10 +196,8 @@
 	<!-- Bootstrap core JavaScript
     ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-	<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+	<script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
 	<script src="${urlPublic}/bootstrap/js/bootstrap.min.js"></script>
 	<script src="${urlPublic}/js/buscadorTabla.js" type="text/javascript"></script>
 

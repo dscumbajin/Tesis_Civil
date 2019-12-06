@@ -54,7 +54,9 @@
 					<label>E-mail</label>
 					<input id="email" name="email1" type="email"
 						placeholder="Correo electrónico" required="required"
-						autocomplete="off">
+						autocomplete="off" placeholder="aaaaa@uce.edu.ec"
+						pattern="/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3,4})+$/"
+						onKeyUp="javascript:validateMail('email')">
 					<input type="hidden" name="${_csrf.parameterName}"
 						value="${_csrf.token}" />
 					<button type="submit" title="Buscar" class="btn btn-primary">Buscar</button>
@@ -106,6 +108,7 @@
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script src="${urlPublic}/bootstrap/js/bootstrap.min.js"></script>
+	<script src="${urlPublic}/js/validarEmail.js" type="text/javascript"></script>
 
 </body>
 </html>

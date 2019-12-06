@@ -40,9 +40,7 @@
 		</h3>
 
 		<div class="panel panel-default">
-			<div class="panel-heading">
-
-			</div>
+			<div class="panel-heading"></div>
 			<div class=" panel-body">
 				<form:form action="${urlForm}" method="post"
 					modelAttribute="usuario">
@@ -82,20 +80,15 @@
 									id="cuenta" required="required" autocomplete="off" />
 							</div>
 						</div>
-						<!--  
-						<div class="col-sm-3">
-							<div class="form-group">
-								<label for="pwd">Password</label>
-								<form:input type="password" class="form-control" path="pwd"
-									id="pwd" required="required" />
-							</div>
-						</div>
--->
+
 						<div class="col-sm-6">
 							<div class="form-group">
 								<label for="email">Email</label>
 								<form:input type="email" class="form-control" path="email"
-									id="email" placeholder="Correo electrónico" required="required" autocomplete="off"/>
+									id="email" placeholder="Correo electrónico" required="required"
+									autocomplete="off"
+									pattern="/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3,4})+$/"
+									onKeyUp="javascript:validateMail('email')" />
 							</div>
 						</div>
 
@@ -128,5 +121,7 @@
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script src="${urlPublic}/bootstrap/js/bootstrap.min.js"></script>
+	<script src="${urlPublic}/js/validarEmail.js" type="text/javascript"></script>
+
 </body>
 </html>
