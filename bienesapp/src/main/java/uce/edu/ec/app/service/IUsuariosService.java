@@ -32,4 +32,5 @@ public interface IUsuariosService {
 	
 	//Buscar el Usuario por cuenta and email
 	Usuario buscarCuentaAndEmail(String cuenta, String email);
+	
 }

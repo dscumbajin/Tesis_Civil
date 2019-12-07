@@ -13,7 +13,7 @@ import uce.edu.ec.app.repository.UsuariosRepository;
 
 @Service
 public class UsuariosServiceJPA implements IUsuariosService {
-
+	
 	@Autowired
 	private UsuariosRepository usuariosRepo;
 

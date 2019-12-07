@@ -32,7 +32,6 @@ import uce.edu.ec.app.service.IEstacionService;
 @Controller
 @RequestMapping(value = "/asignaciones")
 public class BienesEstacionesController {
-	
 
 	@Autowired
 	private IBienes_Estaciones servicioBienesEstaciones;
@@ -113,7 +112,7 @@ public class BienesEstacionesController {
 			}
 
 		} else {
-		
+
 			// edicion
 			bienes_Estaciones = servicioBienesEstaciones.buscarPorId(id);
 			Estacion lugar = servicioEstaciones.buscarPorId(Integer.parseInt(idEstacion));
@@ -135,7 +134,6 @@ public class BienesEstacionesController {
 				attributes.addFlashAttribute("mensaje", "El registro fue editado");
 			}
 
-			
 			edicion = "";
 		}
 		return "redirect:/asignaciones/indexPaginate";

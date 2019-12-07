@@ -52,15 +52,14 @@
 			<div class="panel-heading">
 				<form class="form-inline" action="${urlSearch}" method="POST">
 					<div class="form-group">
-						<input type="text" id="myInput" name="campo"
-							placeholder="Search for alta nueva..">
+						<input type="text" id="searchTerm" name="campo"
+							placeholder="Lector Alta Nueva.." onkeyup="doSearch()">
 					</div>
 					<input type="hidden" name="${_csrf.parameterName}"
 						value="${_csrf.token}" />
 					<button type="submit" title="Buscar" class="btn btn-primary">Buscar</button>
 				</form>
-				<br>  <label>Buscar:</label> <input id="searchTerm"
-					type="text" onkeyup="doSearch()" />
+				
 			</div>
 			<div class="panel-body">
 				<div class="table-responsive">

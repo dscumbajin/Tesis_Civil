@@ -48,16 +48,15 @@
 			<div class="panel-heading">
 				<form class="form-inline" action="${urlSearch}" method="POST">
 					<div class="form-group">
-						<input type="text" id="myInput" name="inputLugar"
-							placeholder="Search for lugar..">
+						<input type="text" id="searchTerm" name="inputLugar"
+							placeholder="Search for lugar.." onkeyup="doSearch()">
 					</div>
 
 					<input type="hidden" name="${_csrf.parameterName}"
 						value="${_csrf.token}" />
 					<button type="submit" title="Buscar" class="btn btn-primary">Buscar</button>
 				</form>
-				<br>  <label>Buscar:</label> <input id="searchTerm"
-					type="text" onkeyup="doSearch()" />
+
 			</div>
 			<div class="panel-body">
 				<div class="table-responsive">
