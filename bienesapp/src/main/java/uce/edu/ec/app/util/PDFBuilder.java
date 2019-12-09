@@ -31,7 +31,8 @@ import uce.edu.ec.app.model.Bien;
 @Component
 public class PDFBuilder extends AbstractITextPdfView {
 
-	SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+	SimpleDateFormat dateFormatLarg = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+	SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -48,7 +49,7 @@ public class PDFBuilder extends AbstractITextPdfView {
 
 			Font blue = new Font(FontFamily.HELVETICA, 14, Font.BOLD, BaseColor.BLUE);
 			Chunk blueText = new Chunk("REPORTE DE BIENES                                                    "
-					+ "Hora: " + dateFormat.format(new Date()), blue);
+					+ "Hora: " + dateFormatLarg.format(new Date()), blue);
 			Paragraph p = new Paragraph(blueText);
 			p.setAlignment(Element.ALIGN_CENTER);
 			doc.add(p);
@@ -62,14 +63,17 @@ public class PDFBuilder extends AbstractITextPdfView {
 
 			}
 
-			PdfPTable table = new PdfPTable(10);
+			PdfPTable table = new PdfPTable(19);
 			table.setWidthPercentage(100.0f);
-			table.setWidths(new float[] { 1.0f, 1.0f, 2.0f, 1.3f, 1.3f, 1.3f, 1.3f, 1.3f, 1.3f, 1.3f });
+			table.setWidths(new float[] { 1.3f, 1.3f, 2.1f, 2.8f, 1.3f, 1.3f, 1.3f, 1.3f, 1.3f, 1.3f, 1.3f, 1.5f, 2.1f,
+					1.3f, 1.3f, 2.1f, 1.3f, 1.3f, 2.1f });
 			table.setSpacingBefore(10);
 			table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_CENTER);
-			// define font for table header row
-			Font font = FontFactory.getFont(FontFactory.HELVETICA_BOLD);
+			// Tamaño letra Encabezados
+			Font font = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 10);
 			font.setColor(BaseColor.WHITE);
+			//Tamaño letra Contenido Celdas
+			Font ffont = new Font(FontFamily.HELVETICA, 10);
 
 			// define table header cell
 			PdfPCell cell = new PdfPCell(new Paragraph("Created By Basant"));
@@ -79,44 +83,108 @@ public class PDFBuilder extends AbstractITextPdfView {
 			 */
 
 			cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-			cell.setPadding(10.0f);
+			cell.setPadding(2.0f);
 			cell.setBackgroundColor(new BaseColor(30, 144, 255));
 			// write table header
 			cell.setPhrase(new Phrase("Alta Nueva", font));
 			table.addCell(cell);
 			cell.setPhrase(new Phrase("Alta Anterior", font));
 			table.addCell(cell);
-			cell.setPhrase(new Phrase("Descripcion", font));
-			table.addCell(cell);
 			cell.setPhrase(new Phrase("Serie", font));
+			table.addCell(cell);
+			cell.setPhrase(new Phrase("Descripción", font));
 			table.addCell(cell);
 			cell.setPhrase(new Phrase("Fecha de Ingreso", font));
 			table.addCell(cell);
 			cell.setPhrase(new Phrase("Costo", font));
 			table.addCell(cell);
-			cell.setPhrase(new Phrase("Vida Util", font));
+			cell.setPhrase(new Phrase("Vida Útil", font));
 			table.addCell(cell);
-			cell.setPhrase(new Phrase("Depreciacion", font));
+			cell.setPhrase(new Phrase("Depreciación", font));
 			table.addCell(cell);
 			cell.setPhrase(new Phrase("Fin de Garantia", font));
 			table.addCell(cell);
+			cell.setPhrase(new Phrase("Color", font));
+			table.addCell(cell);
+			cell.setPhrase(new Phrase("Material", font));
+			table.addCell(cell);
 			cell.setPhrase(new Phrase("Asignado", font));
+			table.addCell(cell);
+			cell.setPhrase(new Phrase("Causionado", font));
+			table.addCell(cell);
+			cell.setPhrase(new Phrase("Estado", font));
+			table.addCell(cell);
+			cell.setPhrase(new Phrase("Estatus", font));
+			table.addCell(cell);
+			cell.setPhrase(new Phrase("Guarda Almacén", font));
+			table.addCell(cell);
+			cell.setPhrase(new Phrase("Marca", font));
+			table.addCell(cell);
+			cell.setPhrase(new Phrase("Modelo", font));
+			table.addCell(cell);
+			cell.setPhrase(new Phrase("Tipo", font));
 			table.addCell(cell);
 
 			try {
 				// write table row data
 				for (Bien bien : bienes) {
-					table.addCell(bien.getAlta());
-					table.addCell(bien.getAnterior());
-					table.addCell(bien.getDescripcion());
-					table.addCell(bien.getSerie());
-					table.addCell(String.valueOf(bien.getFecha_ingreso()));
-					table.addCell(String.valueOf(bien.getCosto()));
-					table.addCell(String.valueOf(bien.getVida_util()));
-					table.addCell(String.valueOf(bien.getDepreciacion()));
-					table.addCell(String.valueOf(bien.getGarantia()));
-					table.addCell(bien.getDetalle().getAsignado());
-
+					cell = new PdfPCell(new Phrase(bien.getAlta(), ffont));
+					cell.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+					table.addCell(cell);
+					cell = new PdfPCell(new Phrase(bien.getAnterior(), ffont));
+					cell.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+					table.addCell(cell);
+					cell = new PdfPCell(new Phrase(bien.getSerie(), ffont));
+					cell.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+					table.addCell(cell);
+					cell = new PdfPCell(new Phrase(bien.getDescripcion(), ffont));
+					cell.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+					table.addCell(cell);
+					cell = new PdfPCell(new Phrase(String.valueOf(dateFormat.format(bien.getFecha_ingreso())), ffont));
+					cell.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+					table.addCell(cell);
+					cell = new PdfPCell(new Phrase(String.valueOf(bien.getCosto()), ffont));
+					cell.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+					table.addCell(cell);
+					cell = new PdfPCell(new Phrase(String.valueOf(bien.getVida_util()) + " años", ffont));
+					cell.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+					table.addCell(cell);
+					cell = new PdfPCell(new Phrase(String.valueOf(bien.getDepreciacion()) + " años", ffont));
+					cell.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+					table.addCell(cell);
+					cell = new PdfPCell(new Phrase(String.valueOf(dateFormat.format(bien.getGarantia())), ffont));
+					cell.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+					table.addCell(cell);
+					cell = new PdfPCell(new Phrase(bien.getColor(), ffont));
+					cell.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+					table.addCell(cell);
+					cell = new PdfPCell(new Phrase(bien.getMaterial(), ffont));
+					cell.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+					table.addCell(cell);
+					cell = new PdfPCell(new Phrase(bien.getDetalle().getAsignado(), ffont));
+					cell.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+					table.addCell(cell);
+					cell = new PdfPCell(new Phrase(bien.getDetalle().getCausionado(), ffont));
+					cell.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+					table.addCell(cell);
+					cell = new PdfPCell(new Phrase(bien.getDetalle().getEstado(), ffont));
+					cell.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+					table.addCell(cell);
+					cell = new PdfPCell(new Phrase(bien.getDetalle().getEstatus(), ffont));
+					cell.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+					table.addCell(cell);
+					cell = new PdfPCell(new Phrase(bien.getDetalle().getGuarda_almacen(), ffont));
+					cell.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+					table.addCell(cell);
+					cell = new PdfPCell(new Phrase(bien.getDetalle().getMarca(), ffont));
+					cell.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+					table.addCell(cell);
+					cell = new PdfPCell(new Phrase(bien.getDetalle().getModelo(), ffont));
+					cell.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+					table.addCell(cell);
+					cell = new PdfPCell(new Phrase(bien.getDetalle().getTipo(), ffont));
+					cell.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+					table.addCell(cell);
 				}
 
 				doc.add(table);

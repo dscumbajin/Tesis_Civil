@@ -71,8 +71,8 @@ public class BienesServiceJPA implements IBienService {
 	}
 
 	@Override
-	public Page<Bien> search(String alta, Pageable page) {
-		return bienesRepo.findByAlta(alta, page);
+	public Page<Bien> search(String input, Pageable page) {
+		return bienesRepo.findByInput(input, page);
 	}
 
 	@Override

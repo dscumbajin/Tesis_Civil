@@ -83,9 +83,8 @@
 					<div class="form-group">
 						<label for="email">Email</label>
 						<form:input type="email" class="form-control" path="email"
-							id="email" placeholder="Correo electrónico" required="required"
+							id="email" placeholder="aaaaa@uce.edu.ec" required="required"
 							autocomplete="off"
-							placeholder="aaaaa@uce.edu.ec"
 							pattern="/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3,4})+$/"
 							onKeyUp="javascript:validateMail('email')" />
 					</div>

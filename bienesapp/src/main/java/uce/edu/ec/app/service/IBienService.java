@@ -29,8 +29,10 @@ public interface IBienService {
 	// Para paginar
 	Page<Bien> buscarTodas(Pageable page);
 	
-	Page<Bien> search(String alta, Pageable page);
+	// Buscar Bien por input
+	Page<Bien> search(String input, Pageable page);
 
+	//Buscar Bien por periodo de Registro
 	Page<Bien> buscarPeriodo(Date startDate, Date endDate, Pageable page);
 	
 	// Para controlar repetidos

@@ -100,8 +100,8 @@
 						class=" table-rwd  table-hover table-striped table-bordered">
 						<thead>
 							<tr>
-								<th>Alta Nueva</th>
-								<th>Alta Anterior</th>
+								<th>Alta Nueva </th>
+								<th>Alta Anterior </th>
 								<th>Serie</th>
 								<th>Descripción</th>
 								<th>Fecha de Ingreso</th>

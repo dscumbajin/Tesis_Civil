@@ -31,7 +31,8 @@ import uce.edu.ec.app.model.Bienes_Estaciones;
 @Component
 public class PDFBuilderDetalle extends AbstractITextPdfView {
 
-	SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+	SimpleDateFormat dateFormatLarg = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+	SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -48,7 +49,7 @@ public class PDFBuilderDetalle extends AbstractITextPdfView {
 
 			Font blue = new Font(FontFamily.HELVETICA, 14, Font.BOLD, BaseColor.BLUE);
 			Chunk blueText = new Chunk("DETALLE                                                   " + "Hora: "
-					+ dateFormat.format(new Date()), blue);
+					+ dateFormatLarg.format(new Date()), blue);
 			Paragraph p = new Paragraph(blueText);
 			p.setAlignment(Element.ALIGN_CENTER);
 			doc.add(p);
@@ -69,8 +70,11 @@ public class PDFBuilderDetalle extends AbstractITextPdfView {
 			table.setSpacingBefore(10);
 			table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_CENTER);
 			// define font for table header row
-			Font font = FontFactory.getFont(FontFactory.HELVETICA_BOLD);
+			Font font = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 10);
 			font.setColor(BaseColor.WHITE);
+
+			// Tamaño letra Contenido Celdas
+			Font ffont = new Font(FontFamily.HELVETICA, 10);
 
 			// define table header cell
 			PdfPCell cell = new PdfPCell(new Paragraph("Created By Basant"));
@@ -89,7 +93,7 @@ public class PDFBuilderDetalle extends AbstractITextPdfView {
 			table.addCell(cell);
 			cell.setPhrase(new Phrase("Alta Anterior", font));
 			table.addCell(cell);
-			cell.setPhrase(new Phrase("Descripcion", font));
+			cell.setPhrase(new Phrase("Descripción", font));
 			table.addCell(cell);
 			cell.setPhrase(new Phrase("Marca", font));
 			table.addCell(cell);
@@ -97,7 +101,7 @@ public class PDFBuilderDetalle extends AbstractITextPdfView {
 			table.addCell(cell);
 			cell.setPhrase(new Phrase("Serie", font));
 			table.addCell(cell);
-			cell.setPhrase(new Phrase("Guarda Almacen", font));
+			cell.setPhrase(new Phrase("Guarda Almacén", font));
 			table.addCell(cell);
 			cell.setPhrase(new Phrase("Causionado", font));
 			table.addCell(cell);
@@ -113,19 +117,45 @@ public class PDFBuilderDetalle extends AbstractITextPdfView {
 			// write table row data
 			try {
 				for (Bienes_Estaciones bien_Estacion : bienes_Estaciones) {
-					table.addCell(bien_Estacion.getBien().getDetalle().getAsignado());
-					table.addCell(bien_Estacion.getBien().getAlta());
-					table.addCell(bien_Estacion.getBien().getAnterior());
-					table.addCell(bien_Estacion.getBien().getDescripcion());
-					table.addCell(bien_Estacion.getBien().getDetalle().getMarca());
-					table.addCell(bien_Estacion.getBien().getDetalle().getModelo());
-					table.addCell(bien_Estacion.getBien().getSerie());
-					table.addCell(bien_Estacion.getBien().getDetalle().getGuarda_almacen());
-					table.addCell(bien_Estacion.getBien().getDetalle().getCausionado());
-					table.addCell(bien_Estacion.getEstacion().getLugar());
-					table.addCell(bien_Estacion.getEstacion().getUbicacion());
-					table.addCell(String.valueOf(bien_Estacion.getRegistro()));
-					table.addCell(String.valueOf(bien_Estacion.getActualizacion()));
+					cell = new PdfPCell(new Phrase(bien_Estacion.getBien().getDetalle().getAsignado(), ffont));
+					cell.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+					table.addCell(cell);
+					cell = new PdfPCell(new Phrase(bien_Estacion.getBien().getAlta(), ffont));
+					cell.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+					table.addCell(cell);
+					cell = new PdfPCell(new Phrase(bien_Estacion.getBien().getAnterior(), ffont));
+					cell.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+					table.addCell(cell);
+					cell = new PdfPCell(new Phrase(bien_Estacion.getBien().getDescripcion(), ffont));
+					cell.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+					table.addCell(cell);
+					cell = new PdfPCell(new Phrase(bien_Estacion.getBien().getDetalle().getMarca(), ffont));
+					cell.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+					table.addCell(cell);
+					cell = new PdfPCell(new Phrase(bien_Estacion.getBien().getDetalle().getModelo(), ffont));
+					cell.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+					table.addCell(cell);
+					cell = new PdfPCell(new Phrase(bien_Estacion.getBien().getSerie(), ffont));
+					cell.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+					table.addCell(cell);
+					cell = new PdfPCell(new Phrase(bien_Estacion.getBien().getDetalle().getGuarda_almacen(), ffont));
+					cell.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+					table.addCell(cell);
+					cell = new PdfPCell(new Phrase(bien_Estacion.getBien().getDetalle().getCausionado(), ffont));
+					cell.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+					table.addCell(cell);
+					cell = new PdfPCell(new Phrase(bien_Estacion.getEstacion().getLugar(), ffont));
+					cell.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+					table.addCell(cell);
+					cell = new PdfPCell(new Phrase(bien_Estacion.getEstacion().getUbicacion(), ffont));
+					cell.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+					table.addCell(cell);
+					cell = new PdfPCell(new Phrase(String.valueOf(dateFormat.format(bien_Estacion.getRegistro())), ffont));
+					cell.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+					table.addCell(cell);
+					cell = new PdfPCell(new Phrase(String.valueOf(dateFormat.format(bien_Estacion.getActualizacion())), ffont));
+					cell.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+					table.addCell(cell);
 
 				}
 				doc.add(table);

@@ -105,7 +105,7 @@
 				<form class="form-inline" action="${urlSearch}" method="POST">
 					<div class="form-group">
 						<input type="text" id="searchTerm" name="campo"
-							placeholder="Search for alta nueva.." autocomplete="off"
+							placeholder="Lector Alta Nueva" autocomplete="off"
 							onkeyup="doSearch()">
 						<button type="submit" title="Buscar" class="btn btn-primary">Buscar</button>
 

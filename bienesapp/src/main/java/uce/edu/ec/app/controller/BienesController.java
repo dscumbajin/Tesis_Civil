@@ -106,7 +106,7 @@ public class BienesController {
 	public String mostrarPeriodoPaginado(Model model, Pageable page) {
 
 		if (busqueda == "") {
-			//Lista vacia
+			// Lista vacia
 		} else if (paginado == "si") {
 			Page<Bien> lista = serviceBienes.buscarPeriodo(inicio, fin, page);
 			model.addAttribute("bienes", lista);
