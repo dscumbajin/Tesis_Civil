@@ -96,7 +96,8 @@
 					<div class="form-group">
 						<label for="costo">Costo</label>
 						<form:input type="text" class="form-control" path="costo"
-							id="costo" required="required" autocomplete="off"/>
+							id="costo" required="required" autocomplete="off"
+							pattern="^[0-9]+([.][0-9]+)?$" />
 					</div>
 				</div>
 
@@ -127,7 +128,7 @@
 					<div class="form-group">
 						<label for="garantia">Fin de Garantia</label>
 						<form:input type="text" class="form-control" path="garantia"
-							id="garantia" required="required" />
+							id="garantia" required="required" autocomplete="off" />
 					</div>
 				</div>
 
@@ -221,7 +222,8 @@
 						<label for="guarda_almacen">Guarda Almacen</label>
 						<form:input type="text" class="form-control"
 							path="detalle.guarda_almacen" id="guarda_almacen"
-							required="required" />
+							required="required" placeholder="Solo Letras"
+							pattern="|^[a-zA-Z]+(\s*[a-zA-Z]*)*[a-zA-Z]+$|" />
 					</div>
 				</div>
 
@@ -229,7 +231,9 @@
 					<div class="form-group">
 						<label for="causionado">Caucionado</label>
 						<form:input type="text" class="form-control"
-							path="detalle.causionado" id="modelo" required="required" />
+							path="detalle.causionado" id="modelo" required="required"
+							placeholder="Solo Letras"
+							pattern="|^[a-zA-Z]+(\s*[a-zA-Z]*)*[a-zA-Z]+$|" />
 					</div>
 				</div>
 			</div>

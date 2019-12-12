@@ -85,7 +85,7 @@
 			<div class="panel-heading">
 				<form class="form-inline" action="${urlSearch}" method="POST">
 					<div class="form-group">
-						<input type="text" id="searchTerm" name="campo"
+						<input type="text" id="searchTerm" name="campo" required="required"
 							placeholder="Lector Alta Nueva" onkeyup="doSearch()">
 					</div>
 					<input type="hidden" name="${_csrf.parameterName}"

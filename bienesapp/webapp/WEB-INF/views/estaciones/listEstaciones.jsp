@@ -48,7 +48,7 @@
 			<div class="panel-heading">
 				<form class="form-inline" action="${urlSearch}" method="POST">
 					<div class="form-group">
-						<input type="text" id="searchTerm" name="inputLugar"
+						<input type="text" id="searchTerm" name="inputLugar" required="required"
 							placeholder="Search for lugar.." onkeyup="doSearch()">
 					</div>
 

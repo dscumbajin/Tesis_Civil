@@ -85,7 +85,7 @@
 						<label for="imagen">Imagen</label> <input type="file"
 							id="archivoImagen" name="archivoImagen" />
 						<form:hidden path="imagen" />
-						<p class="help-block">Imagen de la pelicula</p>
+						<p class="help-block">Imagen de estación</p>
 					</div>
 				</div>
 

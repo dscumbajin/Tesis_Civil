@@ -16,12 +16,16 @@
 			access="hasAnyAuthority('ADMINISTRADOR')" />
 		<intercept-url pattern="/asignaciones/*"
 			access="hasAnyAuthority('ADMINISTRADOR')" />
-		<intercept-url pattern="/noticias/*"
+
+
+		<intercept-url pattern="/noticias/indexPaginate"
 			access="hasAnyAuthority('ADMINISTRADOR', 'ESTANDAR')" />
-		<intercept-url pattern="/banners/*"
+		<intercept-url pattern="/noticias/edit/*"
 			access="hasAnyAuthority('ADMINISTRADOR', 'ESTANDAR')" />
-		<!-- <intercept-url pattern="/" access="hasAnyAuthority('GERENTE','EDITOR')" 
-			/> -->
+		<intercept-url pattern="/banners/indexPaginate"
+			access="hasAnyAuthority('ADMINISTRADOR', 'ESTANDAR')" />
+		<intercept-url pattern="/banners/edit/*"
+			access="hasAnyAuthority('ADMINISTRADOR','ESTANDAR')" />
 
 		<form-login login-page="/formLogin"
 			default-target-url="/admin/index" />
